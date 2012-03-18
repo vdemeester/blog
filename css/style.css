@@ -1,4 +1,4 @@
-body pre:first-child {
+body pre:first-of-type {
     background:#333;
     color:orange;
     text-align:center
