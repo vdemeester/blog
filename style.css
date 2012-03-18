@@ -1,0 +1,19 @@
+body { 
+    font-family: mono;
+    background-color: #161616;
+    color: #a9a9a9;
+}
+/*span.prompt { color: #afdf87; }*/
+span.prompt { color: #afafdf; }
+samp.cursor { text-decoration: blink ! important;
+}
+div.content { width: 75%;
+    margin-left: 15%;
+    margin-top: 5em;
+}
+a { color: white ! important;
+    text-decoration: none ! important;
+}
+a:hover { color: #ffffaf ! important;
+}
+
