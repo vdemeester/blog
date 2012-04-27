@@ -1,0 +1,9 @@
+markdown: rdiscount
+pygments: true
+plugins: ./_plugins
+
+title: Vincent Demeester
+feed: /atom.xml
+author:
+    name: Vincent Demeester
+description: Vincent Demeester identity page

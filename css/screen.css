@@ -1,0 +1,32 @@
+/* Global Reset */
+
+*{ margin: 0; padding: 0; }
+
+/* Layout */
+
+html,body{ background-image: url(../images/bg.png); }
+a{ color: #2F5373; }
+
+#container{ background: rgba(255,255,255,0.5); margin: 40px auto; width: 680px; padding: 30px; border: 1px solid rgba(210,210,210,0.4); border-radius: 3px; }
+
+#header{ height: 60px; }
+#main{ margin: 20px 0 0 0; }
+
+#header ul{ float: right; margin: 10px 0; }
+#header ul li{ display: inline; list-style: none; margin: 0 0 0 5px; }
+#header h1 a{ font-family: 'Droid Sans', serif; margin: 0 0 20px 0; text-decoration: none; color: #000; float: left; border: none; }
+#main h2{ font-family: 'Droid Sans', serif; font-size: 20px; margin: 15px 0 10px 0; }
+#main h3{ font-family: 'Droid Sans', serif; font-size: 17px; margin: 15px 0 5px 0; }
+#main p{ font-family: Georgia, serif; font-size: 16px; margin: 0 0 10px 0; line-height: 23px; }
+#main .highlight{ margin: 0 0 10px 0; }
+#twocolumn{ min-height: 240px; }
+#twocolumn .left{ float: left; width: 325px; }
+#twocolumn .right{ float: right; width: 325px; }
+#pagination{ margin: 10px 0 0 0; }
+#pagination a.prev{ float: left; }
+#pagination a.next{ float: right; }
+
+ul.posts li{ color: #777; list-style: none; clear: both; border-bottom:1px dotted #D7D7D7; padding: 5px 0; height: 20px; font-size: 16px; }
+ul.posts a{ text-decoration: none; }
+ul.posts a:hover{ text-decoration: underline; }
+ul.posts span{ float: right;color: #777; font-size: 14px; }
