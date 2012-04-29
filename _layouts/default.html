@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-   {% if page.title %}
+   {% if page.title and page.body_class != 'home' %}
    <title>{{ page.title }} &larr; {{ site.title }}</title>
    {% else %}
    <title>{{ site.title }}</title>
@@ -46,9 +46,8 @@
         //-->
     </h1>
     <ul class="nav">
-      <li><a class="home" href="{{ HOME_PATH }}">Home</a></li>
+      <li><a  href="/debian">Debian</a></li>
       <li><a  href="/archive.html">Archive</a></li>
-      <li><a  href="/pages.html">Pages</a></li>
       <li><a  href="/categories.html">Categories</a></li>
       <li><a  href="/tags.html">Tags</a></li>
     </ul>

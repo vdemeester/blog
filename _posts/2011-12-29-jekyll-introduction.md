@@ -1,8 +1,8 @@
 ---
 layout: post
 category : lessons
-tags : [intro, beginner, jekyll, tutorial]
-body_class : red
+tags : [intro, beginner, jekyll, tutorial, debian]
+body_class : gray
 ---
 {% include setup %}
 
