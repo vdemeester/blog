@@ -1,12 +1,12 @@
 ---
-title: Debian
+title: GNU/Linux
 layout: page
 body_class: red
 group: navigation
 ---
 {% include setup %}
 
-This is the Debian related pages.
+This is the GNU/Linux related pages.
 
 # Content tagged with Debian
 
