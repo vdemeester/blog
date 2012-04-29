@@ -2,7 +2,7 @@
 layout: post
 category : lessons
 tags : [intro, beginner, jekyll, tutorial]
-body_class : blue
+body_class : red
 ---
 {% include setup %}
 
