@@ -51,8 +51,11 @@ body {
 body.gray {
     background: url(../images/bg_gray.png);
 }
+body.yellow {
+    background: url(../images/bg_yellow.png);
+}
 body.green {
-    background: url(../images/bg.png);
+    background: url(../images/bg_green.png);
 }
 body.red {
     background: url(../images/bg_red.png);
