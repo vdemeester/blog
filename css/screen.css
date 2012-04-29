@@ -1,32 +1,666 @@
-/* Global Reset */
+/* @override http://mark.reid.dev/files/css/screen.css */
 
-*{ margin: 0; padding: 0; }
+/* @override 
+	http://mark.reid.dev/files/css/screen.css
+	http://mark.reid.name/files/css/screen.css
+*/
+@import url('http://fonts.googleapis.com/css?family=Neucha');
+@font-face {
+    font-family: "CabinSketch";
+    font-weight: bold;
+    src: url("fonts/CabinSketch-Bold.ttf") format("opentype");
+}
+@font-face {
+    font-family: "Cabin";
+    font-weight: normal;
+    src: url("fonts/Cabin-Regular.ttf") format("opentype");
+}
+@font-face {
+    font-family: "GraublauWeb";
+    src: url("fonts/GraublauWeb.otf") format("opentype");
+}
+@font-face {
+    font-family: "GraublauWeb";
+    font-weight: bold;
+    src: url("fonts/GraublauWebBold.otf") format("opentype");
+}
+/* screen.css
+ *
+ * A clean, simple stylesheet that aims for
+ * a consistent vertical rhythm.
+ *
+ * Base font height: 16px
+ * Base line length: 24px
+ * 
+ * AUTHOR: Mark Reid <mark@reid.name>
+ */
 
-/* Layout */
+/* @group Reset */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,p,blockquote,th,td,abbr { margin:0; padding:0;}
+/* @end */
 
-html,body{ background-image: url(../images/bg.png); }
-a{ color: #2F5373; }
+body {
+	font-family: Palatino, georgia, "times new roman", serif;
+	/*
+    background-color: whitesmoke;
+	background-position: center -18em;
+	background-repeat: repeat-x; 
+    */
+    background: url(../images/bg_blue.png);
+}
+body.gray {
+    background: url(../images/bg_gray.png);
+}
+body.green {
+    background: url(../images/bg.png);
+}
+body.red {
+    background: url(../images/bg_red.png);
+}
 
-#container{ background: rgba(255,255,255,0.5); margin: 40px auto; width: 680px; padding: 30px; border: 1px solid rgba(210,210,210,0.4); border-radius: 3px; }
+/* Hack via Joel Spolsky to make image rescaling nicer in IE */
+img { -ms-interpolation-mode:bicubic; }
 
-#header{ height: 60px; }
-#main{ margin: 20px 0 0 0; }
+/* IE6 ignores this and uses default size of 16pt */
+html>body { font-size:16px; }
+p { margin: 0 0 1.5em 0; text-align: justify; }
 
-#header ul{ float: right; margin: 10px 0; }
-#header ul li{ display: inline; list-style: none; margin: 0 0 0 5px; }
-#header h1 a{ font-family: 'Droid Sans', serif; margin: 0 0 20px 0; text-decoration: none; color: #000; float: left; border: none; }
-#main h2{ font-family: 'Droid Sans', serif; font-size: 20px; margin: 15px 0 10px 0; }
-#main h3{ font-family: 'Droid Sans', serif; font-size: 17px; margin: 15px 0 5px 0; }
-#main p{ font-family: Georgia, serif; font-size: 16px; margin: 0 0 10px 0; line-height: 23px; }
-#main .highlight{ margin: 0 0 10px 0; }
-#twocolumn{ min-height: 240px; }
-#twocolumn .left{ float: left; width: 325px; }
-#twocolumn .right{ float: right; width: 325px; }
-#pagination{ margin: 10px 0 0 0; }
-#pagination a.prev{ float: left; }
-#pagination a.next{ float: right; }
+a { text-decoration: none; color: #339; }
+a:hover { text-decoration: underline; color: #33f; }
+a.pdf:before { 
+	margin-right: 1em;
+	content: url(/files/css/icon_pdf.gif); }
 
-ul.posts li{ color: #777; list-style: none; clear: both; border-bottom:1px dotted #D7D7D7; padding: 5px 0; height: 20px; font-size: 16px; }
-ul.posts a{ text-decoration: none; }
-ul.posts a:hover{ text-decoration: underline; }
-ul.posts span{ float: right;color: #777; font-size: 14px; }
+h1,h2,h3,h4 { 
+	line-height:1em; 
+	font-size:1.5em; 
+	font-weight: normal; 
+	clear: left; 	
+	font-family: "GraublauWeb", 'lucida grande', sans-serif; 
+}
+h1 { margin-bottom: 1em; }
+body.home div#page h1:first-child {
+    font-family: "GraublauWeb",sans-serif;
+    font-weight: bold;
+    font-size: 21px !important;
+    line-height: 25px !important;
+    text-shadow: 0 2px rgba(255, 255, 255, 0.5) !important;
+}
+body.home div#page p {
+    font-family: "Droid Sans", sans-serif;
+    font-size: 15px;
+    line-height: 20px;
+}
+body.home div#page p:first-line {
+	font-variant: normal;
+	font-size: inherit;
+}
+span.fan {
+    color: darkgreen;
+}
+h2 {
+	font-size: 100%;
+	line-height: 1.5em;
+	margin:1.5em 0 1.5em 0;
+	font-weight:bold;
+}
+
+hr { 
+	border-top: 1px solid silver;
+	border-bottom: none;
+	padding: 0;
+	margin: 1.46em 0 0 0;
+}
+
+sup { line-height: 1ex; }
+
+#site {
+	max-width: 46em;
+	margin: 1.5em auto 3em auto;
+	line-height:1.5em;
+}
+
+#page, #disqus_thread {
+	background: white;
+/*	background-image: url(grid.png); */
+	padding: 3em 3em 1.5em 3em;
+	border: 1px solid #ccc;
+}
+
+/* More experimental CSS3 features */
+#page, #disqus_thread {
+	box-shadow: 2px 2px 8px #aaa;
+	-webkit-box-shadow: 2px 2px 8px #aaa;
+	-moz-box-shadow: 2px 2px 8px #aaa;	
+}
+
+#disqus_thread { padding-top: 0; }
+
+/* TODO
+#page { counter-reset: section; }
+#page h2:before {
+	margin-left: -3.5ex;
+	color: silver;
+	content: "§" counter(section) ". ";
+	counter-increment: section 2;
+}
+*/
+
+/* @group FancyFirst */
+.emphnext + p:first-letter, p.emphfirst:first-letter {
+	font-size: 48px;
+	padding: 0 0.15em 0 0;
+	margin:  0.05em 0 -0.15em 0;
+	line-height: 1em;
+	float: left;
+}
+
+.emphnext + p:first-line, p.emphfirst:first-line {
+	font-variant: small-caps;
+	font-size: larger;
+}
+/* @end */
+
+.right { float: right; clear: left; }
+.left { float: left; clear: right; }
+.inset { 
+	border: 1px solid silver; 
+	padding: 2px;
+	margin: 0em 0.8em 0.8em 0.8em;
+}
+.right.inset { margin-right: 0 !important; }
+.left.inset { margin-left: 0 !important; }
+.quiet {
+	color: grey;
+	font-size: 0.875em;
+	line-height: 1.714em;
+}
+blockquote {
+	padding: 0 2em;
+	margin: 1.714em 3em;
+	color: #444;
+	font-size: 0.95em;
+	line-height: 1.514em;
+    background: none repeat scroll 0 0 #fdfdfd;
+    -webkit-border-radius: 0.3em 0.3em 0.3em 0.3em;
+    -moz-border-radius: 0.3em 0.3em 0.3em 0.3em;
+    border-radius: 0.3em 0.3em 0.3em 0.3em;
+}
+blockquote:before {
+    color: #999999;
+    content: "“";
+    display: block;
+    font: italic 500%/1 "Neucha",serif;
+    height: 0;
+    margin-left: -0.95em;
+    padding-top: 10px;
+}
+blockquote.aside {
+    background: none repeat scroll 0 0 SlateGray;
+    color: #EEEEEE;
+    float: right;
+    margin-left: 36em;
+    position: absolute;
+    width: 12em;
+    z-index: 150;
+}
+
+.note {
+	padding-top: 0.5em; 
+	background-color: #fafaff;
+	border-top: 1px solid silver;
+	border-bottom: 1px solid silver;
+}
+/* @group Table */
+table.neat {
+	width: 80%;
+	margin: 1.5em auto 1.5em auto;
+	table-layout: fixed;
+	border-spacing: 0;
+}
+table.neat tr { text-align: center; }
+table.neat th { font-weight: normal; background-color: #eeeeee; }
+table.neat td { background-color: white; }
+table.neat th.title { border-bottom: 1px solid gray; border-top: 1px solid gray; vertical-align: bottom; background-color: lightgrey; }
+caption { 
+	color: #333;
+	font-size: 0.875em;
+	margin: 0.875em auto 0 auto;
+	line-height: 1.14em;
+	text-align: justify;
+}
+
+/* @end */
+
+/* @group Lists */
+ul {
+	margin-top: 1.5em;
+	margin-bottom: 1.5em;
+	line-height: 1.5em;
+	padding-left: 1.5em;
+}
+ul li {
+	list-style-type: square;
+	list-style-position: outside;
+}
+ol li {
+	list-style-type: decimal;
+	list-style-position: inside;
+}
+dt { font-weight: bold;}
+dd { margin: 0 0 1.5em 0; text-align: justify; }
+
+ul.compact { margin: 0; padding: 0;}
+ul.compact li { list-style: ;
+	list-style-type: square;
+	list-style-position: inside;
+}
+ul.compact li span.date {	
+	display: none;
+	color: grey;
+	width: 20%;
+}
+ul.compact li a {
+	width: 70%;
+}
+/* @end */
+
+/* @group Header */
+#header, #header a { color: silver; }
+#header .hover { color: transparent; }
+#header:hover a { color: black; text-shadow: #aaa 2px 2px 3px;}
+#header:hover a:hover { text-decoration: none; }
+#header a:hover .hover { color: silver; }
+#header {
+	position: relative;
+	font-variant: small-caps;
+	line-height: 1em;
+	margin-top: .5em;
+	margin-bottom: 0;
+}
+#header h1 {
+	font-family: Palatino, georgia, "times new roman", serif;
+	margin-bottom: 0;
+	line-height: 0.9em;
+	display: block;
+	font-weight: normal;
+}
+
+#header ul {
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: 100%;
+	line-height: 1.6em;
+	display: block;
+	margin: 0;
+	width: 50%;
+	text-align: right;
+}
+#header ul li { display: inline; }
+#header ul li a {
+	padding: 0.4em 0.3em 0 0.3em;
+	display: inline;
+}
+#header ul li a:hover {
+	color: blue;
+	border-bottom: 2px solid blue;
+}
+#header .byline {
+	color: silver;
+	font-size: 10pt;
+	line-height: 75%
+}
+#header:hover .byline a { color: silver; text-shadow: none; }
+#header:hover .byline a:hover { color: black; text-shadow: #aaa 1px 1px 2px;}
+
+/* @group Twitter */
+#twitter_update_list { display: inline; margin: 0; }
+#twitter_update_list li { display: inline; margin: 0;}
+.twitter-title { display: inline; margin: 0; }
+.twitter-title a { display: inline; }
+/* @end */
+
+body#Work #header a.work, 
+body#Home #header a.home, 
+body#Play #header a.play,
+body#Info #header a.info,
+body#Code #header a.code,
+body#Past #header a.past,
+body#Kith #header a.kith
+{ 
+	border-bottom: 2px solid silver; 
+}
+
+/* @end */
+
+/* @group Footnotes */
+.footnotes { color: grey; }
+.footnotes:hover { color: black; }
+.footnotes ol li {
+	list-style-type: decimal;
+	list-style-position: inside;
+	font-size: 75%;
+	line-height: 1.5em;
+}
+.footnotes ol li > a { display: none; }
+/* @end */
+
+/* @group Sections */
+.section { 
+	font-size: 87.5%; 
+	line-height: 1.43em; 
+	margin-bottom: 1.43em;
+	margin-top: 1.43em;
+	margin-left: 7.5em;
+	padding-right: 3em;
+}
+.section h1 {
+	font-family: Palatino, georgia, serif;
+	font-size: 100%;
+	line-height: 1.43em;
+	position: absolute;
+	width: 6em;
+	max-width: 6em;
+	margin-left: -7.5em;
+	font-weight: bold;
+	font-variant: small-caps;
+}
+.section p { margin-bottom: 1.43em; }
+
+/* @end */
+
+.list .title { font-weight: bold; }
+p.line { position: relative; margin: 0; }
+p.excerpt { margin: 0; }
+.comments { font-size: smaller; position: absolute; color: silver; right: 0; top: 0; }
+.excerpt { color: black; }
+
+/* @group Signature */
+.signature { 
+	margin-top: 3em; 
+	position: relative;
+}
+.signature .author { 
+	font-variant: small-caps; 
+	font-style: normal; 
+	color: black;
+	display: block;
+	margin-bottom: 1.5em;
+}
+.signature .date { 
+	font-size: 87.5%;
+	line-height: 1.5em;
+	display: block; 
+	font-variant: small-caps; 
+	font-style: normal; 
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+.signature .location { 
+	display: block; 
+	font-size: 87.5%;
+	line-height: 1.5em;
+	position: absolute;
+	right: 0;
+	top: 1.5em;
+}
+/* @end */
+
+/* @group Code */
+pre, code {
+    font-family: Ubuntu Mono, Droid Sans Mono, monospace;
+}
+
+pre {
+	margin: 1em 0 1.5em 0;
+	font-size: 0.90em; /* Hack to make code look same size as body font */  
+	line-height: 1.5em;	
+	color: #111;
+	background: #eee;
+	border: 1px solid #ddc;
+    border-left-width: 3px;
+	padding: 0.5em 1em;
+	overflow: hidden;
+
+	/* Experimental CSS3 stuff */
+	box-shadow: 1px 1px 6px #ccc;
+	-webkit-box-shadow: 1px 1px 6px #ccc;
+	-moz-box-shadow: 1px 1px 6px #ccc;
+}
+pre:hover {
+	border-right: none;
+	overflow: visible;
+}
+code {
+	font-size: 1em;
+	background-color: #f7f7ff;
+    color: green;
+	line-height: 1.4em;
+}
+pre > code {
+	background-color: transparent;
+    color: #000;
+}
+/* @end */
+
+
+/* @group Disqus */
+#disqus_thread {
+	margin-top: 2.93em;
+}
+.dsq-comment-body {
+	text-align: justify;
+	line-height: 1.29em;
+}
+.dsq-comment {
+	padding-top: 0 !important;
+	margin-top: 1.7em !important;
+	margin-bottom: 1.9em !important;
+	background-image: none !important;
+}
+.dsq-comment-message {
+	line-height: 1.714em;
+}
+.dsq-comment-header {
+	background-color: whitesmoke !important;
+	border-top: 1px solid silver !important;
+	border-bottom: 1px solid silver !important;
+	margin-bottom: 1.15em !important;
+}
+.dsq-header-time { margin-left: 0 !important; }
+.dsq-comment-header cite { 
+	font-variant: small-caps;
+	margin-left: 0 !important;
+}
+.dsq-comment-footer { 
+	font-size: 75% !important; 
+	margin-top: 1px !important;
+}
+#dsq-options {
+	background: whitesmoke;
+	border-bottom: 1px solid silver;
+	border-top: 1px solid silver;
+	padding: 0 0 0 1em;
+}
+#dsq-comments-count {
+	margin-top: 0.8em !important;
+	margin-bottom: 1.2em !important;
+}
+#dsq-extra-links { padding-left: 0 !important; }
+#dsq-extra-links li img { display: none; }
+#dsq-options-toggle { color: silver; font-size: 75% !important;}
+#dsq-add-new-comment {
+	margin-top: 1.19em !important;
+	margin-bottom: 1.25em !important;
+}
+/* The following position, width and height ensure
+ * that none of the body in the iframe shows through.
+ */
+form#comment {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background-color: white !important;
+}
+/* @end */
+
+/* @group LibraryThing */
+span.LTtitle { display: none; }
+div.LTitem { display: inline; margin-right: 0.7em; }
+div.LTprovided { display: none; }
+/* @end */
+
+/* @group Last.fm */
+#lastfm a { margin-right: 0.7em; }
+/* @end */
+
+/* @group Delicious */
+.delicious-posts { }
+.delicious-posts ul, .delicious-posts li, .delicious-banner { margin: 0; padding: 0 }
+.delicious-posts li { list-style-position: outside; margin-bottom: 1em; margin-left: 1em; text-align: justify; }
+.delicious-post { }
+.delicious-banner { display: none; }
+.delicious-posts a:hover { }
+.delicious-posts a { }
+.delicious-post a { font-weight: bold; }
+p.delicious-extended { font-size: 100%; display: inline; }
+p.delicious-extended:before { content: ' — '; }
+/* @end */
+
+/* @group Footer */
+#footer {
+	margin-top: 0;
+	color: grey;
+	font-size: 87.5%;
+	line-height: 1.3em;
+}
+#footer address {
+	position: relative;
+	margin: .5em 0 0 0;
+	text-align: right;
+}
+#footer a {
+	font-variant: small-caps;
+	font-style: normal;
+	color: #77d;
+	text-decoration: none;
+}
+#footer .copyright {
+	position: absolute;
+	left: 0;
+	text-align: left;
+	display: block;
+}
+#footer .engine {
+	position: absolute;
+	text-align: right;
+	display: block;
+	right: 0;
+}
+/* @end */
+
+
+/* @group Figures and images */
+dl.figure {
+	margin-top: 1.5em;
+	margin-bottom: 1.5em;
+	text-align: center;
+}
+
+dl.figure dd {
+	color: #333;
+	font-size: 0.875em;
+	margin: 0.875em auto 0 auto;
+	line-height: 1.14em;
+	text-align: justify;
+	width: 85%;
+}
+/* @end */
+
+/* @group Equations */
+div.maruku-equation { display: block ;text-align: center; }
+div.maruku-equation img.maruku-png { position: relative; top: -0.75em;}
+span.maruku-inline { }
+img.maruku-png { }
+/* @end */
+
+/* .prev-next */
+.prev-next {
+	position:relative;
+}
+.prev-next .next{ 
+	float:right;
+}	
+
+/* tag_box ======================================================== */
+.tag_box {
+	list-style:none;
+	margin:0;
+	padding:5px 0 ;
+	overflow:hidden;
+    font-family: "Droid Sans", sans-serif;
+    font-size: 12px;
+}
+.tag_box li {
+	list-style:none;
+	line-height:1.8em;
+}
+.tag_box.inline li {
+	float:left;
+}
+.tag_box a {
+	padding: 3px 0px 3px 6px;
+	margin: 2px;
+	background-color: rgb(252, 248, 227);
+	border-radius: 3px;
+	text-decoration:none;
+}
+.tag_box a span{
+	vertical-align:super;
+	font-size:0.8em;
+}
+.tag_box a.active {
+	background:#57A957;
+	border:1px solid #4C964D;
+	color:#FFF;
+}
+.tag_box li span {
+  background-color: #e25608;
+  padding: 0px 5px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  color: white;
+  text-transform: uppercase;
+  margin: 0 6px 0 0;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  font-weight: bold;
+  font-size: 10px;
+  line-height: 16px;
+}
+.tag_box li a:hover span{
+    background-color: #f99157;
+}
+
+body.home div#page dd {
+    margin: 0;
+    padding-left: 23px !important;
+    background-position: 0 50% !important;
+    background-repeat: no-repeat !important;
+}
+body.home div#page dd.mail {
+    background:url("../images/email.png");
+}
+body.home div#page dd.gnupg {
+    background:url("../images/key.png");
+}
+body.home div#page dd.jabber {
+    background:url("../images/user_gray.png");
+}
+body.home div#page dd.irc {
+    background:url("../images/comments.png");
+}

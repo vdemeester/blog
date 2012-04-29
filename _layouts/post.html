@@ -1,16 +1,30 @@
 ---
 layout: default
 ---
-
-	<h2>{{ page.title }}</h2>
-	{{ content }}
-	<!-- AddThis Button BEGIN -->
-	<div class="addthis_toolbox addthis_default_style ">
-	<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-	<a class="addthis_button_tweet"></a>
-	<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
-	<a class="addthis_counter addthis_pill_style"></a>
-	</div>
-	<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4f6c130b4d2ef4c8"></script>
-	<!-- AddThis Button END -->
+<div id="page">
 	
+  <h1 class="emphnext">{{ page.title }}</h1>
+  <ul class="tag_box inline">
+  {% assign tags_list = page.tags %}
+  {% include tags_list %}
+  </ul>
+
+  {{ content }}
+
+  <address class="signature">
+    <a class="author" href="{{ HOME_PATH }}">{{ site.author.name }}</a> 
+    <span class="date">{{ page.date | date_to_long_string }}</span>
+    <span class="location">{{ page.location }}</span>
+  </address>
+  
+  <div class="prev-next">
+  {% if page.next %}
+    <a href="{{ page.next.url }}" class="next" title="{{ page.next.title }}">Next Post &rarr;</a>
+  {% endif %}
+  {% if page.previous %}
+    <a href="{{ page.previous.url }}" class="prev" title="{{ page.previous.title }}">&larr; Earlier Post</a>
+  {% endif %}
+  </div>
+  
+</div><!-- End Page -->
+

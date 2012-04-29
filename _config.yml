@@ -1,9 +1,30 @@
+# Use Rdiscount for markdown
 markdown: rdiscount
+# Use pygments
 pygments: true
+# Plugin folder
 plugins: ./_plugins
+
+# Permalink format
+permalink: /:year/:month/:title
+
+# Excludes
+exclude: [".rbenv-version", "README.md", "Rakefile"]
 
 title: Vincent Demeester
 feed: /atom.xml
 author:
     name: Vincent Demeester
+    email: vincent+github@demeester.fr
+    github: vdemeester
+    identica: vdemeester
+    lastfm: vdemeester
+    linkedin: vincentdemeester
+    stackoverflow: 89249/vincent-demeester
 description: Vincent Demeester identity page
+tags_path: /tags.html
+categories_path: /categories.html
+
+base_path: /
+# production_url
+production_url: http://vdemeester.github.com
