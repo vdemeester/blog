@@ -18,3 +18,11 @@ This is the GNU/Linux related pages.
 </ul>
 {% endif %}
 {% endfor %}
+
+# Todo(s)
+
+- Debian
+  - Installation notes (on thinkpad, eee pcs and servers)
+  - Fail2ban notes (git-daemon, …)
+  - Xen installation & notes
+- LXC : projects & notes
