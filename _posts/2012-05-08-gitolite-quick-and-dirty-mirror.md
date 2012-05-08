@@ -1,6 +1,6 @@
 ---
 layout: post
-category : me
+category : developement
 tags : [gitolite, git, linux, mirror, github]
 body_class : gray
 ---
