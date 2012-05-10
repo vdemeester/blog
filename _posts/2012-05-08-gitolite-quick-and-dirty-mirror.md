@@ -19,7 +19,7 @@ We are going to implement a simplier way to set mirror thing :
 2. Write a hook that take a specific `git-config` (let say `mirror.url`) and do
    a simple mirroring.
 
-## Gitolite commands
+# Gitolite commands
 
 Gitolite 3 has been rewritten to be more flexible : [Why a completely new version](http://sitaramc.github.com/gitolite/g3why.html).
 The rewrite made it really easy to extend gitolite. I've fork [gitolite](https://github.com/vdemeester/gitolite) on github
