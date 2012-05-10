@@ -7,7 +7,7 @@
 {% endif %}
 <head>
    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-   {% if page.title and page.body_class != 'home' %}
+   {% if page.title and page.bodyClass != 'home' %}
    <title>{{ page.title }} &larr; {{ site.title }}</title>
    {% else %}
    <title>{{ site.title }}</title>
@@ -34,8 +34,8 @@
    <link rel="stylesheet" href="{{ ASSET_PATH }}/css/screen.css" type="text/css" />
 
 </head>
-{% if page.body_class %}
-<body id="{{ page.section }}" class="{{ page.body_class }}">
+{% if page.bodyClass %}
+<body id="{{ page.section }}" class="{{ page.bodyClass }}">
 {% else %}
 <body id="{{ page.section }}">
 {% endif %}

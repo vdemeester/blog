@@ -1,7 +1,7 @@
 ---
 title: GNU/Linux
 layout: page
-body_class: red
+bodyClass: red
 group: navigation
 ---
 {% include setup %}

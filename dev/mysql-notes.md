@@ -1,7 +1,7 @@
 ---
 title: Notes on MySQL
 layout: page
-body_class: green
+bodyClass: green
 group: navigation
 tags: [linux, mysql]
 lang: fr

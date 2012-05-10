@@ -2,7 +2,7 @@
 layout: post
 category : developement
 tags : [gitolite, git, linux, mirror, github]
-body_class : gray
+bodyClass : gray
 ---
 {% include setup %}
 

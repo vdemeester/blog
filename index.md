@@ -2,7 +2,7 @@
 title: Hi, I'm Vincent Demeester, a <em>french</em> developer, sysadmin, <abbr title="who does all kinds of work"> factotum</abbr> and <span class="fan"><abbr title="as in free speek">free</abbr>-software <abbr title="You could say Evangelist">fan</abbr></span>.
 layout: page
 tagline: Supporting tagline
-body_class: home
+bodyClass: home
 ---
 {% include setup %}
 

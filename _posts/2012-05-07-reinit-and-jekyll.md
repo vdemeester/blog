@@ -2,7 +2,7 @@
 layout: post
 category : me
 tags : [intro, jekyll]
-body_class : gray
+bodyClass : gray
 ---
 {% include setup %}
 
