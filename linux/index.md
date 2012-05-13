@@ -8,10 +8,14 @@ group: navigation
 
 This is the GNU/Linux related pages.
 
-# Content tagged with Debian
+# Debian
+
+* [Debian 6.0 Squeeze notes](debian/squeeze-notes.html)
+
+# Content tagged with linux
 
 {% for tag in site.tags %} 
-{% if tag[0] == 'debian' %}
+{% if tag[0] == 'linux' %}
 <ul>
 {% assign pages_list = tag[1] %}  
 {% include pages_list %}
