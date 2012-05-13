@@ -9,7 +9,7 @@ plugins: ./_plugins
 permalink: /:year/:month/:title
 
 # Excludes
-exclude: [".rbenv-version", "README.md", "Rakefile"]
+exclude: [".rbenv-version", "README.md", "Rakefile", "Guardfile", "Gemfile"]
 
 title: Vincent Demeester
 feed: /atom.xml
