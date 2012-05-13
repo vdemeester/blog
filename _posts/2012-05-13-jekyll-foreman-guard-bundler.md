@@ -1,7 +1,7 @@
 ---
 layout: post
 category : developement
-tags : [jekyll,ruby,bundler,guard,foreman]
+tags : [jekyll, ruby, bundler, guard, foreman]
 bodyClass : gray
 ---
 
