@@ -3,7 +3,7 @@ title: Notes on Debian 6.0 aka Squeeze
 layout: page
 bodyClass: red
 group: navigation
-tags: [linux,debian,squeeze,installation,configuration]
+tags: [linux, debian, squeeze, installation, configuration]
 ---
 
 Here is a few notes I took when installing and using [Debian](http://debian.org)
