@@ -61,11 +61,14 @@ into more _production-ready_ file (`init`, `upstard`, …) ; It uses a file name
 `Procfile`.
 
 We will tell foreman to run :
+
 * The jekyll build-in server : `jekyll --server`
 * Guard, to handle file changes _in background_.
 
-    web: bundle exec jekyll --server
-    guard: bundle exec guard
+{% highlight sh %}
+web: bundle exec jekyll --server
+guard: bundle exec guard
+{% endhighlight %}
 
 And that's all folk. Now, you just need to run foreman in the Jekyll-powered
 directory and edit your files.
