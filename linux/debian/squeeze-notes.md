@@ -7,19 +7,19 @@ tags: [linux, debian, squeeze, installation, configuration]
 ---
 
 Here is a few notes I took when installing and using [Debian](http://debian.org)
-GNU/Linux distrutions in its `6.0` version, named Squeeze.
+GNU/Linux distribution in its `6.0` version, named Squeeze.
 
 # First step after installation
 
 First thing first, I want to keep history of changes in my `/etc` folder using
-a distributed version controle, like [Git](http://git-scm.com). And there is a
+a distributed version control, like [Git](http://git-scm.com). And there is a
 wonderful piece of software for that : [etckeeper](http://joeyh.name/code/etckeeper/).
 
     # apt-get install etckeeper
 
 On Debian it depends on `git` so it will automatically install `git` and `git-core`
 package. At the end of the installation, a git repository is initialized and
-everything in `/etc` is added and commited. The next thing I do is to disable the
+everything in `/etc` is added and committed. The next thing I do is to disable the
 _daily autocommit_ by uncomment the line `AVOID_DAILY_AUTOCOMMITS=1`. Finally, I
 do setup remotes that point to my personal(s) git repository and push to it, just
 in case ; It could serve as backup __and__ I might want to checkout it for future
@@ -27,7 +27,7 @@ references, etc.
 
 # APT/Dpkg configuration
 
-The next step I usually took is to add additionnal source repository for apt and
+The next step I usually took is to add additional source repository for apt and
 add default preferences.
 
 ## Sources
@@ -44,7 +44,7 @@ A quick presentation on backports and mozilla source.list (using quotation).
     deb http://backports.debian.org/debian-backports squeeze-backports main
 
 For mozilla we will be using the release version for Iceweasel (Firefox) and
-esr (entreprise supported release [right ?]) for Icedove.
+esr (enterprise supported release [right ?]) for Icedove.
 
     # cat /etc/apt/source.list.d/mozilla.list
     deb http://mozilla.debian.net/ squeeze-backports iceweasel-release
@@ -84,7 +84,7 @@ don't want all package from `squeeze-backports` to be installed by default.
     Pin: release a=squeeze-backports
     Pin-Priority: 650
 
-And there is a fow other file, currently only for `mr` and `pandoc`.
+And there is a few other file, currently only for `mr` and `pandoc`.
 
     # cat /etc/apt/preferences.d/mr
     Package: mr
@@ -105,11 +105,11 @@ I want to have almost the same experience that using `NetworkManager` but withou
 it, without event need to have a Window system and such. By default, on laptop
 the wifi is on and unless I'm going to use a ethernet cable, I want it to be
 enabled ; If I want to disable it, I'll use the *killing switch* or a command line.
-I also want autodetection of the known network. To have all of this in place, we
+I also want auto detection of the known network. To have all of this in place, we
 are going to need the following softwares : `ifplugd`, `guessnet` and wifi tools
 (`wireless-tools` and `wpa_supplicant`).
 
-The `/etc/network/interfaces` will speek by itself :
+The `/etc/network/interfaces` will speak by itself :
 
     # cat /etc/network/interfaces
     auto lo
