@@ -7,6 +7,8 @@ bodyClass: home
 
 Here is a list of the *technical* Books I've read by dates and few comments.
 
+* 2008
+  * Programmation Python
 * 2009
   * Pragmatic Programmer
   * Modular Java
