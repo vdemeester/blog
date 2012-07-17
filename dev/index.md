@@ -13,9 +13,13 @@ This is the Development related pages (Java, Ruby, …).
 Here is a quick list of project I've done (or currently *doing*) that are
 documented in some way, here.
 
-* [chef-gitolite](/chef-gitolite)
-* [chef-redmine](/chef-redmine)
-* [chef-backup2l](/chef-backup2l)
+* Java
+  * [vaadin-container-utils](/vaadin-container-utils)
+  * [vaadin-composite-layout](/vaadin-composite-layout)
+* Chef
+  * [chef-gitolite](/chef-gitolite)
+  * [chef-redmine](/chef-redmine)
+  * [chef-backup2l](/chef-backup2l)
 
 # Databases
 
