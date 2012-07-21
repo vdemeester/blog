@@ -35,4 +35,7 @@ Here is a list of the *technical* Books I've read by dates and few comments.
     * Functionnal Programming for Java developers
     * Programming Concurrency on the JVM
   * June
+    * Pratice of an Agile Developer: Working in the Real World
   * July
+    * Refactoring to Patterns
+  * August
