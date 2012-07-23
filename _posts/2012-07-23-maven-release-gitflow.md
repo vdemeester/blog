@@ -1,6 +1,6 @@
 ---
 layout: post
-category : development
+category : developement
 tags : [maven, java, git, gitflow, release]
 lang : fr
 bodyClass : gray
@@ -8,7 +8,7 @@ bodyClass : gray
 {% include setup %}
 
 I like a lot the [gitflow](http://nvie.com/posts/a-successful-git-branching-model/) way of managing project.
-When working on maven project, there is few greats plugins that helps to get
+When working on maven project, there is few great plugins that helps to get
 the work done. One of them is [maven-release-plugin](http://maven.apache.org/plugins/maven-release-plugin).
 
 Inspired on this [gist](https://gist.github.com/1043970), I've come with
