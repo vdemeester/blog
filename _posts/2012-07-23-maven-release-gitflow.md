@@ -88,3 +88,5 @@ merge into master the commit before the HEAD of the branch ``release/v0.1``.
 
 The next step would be to create a helper script that automates this and
 verify that the ``pom.xml`` has the right configuration options.
+
+__Edit 17:58__ : You can take a look [here](https://github.com/vdemeester/java-config/blob/master/bin/mvn-release-flow)
