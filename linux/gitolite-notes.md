@@ -9,7 +9,7 @@ tags: [linux, debian, git, gitolite]
 Here is a few notes I'm taking when installing, managing, upgrading or simply
 using [gitolite](http://github.com/sitaramc/gitolite) on Debian.
 
-# Installatoion
+# Installation
 
 The idea is to install gitolite from source because debian package are not
 always up to date. We could create an up-to-date package but… meh… this will
