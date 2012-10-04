@@ -1,5 +1,5 @@
 ---
-title: Notes on Gitolite on Debian
+title: Gitolite on Debian
 layout: page
 bodyClass: red
 group: navigation

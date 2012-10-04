@@ -22,8 +22,9 @@ We are going to implement a simplier way to set mirror thing :
 # Gitolite commands
 
 Gitolite 3 has been rewritten to be more flexible : [Why a completely new version](http://sitaramc.github.com/gitolite/g3why.html).
-The rewrite made it really easy to extend gitolite. I've fork [gitolite](https://github.com/vdemeester/gitolite) on github
-to easily add commands to my gitolite instance. The gitolite command I wrote is
+The rewrite made it really easy to extend gitolite. <del>I've fork [gitolite](https://github.com/vdemeester/gitolite) on github</del>
+I've created a [repository git](http://github.com/vdemeester/vdemeester-gitolite-local-code)
+to easily add commands to my gitolite instance via _local code_. The gitolite command I wrote is
 a quick and dirty script in shell to add `git config`. The source should speek
 for itself ; It _should_ include some way to check if the given config is not 
 already present in the `gitolite-admin` configuration file — and so might be
@@ -119,3 +120,6 @@ And finaly, this is the final step you'll do.
        65681a8..701c990  master -> master
 
 And that should be it !
+
+__Update 2012/10/04__ : Moved from gitolite fork to _gitolite local code_
+repository.
