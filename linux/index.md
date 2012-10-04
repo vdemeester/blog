@@ -11,6 +11,7 @@ This is the GNU/Linux related pages.
 # Debian
 
 * [Debian 6.0 Squeeze notes](debian/squeeze-notes.html)
+* [Gitolite on Debian](gitolite-notes.html)
 
 # Content tagged with linux
 
