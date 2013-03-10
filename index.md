@@ -6,7 +6,7 @@ bodyClass: home
 ---
 {% include setup %}
 
-<p>Since 2008, I'm working at <a href="http://nextep.net">nextep</a> as a Java Developer, and since mid-2009 I've been <em>promoted</em> as the core developer and the <em>core</em> sysadmin <code>\o/</code>. Working there is also a way to learn and understand the concepts and issues related to energy.</p>
+<p>Since 2008, I'm working as a Java Developer, and since mid-2009 I've been <em>promoted</em> as the core developer and the <em>core</em> sysadmin <code>\o/</code>. Working on <em>Energy Managment Systems</em> is also a way to learn and understand the concepts and issues related to energy.</p>
 <p>I'm graduated from both <a href="http://www.ece.fr">ECE (École Centrale d'Électronique)</a> and <a href="http://www.uio.no/english/">UiO (University i Oslo)</a>.</p>
 <p>I develop in <a href="http://java.oracle.com">Java</a> and <a href="http://ruby-lang.org">Ruby</a> ; 
 I'm learning <a href="http://haskell.org">Haskell</a>, <a href="http://clojure.org">Clojure</a> and <a href="http://www.scala-lang.org">Scala</a>. I want to know more about Functionnal languages and their way of thinking.
