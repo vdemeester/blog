@@ -1,2 +1,2 @@
-web: jekyll --server
-guard: guard
+web: bundle exec jekyll serve
+# guard: bundle exec guard
