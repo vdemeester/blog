@@ -1,9 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 {% if page.lang %}
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{ page.lang }}" lang="{{ page.lang }}">
+<html lang="{{ page.lang }}">
 {% else %}
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<html lang="en">
 {% endif %}
 <head>
    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -33,45 +32,56 @@
    <!-- Homepage CSS -->
    <link rel="stylesheet" href="{{ ASSET_PATH }}/css/screen.css" type="text/css" />
 
+   <style type="text/css">
+     #header {
+     {% if page.bannerImage %}
+     background: url('{{ page.bannerImage }}') repeat scroll center center / cover transparent;
+     {% else %}
+     background: url('{{ ASSET_PATH }}/images/2014/03/83029.jpg') repeat scroll center center / cover transparent;
+     {% endif %}
+     }
+   </style>
+
+
 </head>
 {% if page.bodyClass %}
 <body id="{{ page.section }}" class="{{ page.bodyClass }}">
 {% else %}
 <body id="{{ page.section }}">
 {% endif %}
-<div id="site">
-  
-  <div id="header">
-    <h1>
-    	<a href="{{ site.base_path }}" title="{{ site.title }}">{{ site.title }}</a>
-        <!--
-        <span class="byline">&larr; <a href="{{ site.base_path }}">{{ site.author.name }}</a></span>
-        //-->
-    </h1>
-    <ul class="nav">
-      <li><a href="/archive.html">Archive</a></li>
-      <li><a href="/categories.html">Categories</a></li>
-      <li><a href="/tags.html">Tags</a></li>
-    </ul>
-  </div>
+  <header id="header">
 
+    <a href="{{ site.base_path}}" title="{{ site.title }}"><img id="header-illustration" src="{{ ASSET_PATH }}/images/vde.png" /></a>
+
+    <div>
+      <h1>
+        <summary>
+          <em>French</em> developer, sysadmin, <abbr title="who does all kinds of work">factotum</abbr> and <span class="fan"><abbr title="as in free speek">free</abbr>-software <abbr title="You could say Evangelist">fan</abbr></span>.
+        </summary>
+      </h1>
+      <ul class="nav">
+        <li class="archive"><a href="/archive.html">Archive</a></li>
+        <li class="categories"><a href="/categories.html">Categories</a></li>
+        <li class="tags"><a href="/tags.html">Tags</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <div id="main-container">
   {{ content }}
+  </div>
   
   <div id="footer">
   	<address>
   		<span class="copyright">
-  			Content by <a href="/info/site.html">{{ site.author.name }}</a>. Design by 
-            <a href="http://mark.reid.name/">Mark Reid</a>, customized.
-  			<br/>
+  			Content and design by <a href="/info/site.html">{{ site.author.name }}</a>
   			(<a rel="licence" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Some rights reserved</a>)			
-  		</span>
+  		</span><br />
   		<span class="engine">
   			Powered by <a href="http://github.com/mojombo/jekyll/" title="A static, minimalist CMS">Jekyll</a>
   		</span>
   	</address>
   </div>
   
-</div>
-
 </body>
 </html>

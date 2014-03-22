@@ -7,8 +7,6 @@ bodyClass : gray
 
 {% include setup %}
 
-# Gollum comme wiki personnel
-
 Il y a environ 4 mois j'ai eu un accident de vélo ; un traumatisme crânien, des brulures sur la face, quelques points de sutures, un doigt cassé et une hernie discale m'ont cloué (et me clou encore) plus que d'habitude sur ma chaise de bureau. Le bon côté des choses, c'est que cela m'a permit de me poser et de réfléchir une bonne façon d'être efficace et organiser, au travail et à la maison :-).
 
 Une des principales _action_ que j'ai pris est d'utiliser un wiki local et synchronisé sur _tout_ mes PCs. Le _format_ wiki est assez adapté à une prise de note et à la création de contenu plus complet (comme des [articles][] ou de la documentation pour des projets en cours). Les conditions étaient les suivantes :

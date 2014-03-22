@@ -2,7 +2,7 @@
 layout: post
 category: developement
 tags: tag maven tmpfs ssd
-bodyClass : gray
+bannerImage: /images/2014/03/wallpaper-1470931.jpg
 ---
 {% include setup %}
 
