@@ -17,13 +17,44 @@
     font-weight: bold;
     src: url("fonts/GraublauWebBold.otf") format("opentype");
 }
+@font-face {
+    font-family: "Merriweather";
+    src: url("fonts/Merriweather-Regular.otf") format("opentype");
+}
+@font-face {
+    font-family: "Merriweather";
+    font-weight: bold;
+    src: url("fonts/Merriweather-Bold.otf") format("opentype");
+}
+@font-face {
+    font-family: "Merriweather";
+    font-weight: bold;
+    font-style: italic;
+    src: url("fonts/Merriweather-BoldItalic.otf") format("opentype");
+}
+@font-face {
+    font-family: "Merriweather";
+    font-style: italic;
+    src: url("fonts/Merriweather-Italic.otf") format("opentype");
+}
+@font-face {
+    font-family: "Merriweather";
+    font-weight: lighter;
+    font-style: italic;
+    src: url("fonts/Merriweather-LightItalic.otf") format("opentype");
+}
+@font-face {
+    font-family: "Merriweather";
+    font-weight: lighter;
+    src: url("fonts/Merriweather-Light.otf") format("opentype");
+}
 
 html {
     margin: 0;
     padding: 0;
 }
 body {
-    font-family: Palatino, georgia, "times new roman", serif;
+    font-family: "Merriweather", Palatino, georgia, "times new roman", serif;
     margin: 0;
     padding: 0;
 }
