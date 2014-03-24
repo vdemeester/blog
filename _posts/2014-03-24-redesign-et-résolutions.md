@@ -2,7 +2,7 @@
 layout: post
 category: ne
 tags: jekyll design images redesign
-bannerImage: /images/2014/03/iXnpyHj1JibDI.png
+bannerImage: /images/2014/03/iXnpyHj1JibDI-small.png
 lang: fr
 ---
 {% include setup %}
