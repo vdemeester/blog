@@ -31,7 +31,7 @@ vdemeester@<span style="color: #d9531e">jabber</span>.<span style="color: rgb(0,
  <a href="irc://irc.oftc.net:6667/vcs-home">#vcs-home</a>
  <a href="irc://irc.oftc.net:6667/debian-fr">#debian-fr</a></dd>
 <dt>Socials</dt>
-  <dd><a href="https://twitter.com/vdemeest" rel="me">@aaronpk on Twitter</a></dd>
+  <dd><a href="https://twitter.com/vdemeest" rel="me">@vdemeest on Twitter</a></dd>
   <dd><a href="https://github.com/vdemeester" rel="me">Github</a></dd>
 </dl>
 <br />
