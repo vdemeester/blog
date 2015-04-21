@@ -26,10 +26,9 @@ I'm a GNU/Linux user, mainly <a href="http://www.debian.org">Debian GNU/Linux</a
 <dd class="jabber"><a href="xmpp:vdemeester@jabber.fsfe.org">
 vdemeester@<span style="color: #d9531e">jabber</span>.<span style="color: rgb(0, 153, 0);">fsfe.org</span></a></dd>
 <dd class="irc">vdemeester@irc.freenode.net
- <a href="irc://irc.freenode.net:6667/fsfeurope">#fsfeurope</a>
+ <a href="irc://irc.freenode.net:6667/fsfe">#fsfe</a>
  <a href="irc://irc.freenode.net:6667/docker">#docker</a>
  <a href="irc://irc.freenode.net:6667/#openweb">##openweb</a>
- <a href="irc://irc.freenode.net:6667/debianfr">#debianfr</a></dd>
 <dd class="irc">vdemeester@irc.oftc.net
  <a href="irc://irc.oftc.net:6667/vcs-home">#vcs-home</a>
  <a href="irc://irc.oftc.net:6667/debian-fr">#debian-fr</a></dd>
