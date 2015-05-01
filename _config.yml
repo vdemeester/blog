@@ -24,6 +24,7 @@ author:
 description: Vincent Demeester identity page
 tags_path: /tags.html
 categories_path: /categories.html
+encoding: utf-8
 
 base_path: /
 # production_url
