@@ -37,7 +37,7 @@ vdemeester@<span style="color: #d9531e">jabber</span>.<span style="color: rgb(0,
 </dl>
 <br />
 
-# Posts
+# Latests Post
 
 <ul class="posts">
   {% for post in site.posts limit:3 %}
