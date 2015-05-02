@@ -44,3 +44,11 @@ vdemeester@<span style="color: #d9531e">jabber</span>.<span style="color: rgb(0,
     <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
   {% endfor %}
 </ul>
+
+# Talks
+
+* [Nighclazz Docker Découverte](http://zenika.github.io/NC-Docker-Decouverte/) ([github](https://github.com/Zenika/NC-Docker-Decouverte)) : Introduction douce et fun à Docker.
+* [Nighclazz Docker avancé](http://zenika.github.io/NC-Docker-Avance/) ([github](https://github.com/Zenika/NC-Docker-Avance)) : La suite de la première nighclazz, avec
+  des choses un peu plus avancée (on parle de
+  [swarm](https://github.com/docker/swarm) et de
+  [machine](https://github.com/docker/machine) par exemple).
