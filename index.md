@@ -44,11 +44,13 @@ vdemeester@<span style="color: #d9531e">jabber</span>.<span style="color: rgb(0,
     <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
   {% endfor %}
 </ul>
+<br />
 
 # Talks
 
-* [Nighclazz Docker Découverte](http://zenika.github.io/NC-Docker-Decouverte/) ([github](https://github.com/Zenika/NC-Docker-Decouverte)) : Introduction douce et fun à Docker.
-* [Nighclazz Docker avancé](http://zenika.github.io/NC-Docker-Avance/) ([github](https://github.com/Zenika/NC-Docker-Avance)) : La suite de la première nighclazz, avec
-  des choses un peu plus avancée (on parle de
-  [swarm](https://github.com/docker/swarm) et de
-  [machine](https://github.com/docker/machine) par exemple).
+<dl>
+  <dt><a href="http://zenika.github.io/NC-Docker-Decouverte/">Nighclazz Docker Découverte</a> (<a href="https://github.com/Zenika/NC-Docker-Decouverte">github</a>)</dt>
+  <dd>Introduction douce et fun à Docker.</dd>
+  <dt><a href="http://zenika.github.io/NC-Docker-Avance/">Nighclazz Docker avancé</a> (<a href="https://github.com/Zenika/NC-Docker-Avance">github</a>)</dt>
+  <dd>La suite de la première nighclazz, avec des choses un peu plus avancée (on parle de <a href="https://github.com/docker/swarm">swarm</a> et de <a href="https://github.com/docker/machine">machine</a> par exemple).</dd>
+</dl>
