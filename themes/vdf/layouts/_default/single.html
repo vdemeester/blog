@@ -1,0 +1,28 @@
+{{ partial "head.html" . }}
+{{ partial "header.html" . }}
+
+<div id="main-container">
+  <div id="page">
+    <article class="post">
+      <header>
+        <h1 class="emphnext">{{ .Title }}</h1><a href='{{ .Permalink }}'></a>
+        <address class="signature">
+          <span class="date">{{ .Date.Format "Mon, 1 Jan, 2006"  }}</span>
+          <span class="words">({{ .FuzzyWordCount }} Words)</span>
+        </address>
+        <ul class="tag_box inline">
+        {{ if isset .Params "categories" }}
+          {{ range .Params.categories }}<li class="category"><a href="/categories/{{ . | urlize }}">{{ . }}</a></li>{{ end }}
+        {{ end }}
+        {{ if isset .Params "tags" }}
+          {{ range .Params.tags }}<li><a href="/tags/{{ . | urlize }}">{{ . }}<span>1</span></a></li>{{ end }}
+        {{ end }}
+        </ul>
+      </header>
+</header>
+{{ .Content }}
+</article>
+</div>
+</div>
+
+{{ partial "footer.html" . }}
