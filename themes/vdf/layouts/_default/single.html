@@ -12,17 +12,21 @@
         </address>
         <ul class="tag_box inline">
           {{ if isset .Params "categories" }}
-          {{ range .Params.categories }}<li class="category"><a href="/categories/{{ . | urlize }}">{{ . }}</a></li>{{ end }}
+          {{ range .Params.categories }}<li class="category"><a href="/categories/#{{ . | urlize }}">{{ . }}</a></li>{{ end }}
           {{ end }}
           {{ if isset .Params "tags" }}
-          {{ range .Params.tags }}<li class="tag tag-{{ . | urlize }}"><a href="/tags/{{ . | urlize }}">{{ . }}<span>1</span></a></li>{{ end }}
+          {{ $siteTags := .Site.Taxonomies.tags }}
+          {{ range $tagName := .Params.tags }}
+          {{ $siteTag := index $siteTags $tagName }}
+          <li class="tag tag-{{ $tagName | urlize }}"><a href="/tags/#{{ $tagName | urlize }}">{{ $tagName }}<span>{{ len $siteTag }}</span></a></li>
+          {{ end }}
+          <br/>
           {{ end }}
         </ul>
       </header>
 </header>
 {{ .Content }}
 </article>
-
 <div class="prev-next">
   {{ if .Next }}
   <a class="paging-link prev" href="{{ .Next.RelPermalink }}" title="{{ .Next.Title  }}">← Previous post</a>
