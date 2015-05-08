@@ -253,16 +253,39 @@ ul.inline.tag_box li {
     padding: 0;
 }
 ul.tag_box li a{
-    background:#006400;
     color:#fff;
-    -moz-border-radius:4px;
-    -webkit-border-radius:4px;	
-    border-radius:4px;
-    padding: 1px 4px;
+    padding: 2px 4px;
+    margin: 0px 1px;
+}
+li.category a{
+    background:#159818;
+}
+li.tag a{
+    background:#578B96;
 }
 ul.tag_box li a span {
     font-weight: bold;
     font-size: 0.5em;
+}
+
+/* Custom :D */
+li.tag-emacs a {
+    background: #8156A7;
+}
+li.tag-orgmode a {
+    background: #4D85D1;
+}
+li.tag-docker a {
+    background: #51B7FF;
+}
+li.tag-java a, li.tag-javascript a {
+    background: #DF2D4F;
+}
+li.tag-go a, li.tag-golang a {
+    background: #E0EBF5;
+}
+li.tag-ruby a {
+    background: #7F267B;
 }
 
 /*
