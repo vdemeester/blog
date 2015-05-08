@@ -1,0 +1,11 @@
+name = "vdf"
+description = "A theme for my website"
+license = "GPL"
+source_repo = "https://github.com/vdemeester/vdemeester.github.com"
+tags = ["blog"]
+min_version = 0.13
+
+[author]
+    name = "vdemeester"
+    twitter = "http://twitter.com/vdemeest"
+    url = "http://github.com/vdemeester"

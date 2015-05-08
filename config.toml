@@ -1,0 +1,12 @@
+baseurl = "http://vincent.demeester.fr"
+languageCode = "fr-fr"
+title = "Vincent Demeester"
+theme = "vdf"
+pygmentsstyle = "emacs"
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+
+[params]
+  author = "Vincent Demeester"
