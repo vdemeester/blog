@@ -11,17 +11,28 @@
           <span class="words">({{ .FuzzyWordCount }} Words)</span>
         </address>
         <ul class="tag_box inline">
-        {{ if isset .Params "categories" }}
+          {{ if isset .Params "categories" }}
           {{ range .Params.categories }}<li class="category"><a href="/categories/{{ . | urlize }}">{{ . }}</a></li>{{ end }}
-        {{ end }}
-        {{ if isset .Params "tags" }}
-          {{ range .Params.tags }}<li><a href="/tags/{{ . | urlize }}">{{ . }}<span>1</span></a></li>{{ end }}
-        {{ end }}
+          {{ end }}
+          {{ if isset .Params "tags" }}
+          {{ range .Params.tags }}<li class="tag tag-{{ . | urlize }}"><a href="/tags/{{ . | urlize }}">{{ . }}<span>1</span></a></li>{{ end }}
+          {{ end }}
         </ul>
       </header>
 </header>
 {{ .Content }}
 </article>
+
+<div class="prev-next">
+  {{ if .Next }}
+  <a class="paging-link prev" href="{{ .Next.RelPermalink }}" title="{{ .Next.Title  }}">← Previous post</a>
+  {{ end }}
+
+  {{ if .Prev }}
+  <a class="paging-link next" href="{{ .Prev.RelPermalink }}" title="{{ .Prev.Title }}">Next post →</a>
+  {{ end }}
+</div>
+
 </div>
 </div>
 
