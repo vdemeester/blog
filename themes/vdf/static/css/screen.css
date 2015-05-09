@@ -282,10 +282,14 @@ li.tag-java a, li.tag-javascript a {
     background: #DF2D4F;
 }
 li.tag-go a, li.tag-golang a {
-    background: #E0EBF5;
+    /*background: #E0EBF5;*/
+    background: #51B7FF;
 }
 li.tag-ruby a {
     background: #7F267B;
+}
+li.tag-hugo a {
+    background: #FF4088;
 }
 
 /*
