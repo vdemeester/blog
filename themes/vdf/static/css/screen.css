@@ -333,6 +333,15 @@ li.tag-hugo a {
     background: #FF4088;
 }
 
+.notice {
+    color: #31708F;
+    background-color: #D9EDF7;
+    margin: 0em 1em 3em;
+    border: 1px solid #BCE8F1;
+    padding: 0.5em 1em;
+    border-radius: 4px;
+}
+
 /*
 body.gray #header {
     background: url(../images/bg_gray.png);
