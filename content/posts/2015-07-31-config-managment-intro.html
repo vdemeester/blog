@@ -10,7 +10,7 @@ lang="fr"
 Cela doit faire au moins 2 ans que je souhaite partager la façon dont
 je gère mes configurations (en anglais <i>dotfiles</i>). Comme j'ai
 longtemps repoussé l'échéance, probablement de peur d'avoir un roman à
-écrire, je vais en faire une série de petit billet de blog dont
+écrire, je vais en faire une série de petits billets de blog dont
 celui-ci est l'introduction. Nous y aborderons donc mon besoin, et mes
 choix.
 </p>
@@ -21,7 +21,7 @@ choix.
 <p>
 En bon <b>geek</b> que je suis, je suis fan des <i>dotfiles</i>. Les <i>dotfiles</i>
 — fichiers de configurations — sont de petits fichiers, habituellement
-dans votre dossier personnel (votre <i>$HOME</i>), qui nous permettent de
+dans notre dossier personnel (votre <i>$HOME</i>), qui nous permettent de
 paramétrer et personnaliser nos outils de tous les jours. C'est
 principalement vrai pour des outils en ligne de commande — et ça tombe
 bien, j'adore — mais pas uniquement limité à ces derniers.
@@ -35,7 +35,7 @@ personnalisation :
 <ul class="org-ul">
 <li>C'est <b>fun</b> à faire et c'est relativement important de mon point de vue.
 </li>
-<li>C'est <b>éducatif</b> ou /formateur ; on lit les documentations de nos
+<li>C'est <b>éducatif</b> ou formateur ; on lit les documentations de nos
 outils, leurs fonctionnalités un peu caché. On va souvent découvrir
 un peu la philosophie dans laquelle l'outil a été créé. C'est en
 mettant les <i>mains dans le cambouis</i> et en <i>foutant un gros bordel</i>
@@ -52,13 +52,13 @@ moins déjà).
 </ul>
 
 <p>
-Revenons à nos moutons et faisons une petit liste de mes besoins, un
+Mais revenons à nos moutons et faisons une petite liste de mes besoins, un
 peu en vrac :
 </p>
 
 <ul class="org-ul">
 <li>J'ai plusieurs ordinateurs (laptop/desktop/serveurs) et je souhaite
-avoir mes configurations <b>synchroniser</b> entre ceux-ci — et ce de
+avoir mes configurations <b>synchronisées</b> entre ceux-ci — et ce de
 manière simple, c'est à dire <i>une commande à exécuter</i>.
 </li>
 <li>C'est lié au point précédent mais, je ne <i>peux pas vivre</i> sans
@@ -76,8 +76,8 @@ Git all the thing ! \o/
 
 <ul class="org-ul">
 <li>En fonction de mes ordinateurs, mes besoins de configuration
-changent. Il me faut donc un outil <b>flexible</b> qui me permet de dire
-par example : sur ce PC j'ai un serveur <code>Xorg</code> donc j'ai besoin de
+changent. Il me faut donc un outil <b>flexible</b> qui me permette de dire
+par exemple : sur ce PC j'ai un serveur <code>Xorg</code> donc j'ai besoin de
 mes configuration xorg, de celle de mon <i>window manager</i>, etc. — et
 inversement sur ce serveur j'ai besoin de python et haskell mais pas
 de xorg..
@@ -91,7 +91,7 @@ que ce soit le bordel.
 <li>Le <b>partage</b> est important pour moi. Il en découle deux choses :
 <ol class="org-ol">
 <li>Il faut que je puisse documenter un peu mon repository, avec un
-bon vieux <code>README</code> ; sans que chaque <code>README</code> se marchent dessus.
+bon vieux <code>README</code> ; sans que chaque <code>README</code> se marche dessus.
 </li>
 <li>Il y a quelques <b>informations</b> qui sont <b>personnelles</b>, comme par
 exemple les clés ssh. Il me faut donc être capable d'avoir des
@@ -103,18 +103,18 @@ par l'aspect <i>flexibilité</i> <code>:-)</code>.
 <li>Un bonus que je souhaite, est de pouvoir disposer de <b>hooks</b>, un peu
 à la manière de git (voir <a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks">ici</a>). L'idée est par example de pouvoir
 <b>générer</b> un fichier de configuration à partir d'un ensemble de
-fichier qui viendraient de différents dépots. Le meilleur exemple
+fichiers qui viendraient de différents dépôts. Le meilleur exemple
 que je peux donner c'est <code>~/.ssh/config</code> dans lequel je vais y
 mettre des bouts publiques que je souhaites partager (comme le <code>Host
   *</code> avec des trucs cool comme <code>ControlPersist</code>, on en parlera plus
 tard) et des bouts privés (mes hosts privés, avec mes configurations
-de rebonds, etc..).
+de <i>rebonds</i>, etc..).
 </li>
 </ul>
 
 <p>
 Cette liste a mis un certain temps à se former dans ma tête, mais une
-fois qu'elle était formé, j'ai pu assez facilement faire des choix.
+fois qu'elle était formée, j'ai pu assez facilement faire des choix.
 </p>
 </div>
 </div>
@@ -237,7 +237,8 @@ encore <code>$HOME/.gitconfig</code>).
 <p>
 <code>myrepos</code> est l'exemple de l'outil simple et efficace qui fait une
 chose et le fait très bien, et dont je n'arrive pas à me passer
-<code>:-D</code>.
+<code>:-D</code>. Je l'utilise également dans plein d'autres cas, comme  par
+exemple pour mettre à jour mes <i>forks</i> de projets open-source.
 </p>
 </div>
 </div>
