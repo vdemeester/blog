@@ -36,7 +36,7 @@ personnalisation :
 <li>C'est <b>fun</b> à faire et c'est relativement important de mon point de vue.
 </li>
 <li>C'est <b>éducatif</b> ou formateur ; on lit les documentations de nos
-outils, leurs fonctionnalités un peu caché. On va souvent découvrir
+outils, leurs fonctionnalités un peu cachées. On va souvent découvrir
 un peu la philosophie dans laquelle l'outil a été créé. C'est en
 mettant les <i>mains dans le cambouis</i> et en <i>foutant un gros bordel</i>
 que j'ai le plus appris (ça va du <i>langage</i> shell et d'autres
@@ -44,7 +44,7 @@ langages de scripts, de POSIX, au noyau linux ou encore au LISP avec
 GNU/Emacs).
 </li>
 <li>Cela fait <b>gagner du temps</b> et de manière non négligeable. Je suis
-né courageux mais terriblement fainéant (et oui c'est possible
+né <span class="underline">courageux mais terriblement fainéant</span> (et oui c'est possible
 <code>:-P</code>), j'aime pas trop me répéter quand ça devient un peu compliqué
 / chiant (e.g. <code>docker run monimage args</code> ça va, <code>docker run -v /tmp:/tmp -v /var/run/docker.socket:/var/run/docker.socket […] run monimage arg1 arg2 arg3 […]</code>
 moins déjà).
@@ -63,7 +63,7 @@ manière simple, c'est à dire <i>une commande à exécuter</i>.
 </li>
 <li>C'est lié au point précédent mais, je ne <i>peux pas vivre</i> sans
 outil de gestion de version, comme <b>git</b>. Il me faut donc un outil
-ou ensemble d'outil qui sait utiliser des outils de gestion de
+ou ensemble d'outil qui sache utiliser des outils de gestion de
 version <i>du marché</i>.
 </li>
 </ul>
@@ -95,20 +95,20 @@ bon vieux <code>README</code> ; sans que chaque <code>README</code> se marche de
 </li>
 <li>Il y a quelques <b>informations</b> qui sont <b>personnelles</b>, comme par
 exemple les clés ssh. Il me faut donc être capable d'avoir des
-<i>dépôts publiques</i> et des <i>dépôts privés</i>. C'est très facilité
+<i>dépôts publiques</i> et des <i>dépôts privés</i>. C'est grandement facilité
 par l'aspect <i>flexibilité</i> <code>:-)</code>.
 </li>
 </ol>
 </li>
 <li>Un bonus que je souhaite, est de pouvoir disposer de <b>hooks</b>, un peu
-à la manière de git (voir <a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks">ici</a>). L'idée est par example de pouvoir
-<b>générer</b> un fichier de configuration à partir d'un ensemble de
-fichiers qui viendraient de différents dépôts. Le meilleur exemple
-que je peux donner c'est <code>~/.ssh/config</code> dans lequel je vais y
-mettre des bouts publiques que je souhaites partager (comme le <code>Host
-  *</code> avec des trucs cool comme <code>ControlPersist</code>, on en parlera plus
-tard) et des bouts privés (mes hosts privés, avec mes configurations
-de <i>rebonds</i>, etc..).
+à la manière de git (voir <a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks">ici</a>). L'idée est de pouvoir <b>générer</b> un
+fichier de configuration à partir d'un ensemble de fichiers qui
+viendraient de différents dépôts. Le meilleur exemple que je peux
+donner c'est <code>~/.ssh/config</code> dans lequel je vais y mettre des bouts
+publiques que je souhaites partager (comme le <code>Host *</code> avec des
+trucs cool comme <code>ControlPersist</code>, on en parlera plus tard) et des
+bouts privés (mes hosts privés, avec mes configurations de
+<i>rebonds</i>, etc..).
 </li>
 </ul>
 
@@ -134,26 +134,28 @@ deux assez impliqué dans la communauté Debian).
 <h3 id="sec-2-1">vcsh</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
-En un mot, <a href="https://github.com/RichiH/vcsh">vcsh</a> permet de maintenir plusieurs <i>repository</i> <a href="http://git-scm.com/">git</a> dans un
-seul dossier. Par défaut tous les <i>repository</i> git maintenu par
+En un mot, <a href="https://github.com/RichiH/vcsh">vcsh</a> permet de maintenir plusieurs <i>repository</i> <a href="http://git-scm.com/">git</a> dans
+un seul dossier. Par défaut tous les <i>repository</i> git maintenus par
 <code>vcsh</code> pointent vers le dossier <code>$HOME</code>, mais il est possible
 d'utiliser un autre dossier.
 </p>
 
 <p>
 L'idée est de pouvoir disposer de plusieurs repository par <i>famille
-d'application</i>, par example <code>vim</code>, <code>ssh</code>, <code>emacs</code>, <code>zsh</code>, etc. Cela
+d'application</i>, par exemple <code>vim</code>, <code>ssh</code>, <code>emacs</code>, <code>zsh</code>, etc. Cela
 permet ainsi d'avoir différents ensemble de configurations sur
-différentes machines et pour différents utilisateurs. Cela apporte une
-très grande flexibilité et facilite le partage de configuration (au
-sein d'une entreprise ou d'un projet par example) tout en laissant la
-place à la définition de configuration personnalisé.
+différentes machines et pour différents utilisateurs. Cela apporte
+une très grande flexibilité et facilite le partage de configuration
+(au sein d'une entreprise ou d'un projet par exemple) tout en
+laissant la place à la définition de configuration(s)
+personnalisé(s).
 </p>
 
 <p>
-En bonus, <code>vcsh</code> supporte un système de hook, permettant d'exécuter des
-commandes à différents moment du <i>workflow</i> — c'est la seul partie qui
-manquant à <code>vcsh</code> de mon point de vue alors j'y ai apporté ma petit pierre.
+En bonus, <code>vcsh</code> supporte un système de hook, permettant d'exécuter
+des commandes à différents moments du <i>workflow</i> — c'est la seule
+partie qui manquant à <code>vcsh</code> de mon point de vue alors j'y ai
+apporté ma petit pierre.
 </p>
 
 <p>
@@ -169,8 +171,8 @@ ferais..
 <div class="outline-text-3" id="text-2-2">
 <p>
 En un mot, <a href="https://myrepos.branchable.com/">myrepos</a> est un outil permettant de <i>gérer</i> plusieurs
-repository (git, subversion, mercurial, …) avec une seule commande :
-<code>mr</code>. C'est simple et efficace :
+repository (git, subversion, mercurial, …) avec une seule
+commande : <code>mr</code>. C'est simple et efficace :
 </p>
 
 <ul class="org-ul">
@@ -189,9 +191,9 @@ des repository qui sont dans <code>$HOME/.config</code>.
 </ul>
 
 <p>
-Il est également possible de personnaliser les commandes à lancer
-lors d'un <i>update</i> ou autre (toutes les commandes), et même en
-définir des nouvelles. Cela se présente comme suit :
+Il est également possible de personnaliser les commandes à lancer lors
+d'un <i>update</i> ou autre (toutes les commandes), et même en définir des
+nouvelles. Cela se présente comme suit :
 </p>
 
 
@@ -226,18 +228,18 @@ définir des nouvelles. Cela se présente comme suit :
 </div>
 
 <p>
-Une autre fonctionnalité qui m'est totalement indispensable sont les
-<code>fixup(s)</code>. Il est en effet possible d'exécuter une ou plusieurs
-commandes (shell) après un <code>update</code> (ou via la commande <code>fixup</code>). C'est
-grâce à ce système la que je génère mes fichiers de configuration en
-provenance de plusieurs repository (comme <code>$HOME/.ssh/config</code> ou
-encore <code>$HOME/.gitconfig</code>).
+Une autre fonctionnalité qui m'est totalement indispensable est ce
+qu'on appel les <code>fixup(s)</code>. Il est en effet possible d'exécuter une ou
+plusieurs commandes (shell) après un <code>update</code> (ou via la commande
+<code>fixup</code>). C'est grâce à ce système la que je génère mes fichiers de
+configuration en provenance de plusieurs repository (comme
+<code>$HOME/.ssh/config</code> ou encore <code>$HOME/.gitconfig</code>).
 </p>
 
 <p>
 <code>myrepos</code> est l'exemple de l'outil simple et efficace qui fait une
 chose et le fait très bien, et dont je n'arrive pas à me passer
-<code>:-D</code>. Je l'utilise également dans plein d'autres cas, comme  par
+<code>:-D</code>. Je l'utilise également dans plein d'autres cas, comme par
 exemple pour mettre à jour mes <i>forks</i> de projets open-source.
 </p>
 </div>
@@ -250,10 +252,11 @@ exemple pour mettre à jour mes <i>forks</i> de projets open-source.
 <p>
 Et voilà, c'est tout pour cette introduction <code>;-)</code>. La prochaine
 partie se penchera sur la <b>structure</b> que j'utilise ainsi que le
-repository principal qui est <a href="https://github.com/vdemeester/vcsh-home"><b>vcsh-home</b></a>. Dans les parties suivantes on
-parlera des autres repository et donc des configurations spécifiques
-pour les différents outils (comme <a href="https://github.com/vdemeester/sh-config">sh-config</a>, <a href="https://github.com/vdemeester/emacs-config">emacs-config</a> ou encore
-<a href="https://github.com/vdemeester/go-config">go-config</a>). On parlera aussi probablement de <code>git-annex</code> dans le futur.
+repository principal qui est <a href="https://github.com/vdemeester/vcsh-home"><b>vcsh-home</b></a>. Dans les parties suivantes
+on parlera des autres repository et donc des configurations
+spécifiques pour les différents outils (comme <a href="https://github.com/vdemeester/sh-config">sh-config</a>,
+<a href="https://github.com/vdemeester/emacs-config">emacs-config</a> ou encore <a href="https://github.com/vdemeester/go-config">go-config</a>). On parlera aussi probablement de
+<code>git-annex</code> dans le futur.
 </p>
 </div>
 </div>
