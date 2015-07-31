@@ -1,0 +1,258 @@
++++
+title="Gestion de configuration : introduction"
+date="2015-07-31"
+categories=["configurations"]
+tags=["git","myrepos","mr","vcsh","linux","posix","shell","sharing"]
+lang="fr"
++++
+
+<p>
+Cela doit faire au moins 2 ans que je souhaite partager la façon dont
+je gère mes configurations (en anglais <i>dotfiles</i>). Comme j'ai
+longtemps repoussé l'échéance, probablement de peur d'avoir un roman à
+écrire, je vais en faire une série de petit billet de blog dont
+celui-ci est l'introduction. Nous y aborderons donc mon besoin, et mes
+choix.
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Besoin(s)</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+En bon <b>geek</b> que je suis, je suis fan des <i>dotfiles</i>. Les <i>dotfiles</i>
+— fichiers de configurations — sont de petits fichiers, habituellement
+dans votre dossier personnel (votre <i>$HOME</i>), qui nous permettent de
+paramétrer et personnaliser nos outils de tous les jours. C'est
+principalement vrai pour des outils en ligne de commande — et ça tombe
+bien, j'adore — mais pas uniquement limité à ces derniers.
+</p>
+
+<p>
+Je vais faire une très petite aparté sur le pourquoi de cette
+personnalisation :
+</p>
+
+<ul class="org-ul">
+<li>C'est <b>fun</b> à faire et c'est relativement important de mon point de vue.
+</li>
+<li>C'est <b>éducatif</b> ou /formateur ; on lit les documentations de nos
+outils, leurs fonctionnalités un peu caché. On va souvent découvrir
+un peu la philosophie dans laquelle l'outil a été créé. C'est en
+mettant les <i>mains dans le cambouis</i> et en <i>foutant un gros bordel</i>
+que j'ai le plus appris (ça va du <i>langage</i> shell et d'autres
+langages de scripts, de POSIX, au noyau linux ou encore au LISP avec
+GNU/Emacs).
+</li>
+<li>Cela fait <b>gagner du temps</b> et de manière non négligeable. Je suis
+né courageux mais terriblement fainéant (et oui c'est possible
+<code>:-P</code>), j'aime pas trop me répéter quand ça devient un peu compliqué
+/ chiant (e.g. <code>docker run monimage args</code> ça va, <code>docker run -v /tmp:/tmp -v /var/run/docker.socket:/var/run/docker.socket […] run monimage arg1 arg2 arg3 […]</code>
+moins déjà).
+</li>
+</ul>
+
+<p>
+Revenons à nos moutons et faisons une petit liste de mes besoins, un
+peu en vrac :
+</p>
+
+<ul class="org-ul">
+<li>J'ai plusieurs ordinateurs (laptop/desktop/serveurs) et je souhaite
+avoir mes configurations <b>synchroniser</b> entre ceux-ci — et ce de
+manière simple, c'est à dire <i>une commande à exécuter</i>.
+</li>
+<li>C'est lié au point précédent mais, je ne <i>peux pas vivre</i> sans
+outil de gestion de version, comme <b>git</b>. Il me faut donc un outil
+ou ensemble d'outil qui sait utiliser des outils de gestion de
+version <i>du marché</i>.
+</li>
+</ul>
+
+<blockquote>
+<p>
+Git all the thing ! \o/
+</p>
+</blockquote>
+
+<ul class="org-ul">
+<li>En fonction de mes ordinateurs, mes besoins de configuration
+changent. Il me faut donc un outil <b>flexible</b> qui me permet de dire
+par example : sur ce PC j'ai un serveur <code>Xorg</code> donc j'ai besoin de
+mes configuration xorg, de celle de mon <i>window manager</i>, etc. — et
+inversement sur ce serveur j'ai besoin de python et haskell mais pas
+de xorg..
+</li>
+<li>Je ne souhaites pas avoir à faire des liens symboliques, ou de
+scripts d'installation. Je trouves que ça rends les choses plus
+compliquées. Du coup il faut que je puisse avoir <b>plusieurs <i>dépôts
+de configuration</i></b> (repository) qui pointent au même endroit, sans
+que ce soit le bordel.
+</li>
+<li>Le <b>partage</b> est important pour moi. Il en découle deux choses :
+<ol class="org-ol">
+<li>Il faut que je puisse documenter un peu mon repository, avec un
+bon vieux <code>README</code> ; sans que chaque <code>README</code> se marchent dessus.
+</li>
+<li>Il y a quelques <b>informations</b> qui sont <b>personnelles</b>, comme par
+exemple les clés ssh. Il me faut donc être capable d'avoir des
+<i>dépôts publiques</i> et des <i>dépôts privés</i>. C'est très facilité
+par l'aspect <i>flexibilité</i> <code>:-)</code>.
+</li>
+</ol>
+</li>
+<li>Un bonus que je souhaite, est de pouvoir disposer de <b>hooks</b>, un peu
+à la manière de git (voir <a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks">ici</a>). L'idée est par example de pouvoir
+<b>générer</b> un fichier de configuration à partir d'un ensemble de
+fichier qui viendraient de différents dépots. Le meilleur exemple
+que je peux donner c'est <code>~/.ssh/config</code> dans lequel je vais y
+mettre des bouts publiques que je souhaites partager (comme le <code>Host
+  *</code> avec des trucs cool comme <code>ControlPersist</code>, on en parlera plus
+tard) et des bouts privés (mes hosts privés, avec mes configurations
+de rebonds, etc..).
+</li>
+</ul>
+
+<p>
+Cette liste a mis un certain temps à se former dans ma tête, mais une
+fois qu'elle était formé, j'ai pu assez facilement faire des choix.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Choix</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Deux outils et un peu d'organisation permettent de répondre à mes
+besoins. Les deux outils sont <code>vcsh</code> et <code>myrepos</code> (anciennement appelé
+<code>mr</code>), fait par respectivement Richard Hartmann et Joey Hess (tout
+deux assez impliqué dans la communauté Debian).
+</p>
+</div>
+
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1">vcsh</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+En un mot, <a href="https://github.com/RichiH/vcsh">vcsh</a> permet de maintenir plusieurs <i>repository</i> <a href="http://git-scm.com/">git</a> dans un
+seul dossier. Par défaut tous les <i>repository</i> git maintenu par
+<code>vcsh</code> pointent vers le dossier <code>$HOME</code>, mais il est possible
+d'utiliser un autre dossier.
+</p>
+
+<p>
+L'idée est de pouvoir disposer de plusieurs repository par <i>famille
+d'application</i>, par example <code>vim</code>, <code>ssh</code>, <code>emacs</code>, <code>zsh</code>, etc. Cela
+permet ainsi d'avoir différents ensemble de configurations sur
+différentes machines et pour différents utilisateurs. Cela apporte une
+très grande flexibilité et facilite le partage de configuration (au
+sein d'une entreprise ou d'un projet par example) tout en laissant la
+place à la définition de configuration personnalisé.
+</p>
+
+<p>
+En bonus, <code>vcsh</code> supporte un système de hook, permettant d'exécuter des
+commandes à différents moment du <i>workflow</i> — c'est la seul partie qui
+manquant à <code>vcsh</code> de mon point de vue alors j'y ai apporté ma petit pierre.
+</p>
+
+<p>
+<code>vcsh</code> est la clé de voûte de ma gestion de configuration. Sans le
+travail formidable de <a href="http://richardhartmann.de/">Richard Hartmann</a>, je ne sais pas comment je
+ferais..
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2">myrepos</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+En un mot, <a href="https://myrepos.branchable.com/">myrepos</a> est un outil permettant de <i>gérer</i> plusieurs
+repository (git, subversion, mercurial, …) avec une seule commande :
+<code>mr</code>. C'est simple et efficace :
+</p>
+
+<ul class="org-ul">
+<li><code>mr u</code> (ou <code>mr update</code>) pour récupérer les dernières modifications (<code>git pull</code>,
+<code>svn up</code>, …).
+</li>
+<li><code>mr -d $HOME/.config u</code> pour récupérer les dernières modifications
+des repository qui sont dans <code>$HOME/.config</code>.
+</li>
+<li><code>mr -j 6 u</code> pour paralléliser la récupération (ici 6 jobs en parallèle).
+</li>
+<li><code>mr p</code> pour pousser des modifications (<code>git push</code>, …).
+</li>
+<li><code>mr run</code> pour lancer un commande (j'utilise ça tous les jours).
+</li>
+</ul>
+
+<p>
+Il est également possible de personnaliser les commandes à lancer
+lors d'un <i>update</i> ou autre (toutes les commandes), et même en
+définir des nouvelles. Cela se présente comme suit :
+</p>
+
+
+<div class="org-src-container">
+
+<pre class="src src-conf">[<span style="color: #6434A3;">foo</span>]
+<span style="color: #BA36A5;">checkout</span> = git@github.com:joeyh/foo.git
+<span style="color: #BA36A5;">update</span> = git pull --rebase
+
+[<span style="color: #6434A3;">bar</span>]
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">This repository has an upstream, which I've forked;</span>
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">set up a remote on checkout.</span>
+<span style="color: #BA36A5;">checkout</span> =
+    git clone git@github.com:joeyh/bar.git
+    cd bar
+    git remote add upstream git@github.com:barbar/bar.git
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">make `mr zap` integrate from upstream</span>
+<span style="color: #BA36A5;">zap</span> =
+    git pull upstream
+    git merge upstream/master
+    git push origin master
+
+[<span style="color: #6434A3;">mystuff</span>]
+<span style="color: #BA36A5;">checkout</span> = git@github.com:joeyh/foo.git
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">Skip if the current user is not joey</span>
+<span style="color: #BA36A5;">skip</span> = test `whoami` != joey
+
+[<span style="color: #6434A3;">DEFAULT</span>]
+<span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">Teach mr how to `mr gc` in git repos.</span>
+<span style="color: #BA36A5;">git_gc</span> = git gc <span style="color: #008000;">"$@"</span>
+</pre>
+</div>
+
+<p>
+Une autre fonctionnalité qui m'est totalement indispensable sont les
+<code>fixup(s)</code>. Il est en effet possible d'exécuter une ou plusieurs
+commandes (shell) après un <code>update</code> (ou via la commande <code>fixup</code>). C'est
+grâce à ce système la que je génère mes fichiers de configuration en
+provenance de plusieurs repository (comme <code>$HOME/.ssh/config</code> ou
+encore <code>$HOME/.gitconfig</code>).
+</p>
+
+<p>
+<code>myrepos</code> est l'exemple de l'outil simple et efficace qui fait une
+chose et le fait très bien, et dont je n'arrive pas à me passer
+<code>:-D</code>.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">Conclusion</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Et voilà, c'est tout pour cette introduction <code>;-)</code>. La prochaine
+partie se penchera sur la <b>structure</b> que j'utilise ainsi que le
+repository principal qui est <a href="https://github.com/vdemeester/vcsh-home"><b>vcsh-home</b></a>. Dans les parties suivantes on
+parlera des autres repository et donc des configurations spécifiques
+pour les différents outils (comme <a href="https://github.com/vdemeester/sh-config">sh-config</a>, <a href="https://github.com/vdemeester/emacs-config">emacs-config</a> ou encore
+<a href="https://github.com/vdemeester/go-config">go-config</a>). On parlera aussi probablement de <code>git-annex</code> dans le futur.
+</p>
+</div>
+</div>
