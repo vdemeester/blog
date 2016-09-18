@@ -346,6 +346,31 @@ li.tag-hugo a {
     border-radius: 4px;
 }
 
+div.figure {
+    margin: 0 3em 1em;
+    max-width: 90%;
+    display: inline-block;
+}
+div.figure p {
+    margin: 0 auto;
+    font-size: 0.95em;
+    font-family: Ubuntu Mono, Droid Sans Mono, Consolas, monospace;
+}
+div.figure img {
+    border: 1px solid #666;
+    display: block;
+    margin: 0 auto;
+}
+div.figure p:nth-child(2) {
+    background: #efefef;
+    border: 1px solid #ababab;
+    border-width: 0 1px 1px 1px;
+    padding: 0.1em 1em;
+}
+div.figure p span.figure-number {
+    text-decoration: underline;
+}
+
 /*
 body.gray #header {
     background: url(../images/bg_gray.png);
