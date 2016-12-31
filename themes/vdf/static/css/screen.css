@@ -55,9 +55,8 @@ html {
     padding: 0;
 }
 body {
-    font-family: "Merriweather", Palatino, georgia, "times new roman", serif;
-    /*font: 300 .9em/1.6em "Merriweather", serif;*/
-    font: 300 1em/1.4em "Merriweather", serif;
+    /* font: 300 1em/1.4em "Droid Sans", sans; */
+    font: 300 1.1em/1.3em "Droid Sans", sans;
     margin: 0;
     padding: 0;
 }
@@ -173,10 +172,15 @@ header, article, section, summary {
     padding-top: 1em;
     padding-left: 2em;
     padding-right: 2em;
+    max-width: 80em;
 }
 #page header h1 {
     font-size: 2em;
     margin-bottom: 0;
+}
+.home #page h2 {
+    font-size: 1.1em;
+    color: #333;
 }
 #page header address.signature {
     color: #999;

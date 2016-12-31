@@ -24,20 +24,19 @@
           {{ end }}
         </ul>
       </header>
-</header>
-{{ .Content }}
-</article>
-<div class="prev-next">
-  {{ if .Next }}
-  <a class="paging-link prev" href="{{ .Next.RelPermalink }}" title="{{ .Next.Title  }}">← Previous post</a>
-  {{ end }}
+      {{ .Content }}
+    </article>
+    <div class="prev-next">
+      {{ if .Next }}
+      <a class="paging-link prev" href="{{ .Next.RelPermalink }}" title="{{ .Next.Title  }}">← Previous post</a>
+      {{ end }}
 
-  {{ if .Prev }}
-  <a class="paging-link next" href="{{ .Prev.RelPermalink }}" title="{{ .Prev.Title }}">Next post →</a>
-  {{ end }}
-</div>
+      {{ if .Prev }}
+      <a class="paging-link next" href="{{ .Prev.RelPermalink }}" title="{{ .Prev.Title }}">Next post →</a>
+      {{ end }}
+    </div>
 
-</div>
+  </div>
 </div>
 
 {{ partial "footer.html" . }}
