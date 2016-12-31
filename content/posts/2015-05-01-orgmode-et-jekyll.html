@@ -84,43 +84,43 @@ L'idée c'est de définir un projet avec plusieurs <i>components</i>, un pour le
 
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp"><span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">Variables</span>
-<span style="color: #707183;">(</span><span style="color: #784437;">setq</span> <span style="color: #7a4f7e;">vdf-base-directory</span> <span style="color: #008000;">"~/desktop/org/notes/vdf/"</span>
-      <span style="color: #783778;">vdf-site-directory</span> <span style="color: #008000;">"~/src/github/vdemeester/vdemeester.github.com"</span>
-      <span style="color: #513f78;">vdf-publishing-directory</span> <span style="color: #7388D6;">(</span><span style="color: #374478;">expand-file-name</span> <span style="color: #008000;">"_posts"</span> <span style="color: #783778;">vdf-site-directory</span><span style="color: #7388D6;">)</span>
-      <span style="color: #43783f;">vdf-css-publishing-directory</span> <span style="color: #7388D6;">(</span><span style="color: #374478;">expand-file-name</span> <span style="color: #008000;">"css"</span> <span style="color: #783778;">vdf-site-directory</span><span style="color: #7388D6;">)</span>
-      <span style="color: #374478;">vdf-assets-publishing-directory</span> <span style="color: #7388D6;">(</span><span style="color: #374478;">expand-file-name</span> <span style="color: #008000;">"assets"</span> <span style="color: #783778;">vdf-site-directory</span><span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+<pre class="src src-emacs-lisp"><span style="color: #757575;">;; </span><span style="color: #757575;">Variables</span>
+<span style="color: #9575CD;">(</span><span style="color: #E1BEE7;">setq</span> <span style="color: #b6a0e0;">vdf-base-directory</span> <span style="color: #C5E1A5;">"~/desktop/org/notes/vdf/"</span>
+      <span style="color: #a7c0b9;">vdf-site-directory</span> <span style="color: #C5E1A5;">"~/src/github/vdemeester/vdemeester.github.com"</span>
+      <span style="color: #a6bb99;">vdf-publishing-directory</span> <span style="color: #7986CB;">(</span><span style="color: #b3c0a7;">expand-file-name</span> <span style="color: #C5E1A5;">"_posts"</span> <span style="color: #a7c0b9;">vdf-site-directory</span><span style="color: #7986CB;">)</span>
+      <span style="color: #bb99b4;">vdf-css-publishing-directory</span> <span style="color: #7986CB;">(</span><span style="color: #b3c0a7;">expand-file-name</span> <span style="color: #C5E1A5;">"css"</span> <span style="color: #a7c0b9;">vdf-site-directory</span><span style="color: #7986CB;">)</span>
+      <span style="color: #b3c0a7;">vdf-assets-publishing-directory</span> <span style="color: #7986CB;">(</span><span style="color: #b3c0a7;">expand-file-name</span> <span style="color: #C5E1A5;">"assets"</span> <span style="color: #a7c0b9;">vdf-site-directory</span><span style="color: #7986CB;">)</span><span style="color: #9575CD;">)</span>
 
-<span style="color: #8D8D84;">;; </span><span style="color: #8D8D84; font-style: italic;">Project</span>
-<span style="color: #707183;">(</span><span style="color: #784437;">setq</span> <span style="color: #784437;">org-publish-project-alist</span>
-      `<span style="color: #7388D6;">(</span><span style="color: #909183;">(</span><span style="color: #008000;">"vdf-notes"</span>
-         <span style="color: #006FE0;">:base-directory</span> ,<span style="color: #7a4f7e;">vdf-base-directory</span>
-         <span style="color: #006FE0;">:base-extension</span> <span style="color: #008000;">"org"</span>
-         <span style="color: #006FE0;">:publishing-directory</span> ,<span style="color: #513f78;">vdf-publishing-directory</span>
-         <span style="color: #006FE0;">:exclude</span> <span style="color: #008000;">"FIXME"</span>
-         <span style="color: #006FE0;">:section-numbers</span> <span style="color: #43783f;">nil</span>
-         <span style="color: #006FE0;">:with-toc</span> <span style="color: #43783f;">nil</span>
-         <span style="color: #006FE0;">:with-drawers</span> <span style="color: #4f5c7e;">t</span>
-         <span style="color: #006FE0;">:htmlized-source</span> <span style="color: #4f5c7e;">t</span>
-         <span style="color: #006FE0;">:publishing-function</span> <span style="color: #4f7e67;">org-html-publish-to-html</span>
-         <span style="color: #006FE0;">:headline-levels</span> <span style="color: #4f5c7e;">4</span>
-         <span style="color: #006FE0;">:body-only</span> <span style="color: #4f5c7e;">t</span><span style="color: #909183;">)</span>
-        <span style="color: #909183;">(</span><span style="color: #008000;">"vdf-static-css"</span>
-         <span style="color: #006FE0;">:base-directory</span> ,<span style="color: #7a4f7e;">vdf-base-directory</span>
-         <span style="color: #006FE0;">:base-extension</span> <span style="color: #008000;">"css"</span>
-         <span style="color: #006FE0;">:publishing-directory</span> ,<span style="color: #43783f;">vdf-css-publishing-directory</span>
-         <span style="color: #006FE0;">:recursive</span> <span style="color: #4f5c7e;">t</span>
-         <span style="color: #006FE0;">:publishing-function</span> <span style="color: #783f5a;">org-publish-attachment</span>
-         <span style="color: #909183;">)</span>
-        <span style="color: #909183;">(</span><span style="color: #008000;">"vdf-static-assets"</span>
-         <span style="color: #006FE0;">:base-directory</span> ,<span style="color: #7a4f7e;">vdf-base-directory</span>
-         <span style="color: #006FE0;">:base-extension</span> <span style="color: #008000;">"png</span><span style="color: #008000; font-weight: bold;">\\</span><span style="color: #008000; font-weight: bold;">|</span><span style="color: #008000;">jpg</span><span style="color: #008000; font-weight: bold;">\\</span><span style="color: #008000; font-weight: bold;">|</span><span style="color: #008000;">gif</span><span style="color: #008000; font-weight: bold;">\\</span><span style="color: #008000; font-weight: bold;">|</span><span style="color: #008000;">pdf</span><span style="color: #008000; font-weight: bold;">\\</span><span style="color: #008000; font-weight: bold;">|</span><span style="color: #008000;">mp3</span><span style="color: #008000; font-weight: bold;">\\</span><span style="color: #008000; font-weight: bold;">|</span><span style="color: #008000;">ogg"</span>
-         <span style="color: #006FE0;">:publishing-directory</span> ,<span style="color: #374478;">vdf-assets-publishing-directory</span>
-         <span style="color: #006FE0;">:recursive</span> <span style="color: #4f5c7e;">t</span>
-         <span style="color: #006FE0;">:publishing-function</span> <span style="color: #783f5a;">org-publish-attachment</span>
-         <span style="color: #909183;">)</span>
-        <span style="color: #909183;">(</span><span style="color: #008000;">"vdf"</span> <span style="color: #006FE0;">:components</span> <span style="color: #709870;">(</span><span style="color: #008000;">"vdf-notes"</span> <span style="color: #008000;">"vdf-static-css"</span> <span style="color: #008000;">"vdf-static-assets"</span><span style="color: #709870;">)</span><span style="color: #909183;">)</span>
-        <span style="color: #7388D6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #757575;">;; </span><span style="color: #757575;">Project</span>
+<span style="color: #9575CD;">(</span><span style="color: #E1BEE7;">setq</span> <span style="color: #a7aac0;">org-publish-project-alist</span>
+      `<span style="color: #7986CB;">(</span><span style="color: #26C6DA;">(</span><span style="color: #C5E1A5;">"vdf-notes"</span>
+         <span style="color: #80DEEA;">:base-directory</span> ,<span style="color: #b6a0e0;">vdf-base-directory</span>
+         <span style="color: #80DEEA;">:base-extension</span> <span style="color: #C5E1A5;">"org"</span>
+         <span style="color: #80DEEA;">:publishing-directory</span> ,<span style="color: #a6bb99;">vdf-publishing-directory</span>
+         <span style="color: #80DEEA;">:exclude</span> <span style="color: #C5E1A5;">"FIXME"</span>
+         <span style="color: #80DEEA;">:section-numbers</span> <span style="color: #bb99b4;">nil</span>
+         <span style="color: #80DEEA;">:with-toc</span> <span style="color: #bb99b4;">nil</span>
+         <span style="color: #80DEEA;">:with-drawers</span> <span style="color: #a0d6e0;">t</span>
+         <span style="color: #80DEEA;">:htmlized-source</span> <span style="color: #a0d6e0;">t</span>
+         <span style="color: #80DEEA;">:publishing-function</span> <span style="color: #a3e0a0;">org-html-publish-to-html</span>
+         <span style="color: #80DEEA;">:headline-levels</span> <span style="color: #a0d6e0;">4</span>
+         <span style="color: #80DEEA;">:body-only</span> <span style="color: #a0d6e0;">t</span><span style="color: #26C6DA;">)</span>
+        <span style="color: #26C6DA;">(</span><span style="color: #C5E1A5;">"vdf-static-css"</span>
+         <span style="color: #80DEEA;">:base-directory</span> ,<span style="color: #b6a0e0;">vdf-base-directory</span>
+         <span style="color: #80DEEA;">:base-extension</span> <span style="color: #C5E1A5;">"css"</span>
+         <span style="color: #80DEEA;">:publishing-directory</span> ,<span style="color: #bb99b4;">vdf-css-publishing-directory</span>
+         <span style="color: #80DEEA;">:recursive</span> <span style="color: #a0d6e0;">t</span>
+         <span style="color: #80DEEA;">:publishing-function</span> <span style="color: #99bbb4;">org-publish-attachment</span>
+         <span style="color: #26C6DA;">)</span>
+        <span style="color: #26C6DA;">(</span><span style="color: #C5E1A5;">"vdf-static-assets"</span>
+         <span style="color: #80DEEA;">:base-directory</span> ,<span style="color: #b6a0e0;">vdf-base-directory</span>
+         <span style="color: #80DEEA;">:base-extension</span> <span style="color: #C5E1A5;">"png</span><span style="color: #9575CD;">\\</span><span style="color: #9575CD;">|</span><span style="color: #C5E1A5;">jpg</span><span style="color: #9575CD;">\\</span><span style="color: #9575CD;">|</span><span style="color: #C5E1A5;">gif</span><span style="color: #9575CD;">\\</span><span style="color: #9575CD;">|</span><span style="color: #C5E1A5;">pdf</span><span style="color: #9575CD;">\\</span><span style="color: #9575CD;">|</span><span style="color: #C5E1A5;">mp3</span><span style="color: #9575CD;">\\</span><span style="color: #9575CD;">|</span><span style="color: #C5E1A5;">ogg"</span>
+         <span style="color: #80DEEA;">:publishing-directory</span> ,<span style="color: #b3c0a7;">vdf-assets-publishing-directory</span>
+         <span style="color: #80DEEA;">:recursive</span> <span style="color: #a0d6e0;">t</span>
+         <span style="color: #80DEEA;">:publishing-function</span> <span style="color: #99bbb4;">org-publish-attachment</span>
+         <span style="color: #26C6DA;">)</span>
+        <span style="color: #26C6DA;">(</span><span style="color: #C5E1A5;">"vdf"</span> <span style="color: #80DEEA;">:components</span> <span style="color: #42A5F5;">(</span><span style="color: #C5E1A5;">"vdf-notes"</span> <span style="color: #C5E1A5;">"vdf-static-css"</span> <span style="color: #C5E1A5;">"vdf-static-assets"</span><span style="color: #42A5F5;">)</span><span style="color: #26C6DA;">)</span>
+        <span style="color: #7986CB;">)</span><span style="color: #9575CD;">)</span>
 </pre>
 </div>
 
