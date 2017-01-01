@@ -200,6 +200,7 @@ blockquote {
     position: relative;
 }
 blockquote:before {
+    font-family: "Merriweather";
     display: block;
     content: "\201C";
     font-size: 3em;
