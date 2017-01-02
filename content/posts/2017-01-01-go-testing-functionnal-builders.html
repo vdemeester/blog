@@ -396,16 +396,16 @@ extensible. Let's see how to use it.
 <div class="org-src-container">
 
 <pre class="src src-go"><span class="org-comment-delimiter">// </span><span class="org-comment">a default node</span>
-<span class="org-rainbow-identifiers-identifier-2">node1</span> := <span class="org-function-name">Node</span>()
+<span class="org-rainbow-identifiers-identifier-2">node1</span> := <span class="org-function-name">ANode</span>()
 <span class="org-comment-delimiter">// </span><span class="org-comment">a node with a specific Hostname</span>
-<span class="org-rainbow-identifiers-identifier-5">node2</span> := <span class="org-function-name">Node</span>(<span class="org-keyword">func</span>(<span class="org-rainbow-identifiers-identifier-15">n</span> *<span class="org-type">Node</span>) {
+<span class="org-rainbow-identifiers-identifier-5">node2</span> := <span class="org-function-name">ANode</span>(<span class="org-keyword">func</span>(<span class="org-rainbow-identifiers-identifier-15">n</span> *<span class="org-type">Node</span>) {
         <span class="org-rainbow-identifiers-identifier-15">n</span>.<span class="org-rainbow-identifiers-identifier-10">Hostname</span> = <span class="org-string">"custom-hostname"</span>
 })
 <span class="org-comment-delimiter">// </span><span class="org-comment">a node with a specific name and platform</span>
-<span class="org-rainbow-identifiers-identifier-8">node3</span> := <span class="org-function-name">Node</span>(<span class="org-keyword">func</span>(<span class="org-rainbow-identifiers-identifier-15">n</span> *<span class="org-type">Node</span>) {
+<span class="org-rainbow-identifiers-identifier-8">node3</span> := <span class="org-function-name">ANode</span>(<span class="org-keyword">func</span>(<span class="org-rainbow-identifiers-identifier-15">n</span> *<span class="org-type">Node</span>) {
         <span class="org-rainbow-identifiers-identifier-15">n</span>.<span class="org-rainbow-identifiers-identifier-8">Name</span> = <span class="org-string">"custom-name"</span>
 }, <span class="org-keyword">func</span> (<span class="org-rainbow-identifiers-identifier-15">n</span> *<span class="org-type">Node</span>) {
-        <span class="org-rainbow-identifiers-identifier-15">n</span>.<span class="org-rainbow-identifiers-identifier-4">Platform</span> = <span class="org-function-name">Platform</span>(<span class="org-keyword">func</span> (<span class="org-rainbow-identifiers-identifier-10">p</span> *<span class="org-type">Platform</span>) {
+        <span class="org-rainbow-identifiers-identifier-15">n</span>.<span class="org-rainbow-identifiers-identifier-4">Platform</span> = <span class="org-function-name">APlatform</span>(<span class="org-keyword">func</span> (<span class="org-rainbow-identifiers-identifier-10">p</span> *<span class="org-type">Platform</span>) {
                 <span class="org-rainbow-identifiers-identifier-10">p</span>.<span class="org-rainbow-identifiers-identifier-12">OS</span> = <span class="org-string">"darwin"</span>
         })
 })
