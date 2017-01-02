@@ -160,7 +160,7 @@ a <code>build</code> method. Let's see how it looks.
 }
 
 <span class="org-keyword">type</span> <span class="org-type">NodeBuilder</span> <span class="org-keyword">struct</span> {
-        <span class="org-rainbow-identifiers-identifier-5">node</span> &amp;<span class="org-rainbow-identifiers-identifier-12">Node</span>
+        <span class="org-rainbow-identifiers-identifier-5">node</span> *<span class="org-rainbow-identifiers-identifier-12">Node</span>
 }
 
 <span class="org-keyword">func</span> (<span class="org-rainbow-identifiers-identifier-1">b</span> *<span class="org-type">NodeBuilder</span>) <span class="org-function-name">Build</span>() *<span class="org-type">Node</span> {
@@ -196,7 +196,7 @@ resilient to change. We can update the previous test as follow.
         <span class="org-rainbow-identifiers-identifier-6">valid</span> := <span class="org-function-name">Validate</span>(<span class="org-function-name">ANode</span>().<span class="org-function-name">Platform</span>(&amp;<span class="org-type">Platform</span>{
                 <span class="org-constant">Architecture</span>: <span class="org-string">"x86_64"</span>,
                 <span class="org-constant">OS</span>:           <span class="org-string">"linux"</span>,
-        }).<span class="org-function-name">build</span>())
+        }).<span class="org-function-name">Build</span>())
         <span class="org-keyword">if</span> !<span class="org-rainbow-identifiers-identifier-6">valid</span> {
                 <span class="org-rainbow-identifiers-identifier-8">t</span>.<span class="org-function-name">Fatal</span>(<span class="org-string">"linux should be supported, it was not"</span>)
         }
@@ -206,7 +206,7 @@ resilient to change. We can update the previous test as follow.
         <span class="org-rainbow-identifiers-identifier-6">valid</span> := <span class="org-function-name">Validate</span>(<span class="org-function-name">ANode</span>().<span class="org-function-name">Platform</span>(&amp;<span class="org-type">Platform</span>{
                 <span class="org-constant">Architecture</span>: <span class="org-string">"x86_64"</span>,
                 <span class="org-constant">OS</span>:           <span class="org-string">"darwin"</span>,
-        }).<span class="org-function-name">build</span>())
+        }).<span class="org-function-name">Build</span>())
         <span class="org-keyword">if</span> <span class="org-rainbow-identifiers-identifier-6">valid</span> {
                 <span class="org-rainbow-identifiers-identifier-8">t</span>.<span class="org-function-name">Fatal</span>(<span class="org-string">"darwin should not be supported, it was"</span>)
         }
@@ -252,7 +252,7 @@ with <code>Node</code>.
         <span class="org-rainbow-identifiers-identifier-14">platform</span> *<span class="org-rainbow-identifiers-identifier-4">Platform</span>
 }
 
-<span class="org-keyword">func</span> (<span class="org-rainbow-identifiers-identifier-1">b</span> *<span class="org-type">PlatformBuilder</span>) <span class="org-function-name">build</span>() *<span class="org-type">Platform</span> {
+<span class="org-keyword">func</span> (<span class="org-rainbow-identifiers-identifier-1">b</span> *<span class="org-type">PlatformBuilder</span>) <span class="org-function-name">Build</span>() *<span class="org-type">Platform</span> {
         <span class="org-keyword">return</span> <span class="org-rainbow-identifiers-identifier-1">b</span>.<span class="org-rainbow-identifiers-identifier-14">platform</span>
 }
 
@@ -271,8 +271,8 @@ And our tests becomes 🐻.
 
 <pre class="src src-go"><span class="org-keyword">func</span> <span class="org-function-name">TestValidateLinuxIsSupported</span>(<span class="org-rainbow-identifiers-identifier-8">t</span> *<span class="org-type">testing.T</span>) {
         <span class="org-rainbow-identifiers-identifier-6">valid</span> := <span class="org-function-name">Validate</span>(<span class="org-function-name">ANode</span>().<span class="org-function-name">Platform</span>(
-                <span class="org-function-name">APlatform</span>().<span class="org-function-name">OS</span>(<span class="org-string">"linux"</span>).<span class="org-function-name">build</span>()
-        ).<span class="org-function-name">build</span>())
+                <span class="org-function-name">APlatform</span>().<span class="org-function-name">OS</span>(<span class="org-string">"linux"</span>).<span class="org-function-name">Build</span>()
+        ).<span class="org-function-name">Build</span>())
         <span class="org-keyword">if</span> !<span class="org-rainbow-identifiers-identifier-6">valid</span> {
                 <span class="org-rainbow-identifiers-identifier-8">t</span>.<span class="org-function-name">Fatal</span>(<span class="org-string">"linux should be supported, it was not"</span>)
         }
@@ -280,8 +280,8 @@ And our tests becomes 🐻.
 
 <span class="org-keyword">func</span> <span class="org-function-name">TestValidateDarwinIsNotSupported</span>(<span class="org-rainbow-identifiers-identifier-8">t</span> *<span class="org-type">testing.T</span>) {
         <span class="org-rainbow-identifiers-identifier-6">valid</span> := <span class="org-function-name">Validate</span>(<span class="org-function-name">ANode</span>().<span class="org-function-name">Platform</span>(
-                <span class="org-function-name">APlatform</span>().<span class="org-function-name">OS</span>(<span class="org-string">"darwin"</span>).<span class="org-function-name">build</span>()
-        ).<span class="org-function-name">build</span>())
+                <span class="org-function-name">APlatform</span>().<span class="org-function-name">OS</span>(<span class="org-string">"darwin"</span>).<span class="org-function-name">Build</span>()
+        ).<span class="org-function-name">Build</span>())
         <span class="org-keyword">if</span> <span class="org-rainbow-identifiers-identifier-6">valid</span> {
                 <span class="org-rainbow-identifiers-identifier-8">t</span>.<span class="org-function-name">Fatal</span>(<span class="org-string">"darwin should not be supported, it was"</span>)
         }
@@ -359,7 +359,7 @@ Let's apply that to our new builders.
 
 <div class="org-src-container">
 
-<pre class="src src-go"><span class="org-keyword">func</span> <span class="org-function-name">Node</span>(<span class="org-rainbow-identifiers-identifier-2">nodeBuilders</span> ...<span class="org-keyword">func</span>(*<span class="org-type">Node</span>)) *<span class="org-type">Node</span> {
+<pre class="src src-go"><span class="org-keyword">func</span> <span class="org-function-name">ANode</span>(<span class="org-rainbow-identifiers-identifier-2">nodeBuilders</span> ...<span class="org-keyword">func</span>(*<span class="org-type">Node</span>)) *<span class="org-type">Node</span> {
         <span class="org-rainbow-identifiers-identifier-5">node</span> := &amp;<span class="org-type">Node</span>{
                 <span class="org-constant">Name</span>: <span class="org-string">"node"</span>,
                 <span class="org-comment-delimiter">// </span><span class="org-comment">Other defaults</span>
@@ -372,7 +372,7 @@ Let's apply that to our new builders.
         <span class="org-keyword">return</span> <span class="org-rainbow-identifiers-identifier-5">node</span>
 }
 
-<span class="org-keyword">func</span> <span class="org-function-name">Platform</span>(<span class="org-rainbow-identifiers-identifier-8">platformBuilders</span> ...<span class="org-keyword">func</span>(*<span class="org-type">Platform</span>)) *<span class="org-type">Platform</span> {
+<span class="org-keyword">func</span> <span class="org-function-name">APlatform</span>(<span class="org-rainbow-identifiers-identifier-8">platformBuilders</span> ...<span class="org-keyword">func</span>(*<span class="org-type">Platform</span>)) *<span class="org-type">Platform</span> {
         <span class="org-rainbow-identifiers-identifier-14">platform</span> := &amp;<span class="org-type">Platform</span>{
                 <span class="org-constant">Architecture</span>: <span class="org-string">"x64_86"</span>,
                 <span class="org-constant">OS</span>: <span class="org-string">"linux"</span>,
@@ -422,36 +422,32 @@ tests looks like.
 <div class="org-src-container">
 
 <pre class="src src-go"><span class="org-keyword">func</span> <span class="org-function-name">TestValidateLinuxIsSupported</span>(<span class="org-rainbow-identifiers-identifier-8">t</span> *<span class="org-type">testing.T</span>) {
-        <span class="org-rainbow-identifiers-identifier-6">valid</span> := <span class="org-function-name">Validate</span>(<span class="org-function-name">Node</span>(<span class="org-function-name">WithPlatform</span>(<span class="org-rainbow-identifiers-identifier-2">Linux</span>)))
+        <span class="org-rainbow-identifiers-identifier-6">valid</span> := <span class="org-function-name">Validate</span>(<span class="org-function-name">ANode</span>(<span class="org-function-name">WithAPlatform</span>(<span class="org-rainbow-identifiers-identifier-2">Linux</span>)))
         <span class="org-keyword">if</span> !<span class="org-rainbow-identifiers-identifier-6">valid</span> {
                 <span class="org-rainbow-identifiers-identifier-8">t</span>.<span class="org-function-name">Fatal</span>(<span class="org-string">"linux should be supported, it was not"</span>)
         }
 }
 
 <span class="org-keyword">func</span> <span class="org-function-name">TestValidateDarwinIsNotSupported</span>(<span class="org-rainbow-identifiers-identifier-8">t</span> *<span class="org-type">testing.T</span>) {
-        <span class="org-rainbow-identifiers-identifier-6">valid</span> := <span class="org-function-name">Validate</span>(<span class="org-function-name">Node</span>(<span class="org-function-name">WithPlatform</span>(<span class="org-rainbow-identifiers-identifier-15">Darwin</span>)))
+        <span class="org-rainbow-identifiers-identifier-6">valid</span> := <span class="org-function-name">Validate</span>(<span class="org-function-name">ANode</span>(<span class="org-function-name">WithAPlatform</span>(<span class="org-rainbow-identifiers-identifier-15">Darwin</span>)))
         <span class="org-keyword">if</span> <span class="org-rainbow-identifiers-identifier-6">valid</span> {
                 <span class="org-rainbow-identifiers-identifier-8">t</span>.<span class="org-function-name">Fatal</span>(<span class="org-string">"darwin should not be supported, it was"</span>)
         }
 }
 
 <span class="org-comment-delimiter">// </span><span class="org-comment">Function builders</span>
-<span class="org-keyword">func</span> <span class="org-function-name">WithPlatform</span>(<span class="org-rainbow-identifiers-identifier-4">builders</span> ...<span class="org-keyword">func</span>(*<span class="org-type">Platform</span>)) <span class="org-keyword">func</span> (<span class="org-rainbow-identifiers-identifier-15">n</span> *<span class="org-type">Node</span>) {
+<span class="org-keyword">func</span> <span class="org-function-name">WithAPlatform</span>(<span class="org-rainbow-identifiers-identifier-4">builders</span> ...<span class="org-keyword">func</span>(*<span class="org-type">Platform</span>)) <span class="org-keyword">func</span> (<span class="org-rainbow-identifiers-identifier-15">n</span> *<span class="org-type">Node</span>) {
         <span class="org-keyword">return</span> <span class="org-keyword">func</span>(<span class="org-rainbow-identifiers-identifier-15">n</span> *<span class="org-type">Node</span>) {
                 <span class="org-rainbow-identifiers-identifier-15">n</span>.<span class="org-rainbow-identifiers-identifier-4">Platform</span> = <span class="org-function-name">Platform</span>(<span class="org-rainbow-identifiers-identifier-4">builders</span>...)
         }
 }
 
-<span class="org-keyword">func</span> <span class="org-function-name">Linux</span>() <span class="org-keyword">func</span> (<span class="org-rainbow-identifiers-identifier-10">p</span> *<span class="org-type">Platform</span>) {
-        <span class="org-keyword">return</span> <span class="org-keyword">func</span>(<span class="org-rainbow-identifiers-identifier-10">p</span> *<span class="org-type">Platform</span>) {
-                <span class="org-rainbow-identifiers-identifier-10">p</span>.<span class="org-rainbow-identifiers-identifier-12">OS</span> = <span class="org-string">"linux"</span>
-        }
+<span class="org-keyword">func</span> <span class="org-function-name">Linux</span>(<span class="org-rainbow-identifiers-identifier-10">p</span> *<span class="org-type">Platform</span>) {
+        <span class="org-rainbow-identifiers-identifier-10">p</span>.<span class="org-rainbow-identifiers-identifier-12">OS</span> = <span class="org-string">"linux"</span>
 }
 
-<span class="org-keyword">func</span> <span class="org-function-name">Darwin</span>() <span class="org-keyword">func</span> (<span class="org-rainbow-identifiers-identifier-10">p</span> *<span class="org-type">Platform</span>) {
-        <span class="org-keyword">return</span> <span class="org-keyword">func</span>(<span class="org-rainbow-identifiers-identifier-10">p</span> *<span class="org-type">Platform</span>) {
-                <span class="org-rainbow-identifiers-identifier-10">p</span>.<span class="org-rainbow-identifiers-identifier-12">OS</span> = <span class="org-string">"darwin"</span>
-        }
+<span class="org-keyword">func</span> <span class="org-function-name">Darwin</span>(<span class="org-rainbow-identifiers-identifier-10">p</span> *<span class="org-type">Platform</span>) {
+        <span class="org-rainbow-identifiers-identifier-10">p</span>.<span class="org-rainbow-identifiers-identifier-12">OS</span> = <span class="org-string">"darwin"</span>
 }
 </pre>
 </div>
