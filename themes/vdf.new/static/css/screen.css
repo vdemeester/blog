@@ -198,3 +198,8 @@ body > footer address, div#footer address {
     font-family: Baskerville, Palatino, "Book Antiqua", serif;
     font-style: italic;
 }
+
+#page h2 span.count {
+    color: #999;
+    font-size: 0.75em;
+}

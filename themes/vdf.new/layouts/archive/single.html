@@ -7,14 +7,13 @@
 
     {{ range (where .Site.Pages "Section" "posts").GroupByDate "2006" }}
     <h2>{{ .Key }}</h2>
-    {{ range .Pages.GroupByDate "January" }}
-    <h3>{{ .Key }}</h3>
     <ul>
       {{ range .Pages }}
+      {{ if eq .Title "Posts" }}{{ else }}
       {{ .Render "summary" }}
       {{ end }}
+      {{ end }}
     </ul>
-    {{ end }}
     {{ end }}
   </div>
 </div>
