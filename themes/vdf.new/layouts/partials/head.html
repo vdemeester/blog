@@ -23,17 +23,6 @@
     <link rel="stylesheet" href="/css/sbrain.css" type="text/css" />
     <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
 
-
-    <style type="text/css">
-      #header {
-      {{ if .Params.bannerimage }}
-      background: url('{{ .Params.bannerimage }}') repeat scroll center center / cover transparent;
-      {{ else }}
-      background: url('/images/2014/03/83029.jpg') repeat scroll center center / cover transparent;
-      {{ end }}
-      }
-    </style>
-
   </head>
   {{ if .Params.bodyClass }}
   <body lang="{{ .Params.lang }}" class="{{ .Params.bodyClass }}">
