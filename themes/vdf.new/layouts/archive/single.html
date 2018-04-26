@@ -3,7 +3,7 @@
 
 <div id="main-container">
   <div id="page">
-    <h1 class="emphnext">Archives</h1><a href='{{ .Permalink }}'></a>
+    <h1 class="emphnext">Posts</h1><a href='{{ .Permalink }}'></a>
 
     {{ range (where .Site.Pages "Section" "posts").GroupByDate "2006" }}
     <h2>{{ .Key }}</h2>

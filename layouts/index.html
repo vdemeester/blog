@@ -5,7 +5,7 @@
   <div id="page">
     <h1 class="emphnext">Hi, I'm Vincent Demeester</h1>
 
-    <h2>I'm a <em>french</em> developer 🐻, Gopher 🐹, sysadmin 🐺, <abbr title="who does all kinds of work"> factotum</abbr> 🦁 and <span class="fan"><abbr title="as in free speek">free</abbr>-software <abbr title="You could say Evangelist">fan</abbr></span> 👼 — ah and unicode fan too 🐸.<br/> I'm working <a href="https://www.docker.com">@Docker</a> 🐳 as a software engineer, previously <a href="http://www.zenika.com/">Zenika</a> 🐯.</h2>
+    <h2>I'm a <em>french</em> developer 🐻, Gopher 🐹, sysadmin 🐺, <abbr title="who does all kinds of work"> factotum</abbr> 🦁, <span class="fan"><abbr title="as in free speek">free</abbr>-software <abbr title="You could say Evangelist">fan</abbr></span> 👼 and unicode lover 🐸.<br/> I'm working <a href="https://www.docker.com">@Docker</a> 🐳 as a software engineer, previously <a href="http://www.zenika.com/">Zenika</a> 🐯.</h2>
 
     <p>I develop mainly in <a href="http://golang.org/">Go</a>, a little bit of <a href="http://java.oracle.com">Java</a>, a tiny bit of <a href="http://python.org">Python</a> ;
       I'm learning <a href="http://haskell.org">Haskell</a> and LISP with <a href="http://clojure.org">Clojure</a> (and also Emacs Lisp). The more I learn about about Functionnal languages and their way of thinking, the more I feel enlighten. I'm using <a href="https://www.gnu.org/software/emacs/">Emacs</a> as my main editor and <a href="http://www.jetbrains.com/idea/">IntelliJ IDEA</a> for Java-related stuff.
@@ -16,48 +16,12 @@
       <h2>Latests Posts</h2>
       <div>
         <ul>
-          {{ range first 10 .Data.Pages }}
+          {{ range first 15 .Data.Pages }}
           {{ .Render "summary"}}
           {{ end }}
         </ul>
       </div>
     </section>
-
-    <section id="talks">
-      <h2>Talks</h2>
-      <dl>
-        <dt><a href="http://zenika.github.io/NC-Docker-Decouverte/">Nighclazz Docker Découverte</a> (<a href="https://github.com/Zenika/NC-Docker-Decouverte">github</a>)</dt>
-        <dd>Introduction douce et fun à Docker.</dd>
-        <dt><a href="http://zenika.github.io/NC-Docker-Avance/">Nighclazz Docker avancé</a> (<a href="https://github.com/Zenika/NC-Docker-Avance">github</a>)</dt>
-        <dd>La suite de la première nighclazz, avec des choses un peu plus avancée (on parle de <a href="https://github.com/docker/swarm">swarm</a> et de <a href="https://github.com/docker/machine">machine</a> par exemple).</dd>
-        <dt><a href="http://vincent.demeester.fr/talk-docker-from-night-to-daylight/">Docker — From Night to daylight</a> (<a href="https://github.com/vdemeester/talk-docker-from-night-to-daylight/">github</a>)</dt>
-        <dd>Un condensé à jour (version 1.7.0) des 2 nightclazz pour le technozaure @ZenikaIT.</dd>
-      </dl>
-
-    </section>
-
-    <h2>Contact</h2>
-
-    <dl>
-      <dt>Email</dt>
-      <dd class="mail">vin<span class="zzz">SPAM</span>cent<span class="zzz">AT</span>@dem<span class="zzz">SPAM</span>eester<span class="zzz">DOT</span>.fr</dd>
-      <dd class="gnupg"><a href="VincentDemeester.asc">5860 2A88</a></dd>
-      <dt>Instant Messaging</dt>
-      <dd class="jabber"><a href="xmpp:vdemeester@jabber.fsfe.org">
-          vdemeester@<span style="color: #d9531e">jabber</span>.<span style="color: rgb(0, 153, 0);">fsfe.org</span></a></dd>
-      <dd class="irc">vdemeester@irc.freenode.net
-        <a href="irc://irc.freenode.net:6667/fsfe">#fsfe</a>
-        <a href="irc://irc.freenode.net:6667/docker">#docker</a>
-        <a href="irc://irc.freenode.net:6667/docker-compose">#docker-compose</a>
-        <a href="irc://irc.freenode.net:6667/docker-dev">#docker-dev</a>
-        <a href="irc://irc.freenode.net:6667/#openweb">##openweb</a>
-      <dd class="irc">vdemeester@irc.oftc.net
-        <a href="irc://irc.oftc.net:6667/vcs-home">#vcs-home</a></dd>
-      <dt>Socials</dt>
-      <dd><a href="https://twitter.com/vdemeest" rel="me">@vdemeest on Twitter</a></dd>
-      <dd><a href="https://github.com/vdemeester" rel="me">Github</a></dd>
-    </dl>
-    <br />
   </div>
 </div>
 
