@@ -65,6 +65,11 @@ https://github.com/gotestyourself/gotestsum
 *** TODO continuous testing with filewatcher, goconvey, …
 ** Emacs                                                     :editor:@emacs:
 *** TODO Window pop-up                                      :buffer:window:
+
+** NixOS                                                        :nixos:@nix:
+*** TODO Intro - general configuration
+
+*** TODO =home-manager=
 ** Nixops
 *** TODO Baby steps with aws
 *** TODO aws "on-demand"
@@ -74,6 +79,8 @@ https://github.com/gotestyourself/gotestsum
 - https://www.kernel.org/doc/html/v4.14/admin-guide/binfmt-misc.html
 - https://github.com/genuinetools/binctr
 - https://blog.jessfraz.com/post/nerd-sniped-by-binfmt_misc/
+
+** TODO Tool of the day =prm=
 ** TODO wincent/clipper
 ** TODO nixos, runc, systemctl --user
 Run rootless containers with runc and services with systemctl
