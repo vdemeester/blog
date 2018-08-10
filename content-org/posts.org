@@ -5,8 +5,6 @@
 #+options: creator:t
 
 * Blog Ideas
-** TODO Notary series
-
 * Series
 ** Golang testing                             :@developement:testing:golang:
 *** Golang testing — gotest.tools introduction
@@ -63,6 +61,7 @@ In the next post, let's dig into the assertion part of the library, package =ass
 https://github.com/gotestyourself/gotestsum
 *** TODO gauge for readme-test-driven
 *** TODO continuous testing with filewatcher, goconvey, …
+** Containerd                                :development:golang:@container:
 ** Emacs                                                     :editor:@emacs:
 *** TODO Window pop-up                                      :buffer:window:
 
