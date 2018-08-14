@@ -51,7 +51,183 @@ $ go list \
 
 In the next post, let's dig into the assertion part of the library, package =assert= 👼.
 
-*** TODO gotest.tools assertion
+*** TODO Golang testing : gotest.tools assertions
+:PROPERTIES:
+:EXPORT_FILE_NAME: 2018-08-16-gotest-tools-assertions
+:EXPORT_DATE: 2018-08-16
+:END:
+
+Let's take a closer look at [[https://gotest.tools][=gotest.tools=]] assertions packages. This is mainly about =assert=, =assert/cmp= and
+=assert/opt=.
+
+#+BEGIN_QUOTE
+Package assert provides assertions for comparing expected values to actual values. When assertion fails a helpful error
+message is printed.
+#+END_QUOTE
+
+There is two main function (=Assert= and =Check=) and some helpers (like =NilError=, …), They all take a =*testing.T= as
+a first argument, pretty common across testing Go libraries. Let's dive into those !
+
+**** =Assert= and =Check=
+
+Both those function accept a =Comparaison= (we'll check what it is later on) and fail the test when that comparaison
+fails. The one difference is that =Assert= will end the test execution at immediately whereas =Check= will fail the test
+and proceed with the rest of the test case. This is similar to =FailNow= and =Fail= from the standard library
+=testing=. Both have their use cases.
+
+We'll Use =Assert= for the rest of the section but any example here would work with =Check= too. When we said
+=Comparaison= above, it's mainly the [[https://godoc.org/gotest.tools/assert#BoolOrComparison][BoolOrComparaison]] interface — it can either be a boolean expression, or a
+[[https://godoc.org/gotest.tools/assert/cmp#Comparison][cmp.Comparaison]] type. =Assert= and =Check= code will be /smart/ enough to detect which one it is.
+
+#+BEGIN_SRC go
+assert.Assert(t, ok)
+assert.Assert(t, err != nil)
+assert.Assert(t, foo.IsBar())
+#+END_SRC
+
+So far not anything extra-ordinary. Let's first look at some more /helper/ functions in the =assert= package and quickly
+dive a bit deeper with =Comparaison=.
+
+**** More =assert= helpers
+
+The additional helper functions are the following
+
+- =Equal= that uses the ==== operator to assert two values are equal.
+- =DeepEqual= that uses =google/go-cmp= to assert two values are equal (it's /close/ to =reflect.DeepEqual= but not
+  quite). We'll detail a bit more the /options/ part of this function with =cmp.DeepEqual=.
+- =Error= that fails if the error is =nil= *or* the error message is not the expected one.
+- =ErrorContains= that fails if the error is =nil= *or* the error message does not contain the expected substring.
+- =ErrorType= that fails if the error is =nil= *or* the error type is not the expected type.
+- =NilError= that fails if the error is not =nil=.
+
+All those helper functions, have a equivalent function in the =cmp= package that returns a =Comparaison=.I, personally,
+prefer to use =assert.Check= or =assert.Assert= in combination with =cmp.Comparison= as it allows me to write all my
+assertions the same way, with built-ins comparison or with my owen — i.e. =assert.Assert(t, is.Equal(…), "message"= or
+=assert.Assert(t, stackIsUp(c, time…), "another message")=.
+
+**** =cmp.Comparison=
+
+This is where it get really interesting, =gotest.tools= tries to make it as easy as possible for you to create
+appropriate comparison — making you test readable as much as possible.
+
+Let's look a bit at the =cmp.Comparaison= type.
+
+#+BEGIN_SRC go
+type Comparison func() Result
+#+END_SRC
+
+It's just a function that returns a =cmp.Result=, so let's look at =cmp.Result= definition.
+
+#+BEGIN_SRC go
+type Result interface {
+        Success() bool
+}
+#+END_SRC
+
+Result is an =interface=, thus any struct that provide a function =Success= that returns a =bool= can be used as a
+comparaison result, making it really easy to use in your code. There is also existing type of result to make it even
+quicker to write your own comparaison.
+
+- =ResultSuccess= that is a constant which is returned to indicate success.
+- =ResultFailure= and =ResultFailureTemplate= that returns a failed Result with a failure message.
+- =ResultFromError= returns =ResultSuccess= if =err= is nil. Otherwise =ResultFailure= is returned with the error
+  message as the failure message. It works a bit like the =errors.Wrap= function of the [[https://github.com/pkg/errors][=github.com/pkgs/errors=]]
+  package.
+
+The =cmp= package comes with a few defined comparaison that, we think, should cover a high number of use-cases. Let's
+look at them.
+
+***** Equality with =Equal= and =DeepEqual=
+
+#+BEGIN_QUOTE
+Equal uses the == operator to assert two values are equal and fails the test if they are not equal.
+
+If the comparison fails Equal will use the variable names for x and y as part of the failure message to identify the
+actual and expected values.
+
+If either x or y are a multi-line string the failure message will include a unified diff of the two values. If the
+values only differ by whitespace the unified diff will be augmented by replacing whitespace characters with visible
+characters to identify the whitespace difference.
+#+END_QUOTE
+
+On the other hand…
+
+#+BEGIN_QUOTE
+DeepEqual uses google/go-cmp (http://bit.do/go-cmp) to assert two values are equal and fails the test if they are not
+equal.
+
+Package https://godoc.org/gotest.tools/assert/opt provides some additional commonly used Options.
+#+END_QUOTE
+
+Using one or the other is as simple as : if you wrote your =if= with ==== then use =Equal=, otherwise use =DeepEqual=.
+=DeepEqual= (and usually =reflect.DeepEqual=) is used when you want to compare anything more complex than primitive
+types. One advantage of using =cmp.DeepEqual= over =reflect.DeepEqual= (in an if), is that you get a well crafted
+message that shows the diff between the expected and the actual structs compared.
+
+#+BEGIN_SRC go
+assert.Assert(t, cmp.DeepEqual([]string{"a", "b"}, []string{"b", "a"}))
+// Will print something like
+// --- result
+// +++ exp
+// {[]string}[0]:
+//         -: "a"
+//         +: "b"
+// {[]string}[1]:
+//         -: "b"
+//         +: "a"
+foo := &someType(a: "with", b: "value")
+bar := &someType(a: "with", b: "value")
+// the following will succeed as foo and bar are _DeepEqual_
+assert.Assert(t, cmp.DeepEqual(foo, bar))
+#+END_SRC
+
+When using =DeepEqual=, you may end up with really weird behavior sometimes. You may want to ignore some fields, or
+consider =nil= slice or map the same as empty ones ; or more common, your =struct= contains some unexported fields that
+you cannot use when comparing (as they are not exported 👼). In those case, you can use =go-cmp= options.
+
+Some existings one are :
+- [[https://godoc.org/github.com/google/go-cmp/cmp/cmpopts#EquateEmpty][=EquateEmpty=]] returns a Comparer option that determines all maps and slices with a length of zero to be equal,
+ regardless of whether they are nil.
+- [[https://godoc.org/github.com/google/go-cmp/cmp/cmpopts#IgnoreFields][=IgnoreFields=]] returns an Option that ignores exported fields of the given names on a single struct type. The struct
+  type is specified by passing in a value of that type.
+- [[https://godoc.org/github.com/google/go-cmp/cmp/cmpopts#IgnoreUnexported][=IgnoreUnexported=]] returns an Option that only ignores the immediate unexported fields of a struct, including anonymous
+  fields of unexported types.
+- [[https://godoc.org/github.com/google/go-cmp/cmp/cmpopts#SortSlices][=SortSlices=]] returns a Transformer option that sorts all []V
+- … and [[https://godoc.org/github.com/google/go-cmp/cmp/cmpopts][more]] 👼
+
+=gotest.tools= also defines some… *and* you can define yours ! For example, =gotest.tools= defines =TimeWithThreshold=
+and =DurationWithThreshold= that allows to not fails if the time (or duration) is not exactly the same but in the
+specified threshold we specified. Here is the code for =DurationWithThreshold= as an example.
+
+#+BEGIN_SRC go
+// DurationWithThreshold returns a gocmp.Comparer for comparing time.Duration. The
+// Comparer returns true if the difference between the two Duration values is
+// within the threshold and neither value is zero.
+func DurationWithThreshold(threshold time.Duration) gocmp.Option {
+        return gocmp.Comparer(cmpDuration(threshold))
+}
+
+func cmpDuration(threshold time.Duration) func(x, y time.Duration) bool {
+        return func(x, y time.Duration) bool {
+                if x == 0 || y == 0 {
+                        return false
+                }
+                delta := x - y
+                return delta <= threshold && delta >= -threshold
+        }
+}
+#+END_SRC
+
+I recommend you look at the [[https://godoc.org/gotest.tools/assert/opt][gotest.tools/assert/opt]] documentation to see which one are defined and how to use them.
+
+***** TODO Errors with =Error=, =ErrorContains= and =ErrorType=
+
+***** TODO Miscellaneous with =Contains=, =Len= and =Nil=
+
+***** TODO Bonus with =Panics=
+
+***** TODO Write your own
+
 *** TODO gotest.tools fs
 *** TODO gotest.tools golden
 *** TODO gotest.tools icmd
