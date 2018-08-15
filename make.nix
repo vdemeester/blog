@@ -3,8 +3,6 @@
 with nixpkgs;
 
 rec {
-  hugo = pkgs.hugo;
-
   server = pkgs.writeShellScriptBin "script.sh" ''
     CMD="hugo server -FD"
     if test -n "$TMUX"; then
