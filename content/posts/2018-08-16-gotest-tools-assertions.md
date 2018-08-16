@@ -3,7 +3,7 @@ title = "Golang testing : gotest.tools assertions"
 date = 2018-08-16
 tags = ["testing", "golang"]
 categories = ["developement"]
-draft = true
+draft = false
 creator = "Emacs 25.3.1 (Org mode 9.1.7 + ox-hugo)"
 +++
 
@@ -13,20 +13,20 @@ Let's take a closer look at [`gotest.tools`](https://gotest.tools) assertions pa
 > Package assert provides assertions for comparing expected values to actual values. When assertion fails a helpful error
 > message is printed.
 
-There is two main function (`Assert` and `Check`) and some helpers (like `NilError`, …), They all take a `*testing.T` as
+There is two main functions (`Assert` and `Check`) and some helpers (like `NilError`, …). They all take a `*testing.T` as
 a first argument, pretty common across testing Go libraries. Let's dive into those !
 
 
 ## `Assert` and `Check` {#assert-and-check}
 
-Both those function accept a `Comparaison` (we'll check what it is later on) and fail the test when that comparaison
+Both those functions accept a `Comparison` (we'll check what it is later on) and fail the test when that comparison
 fails. The one difference is that `Assert` will end the test execution at immediately whereas `Check` will fail the test
 and proceed with the rest of the test case. This is similar to `FailNow` and `Fail` from the standard library
 `testing`. Both have their use cases.
 
 We'll Use `Assert` for the rest of the section but any example here would work with `Check` too. When we said
-`Comparaison` above, it's mainly the [BoolOrComparaison](https://godoc.org/gotest.tools/assert#BoolOrComparison) interface — it can either be a boolean expression, or a
-[cmp.Comparaison](https://godoc.org/gotest.tools/assert/cmp#Comparison) type. `Assert` and `Check` code will be _smart_ enough to detect which one it is.
+`Comparison` above, it's mainly the [BoolOrComparison](https://godoc.org/gotest.tools/assert#BoolOrComparison) interface — it can either be a boolean expression, or a
+[cmp.Comparison](https://godoc.org/gotest.tools/assert/cmp#Comparison) type. `Assert` and `Check` code will be _smart_ enough to detect which one it is.
 
 ```go
 assert.Assert(t, ok)
@@ -35,24 +35,24 @@ assert.Assert(t, foo.IsBar())
 ```
 
 So far not anything extra-ordinary. Let's first look at some more _helper_ functions in the `assert` package and quickly
-dive a bit deeper with `Comparaison`.
+dive a bit deeper with `Comparison`.
 
 
 ## More `assert` helpers {#more-assert-helpers}
 
 The additional helper functions are the following
 
--   `Equal` that uses the `==` operator to assert two values are equal.
--   `DeepEqual` that uses `google/go-cmp` to assert two values are equal (it's _close_ to `reflect.DeepEqual` but not
+-   `Equal` uses the `==` operator to assert two values are equal.
+-   `DeepEqual` uses `google/go-cmp` to assert two values are equal (it's _close_ to `reflect.DeepEqual` but not
 	quite). We'll detail a bit more the _options_ part of this function with `cmp.DeepEqual`.
--   `Error` that fails if the error is `nil` **or** the error message is not the expected one.
--   `ErrorContains` that fails if the error is `nil` **or** the error message does not contain the expected substring.
--   `ErrorType` that fails if the error is `nil` **or** the error type is not the expected type.
--   `NilError` that fails if the error is not `nil`.
+-   `Error` fails if the error is `nil` **or** the error message is not the expected one.
+-   `ErrorContains` fails if the error is `nil` **or** the error message does not contain the expected substring.
+-   `ErrorType` fails if the error is `nil` **or** the error type is not the expected type.
+-   `NilError` fails if the error is not `nil`.
 
-All those helper functions, have a equivalent function in the `cmp` package that returns a `Comparaison`.I, personally,
+All those helper functions have a equivalent function in the `cmp` package that returns a `Comparison`. I, personally,
 prefer to use `assert.Check` or `assert.Assert` in combination with `cmp.Comparison` as it allows me to write all my
-assertions the same way, with built-ins comparison or with my owen — i.e. `assert.Assert(t, is.Equal(…), "message"` or
+assertions the same way, with built-ins comparison or with my own — i.e. `assert.Assert(t, is.Equal(…), "message"` or
 `assert.Assert(t, stackIsUp(c, time…), "another message")`.
 
 
@@ -61,7 +61,7 @@ assertions the same way, with built-ins comparison or with my owen — i.e. `ass
 This is where it get really interesting, `gotest.tools` tries to make it as easy as possible for you to create
 appropriate comparison — making you test readable as much as possible.
 
-Let's look a bit at the `cmp.Comparaison` type.
+Let's look a bit at the `cmp.Comparison` type.
 
 ```go
 type Comparison func() Result
@@ -75,17 +75,17 @@ type Result interface {
 }
 ```
 
-Result is an `interface`, thus any struct that provide a function `Success` that returns a `bool` can be used as a
-comparaison result, making it really easy to use in your code. There is also existing type of result to make it even
-quicker to write your own comparaison.
+Result is an `interface`, thus any _struct_ that provide a function `Success` that returns a `bool` can be used as a
+comparison result, making it really easy to use in your code. There is also existing type of result to make it even
+quicker to write your own comparison.
 
--   `ResultSuccess` that is a constant which is returned to indicate success.
--   `ResultFailure` and `ResultFailureTemplate` that returns a failed Result with a failure message.
+-   `ResultSuccess` is a constant which is returned to indicate success.
+-   `ResultFailure` and `ResultFailureTemplate` return a failed Result with a failure message.
 -   `ResultFromError` returns `ResultSuccess` if `err` is nil. Otherwise `ResultFailure` is returned with the error
 	message as the failure message. It works a bit like the `errors.Wrap` function of the [`github.com/pkgs/errors`](https://github.com/pkg/errors)
 	package.
 
-The `cmp` package comes with a few defined comparaison that, we think, should cover a high number of use-cases. Let's
+The `cmp` package comes with a few defined comparison that, we think, should cover a high number of use-cases. Let's
 look at them.
 
 
@@ -110,7 +110,7 @@ On the other hand…
 Using one or the other is as simple as : if you wrote your `if` with `==` then use `Equal`, otherwise use `DeepEqual`.
 `DeepEqual` (and usually `reflect.DeepEqual`) is used when you want to compare anything more complex than primitive
 types. One advantage of using `cmp.DeepEqual` over `reflect.DeepEqual` (in an if), is that you get a well crafted
-message that shows the diff between the expected and the actual structs compared.
+message that shows the diff between the expected and the actual structs compared – and you can pass options to it.
 
 ```go
 assert.Assert(t, cmp.DeepEqual([]string{"a", "b"}, []string{"b", "a"}))
@@ -129,9 +129,9 @@ bar := &someType(a: "with", b: "value")
 assert.Assert(t, cmp.DeepEqual(foo, bar))
 ```
 
-When using `DeepEqual`, you may end up with really weird behavior sometimes. You may want to ignore some fields, or
-consider `nil` slice or map the same as empty ones ; or more common, your `struct` contains some unexported fields that
-you cannot use when comparing (as they are not exported 👼). In those case, you can use `go-cmp` options.
+When using `DeepEqual`, you may end up with really weird behavior(s). You may want to ignore some fields, or consider
+`nil` slice or map the same as empty ones ; or more common, your _struct_ contains some unexported fields that you
+cannot use when comparing (as they are not exported 😓). In those case, you can use `go-cmp` options.
 
 Some existings one are :
 
@@ -144,9 +144,9 @@ Some existings one are :
 -   [`SortSlices`](https://godoc.org/github.com/google/go-cmp/cmp/cmpopts#SortSlices) returns a Transformer option that sorts all `[]V`
 -   … and [more](https://godoc.org/github.com/google/go-cmp/cmp/cmpopts) 👼
 
-`gotest.tools` also defines some… **and** you can define yours ! For example, `gotest.tools` defines `TimeWithThreshold`
+`gotest.tools` also defines some **and** you can define yours ! As an example, `gotest.tools` defines `TimeWithThreshold`
 and `DurationWithThreshold` that allows to not fails if the time (or duration) is not exactly the same but in the
-specified threshold we specified. Here is the code for `DurationWithThreshold` as an example.
+specified threshold we specified. Here is the code for `DurationWithThreshold` for inspiration.
 
 ```go
 // DurationWithThreshold returns a gocmp.Comparer for comparing time.Duration. The
@@ -201,9 +201,9 @@ I recommend you look at the [gotest.tools/assert/opt](https://godoc.org/gotest.t
 
 Checking for errors is **very common** in Go, having `Comparison` function for it was a requirement.
 
--   `Error` that fails if the error is `nil` **or** the error message is not the expected one.
--   `ErrorContains` that fails if the error is `nil` **or** the error message does not contain the expected substring.
--   `ErrorType` that fails if the error is `nil` **or** the error type is not the expected type.
+-   `Error` fails if the error is `nil` **or** the error message is not the expected one.
+-   `ErrorContains` fails if the error is `nil` **or** the error message does not contain the expected substring.
+-   `ErrorType` fails if the error is `nil` **or** the error type is not the expected type.
 
 Let's first look at the most used : `Error` and `ErrorContains`.
 
@@ -238,9 +238,9 @@ assert.Check(t, cmp.ErrorType(foo, StubError{}))
 
 ### Bonus with `Panics` {#bonus-with-panics}
 
-Sometimes, a code is supposed to _panic_, see [Effective Go (#Panic)](https://golang.org/doc/effective_go.html#panic) for more information about that. And thus, you may
-want to make sure you're code panics in such cases. It's always a bit tricky to test a code that panic as you have to
-use a deferred function to recover the panic — but then if the panic doesn't happen how do you fail the test ?
+Sometimes, a code is supposed to _panic_, see [Effective Go (#Panic)](https://golang.org/doc/effective_go.html#panic) for more information. And thus, you may want to make
+sure you're code panics in such cases. It's always a bit tricky to test a code that panic as you have to use a deferred
+function to recover the panic — but then if the panic doesn't happen how do you fail the test ?
 
 This is where `Panics` comes handy.
 
@@ -264,9 +264,9 @@ Those last three _built-in_ `Comparison` are pretty straightforward.
 
 -   `Contains` succeeds if item is in collection. Collection may be a string, map, slice, or array.
 
-	If collection is a string, item must also be a string, and is compared using strings.Contains(). If collection is a Map,
-	contains will succeed if item is a key in the map. If collection is a slice or array, item is compared to each item in
-	the sequence using reflect.DeepEqual().
+	If collection is a string, item must also be a string, and is compared using `strings.Contains()`. If collection is a
+	Map, contains will succeed if item is a key in the map. If collection is a slice or array, item is compared to each
+	item in the sequence using `=reflect.DeepEqual()=`.
 -   `Len` succeeds if the sequence has the expected length.
 -   `Nil` succeeds if obj is a nil interface, pointer, or function.
 
@@ -296,7 +296,7 @@ One of the main aspect of `gotest.tools/assert` is to make it easy for developer
 possible while writing tests. Writing your own `Comparison` allows you to write a well named function that will be easy
 to read and that can be re-used across your tests.
 
-Let's look back at the `cmp.Comparaison` and `cmp.Result` types.
+Let's look back at the `cmp.Comparison` and `cmp.Result` types.
 
 ```go
 type Comparison func() Result
@@ -307,7 +307,7 @@ type Result interface {
 ```
 
 A `Comparison` for `assert.Check` or `assert.Check` is a function that return a `Result`, it's pretty straightforward to
-implement, especially with `cmp.ResultSuccess` and `cmp.ResultFailure(…)`.
+implement, especially with `cmp.ResultSuccess` and `cmp.ResultFailure(…)` (as seen previously).
 
 ```go
 func regexPattern(value string, pattern string) cmp.Comparison {

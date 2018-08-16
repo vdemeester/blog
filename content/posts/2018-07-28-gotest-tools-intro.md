@@ -18,7 +18,7 @@ project here at [Docker](https://github.com).
 
 There is a bunch of packages that will all have their own post (linked here when available) :
 
--   `assert` (with `assert/cmp` and `assert/opt`) that provides assertions for comparing expected values to actual values.
+-   [`assert`](/posts/2018-08-16-gotest-tools-assertions/) (with `assert/cmp` and `assert/opt`) that provides assertions for comparing expected values to actual values.
 -   `env` that provides functions to test code that read environment variable or the current working directory.
 -   `fs` that provides tools for creating temporary files, and testing the contents and structure of a directory.
 -   `golden` that provides tools for comparing large multi-line strings.
