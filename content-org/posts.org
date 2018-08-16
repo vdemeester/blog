@@ -306,13 +306,91 @@ This is where =Panics= comes handy.
   assert.Check(t, cmp.Panics(foo(true)))
 #+END_SRC
 
-***** TODO Miscellaneous with =Contains=, =Len= and =Nil=
-***** TODO Write your own =Comparison=
+***** Miscellaneous with =Contains=, =Len= and =Nil=
 
-*** TODO gotest.tools fs
-*** TODO gotest.tools golden
-*** TODO gotest.tools icmd
+Those last three /built-in/ =Comparison= are pretty straightforward.
+
+- =Contains= succeeds if item is in collection. Collection may be a string, map, slice, or array.
+  
+  If collection is a string, item must also be a string, and is compared using strings.Contains(). If collection is a Map,
+  contains will succeed if item is a key in the map. If collection is a slice or array, item is compared to each item in
+  the sequence using reflect.DeepEqual().
+- =Len= succeeds if the sequence has the expected length.
+- =Nil= succeeds if obj is a nil interface, pointer, or function.
+
+#+BEGIN_SRC go
+  // Contains works on string, map, slice or arrays
+  assert.Check(t, cmp.Contains("foobar", "foo"))
+  assert.Check(t, cmp.Contains([]string{"a", "b", "c"}, "b"))
+  assert.Check(t, cmp.Contains(map[string]int{"a": 1, "b": 2, "c": 4}, "b"))
+
+  // Len also works on string, map, slice or arrays
+  assert.Check(t, cmp.Len("foobar", 6))
+  assert.Check(t, cmp.Len([]string{"a", "b", "c"}, 3))
+  assert.Check(t, cmp.Len(map[string]int{"a": 1, "b": 2, "c": 4}, 3))
+
+  // Nil
+  var foo *MyStruc
+  assert.Check(t, cmp.Nil(foo))
+  assert.Check(t, cmp.Nil(bar()))
+#+END_SRC
+
+But let's not waste more time and let's see how to write our own =Comparison= !
+
+***** Write your own =Comparison=
+
+One of the main aspect of =gotest.tools/assert= is to make it easy for developer to write as less boilerplate code as
+possible while writing tests. Writing your own =Comparison= allows you to write a well named function that will be easy
+to read and that can be re-used across your tests.
+
+Let's look back at the =cmp.Comparaison= and =cmp.Result= types.
+
+#+BEGIN_SRC go
+type Comparison func() Result
+
+type Result interface {
+        Success() bool
+}
+#+END_SRC
+
+A =Comparison= for =assert.Check= or =assert.Check= is a function that return a =Result=, it's pretty straightforward to
+implement, especially with =cmp.ResultSuccess= and =cmp.ResultFailure(…)=.
+
+#+BEGIN_SRC go
+  func regexPattern(value string, pattern string) cmp.Comparison {
+          return func() cmp.Result {
+                  re := regexp.MustCompile(pattern)
+                  if re.MatchString(value) {
+                          return cmp.ResultSuccess
+                  }
+                  return cmp.ResultFailure(
+                          fmt.Sprintf("%q did not match pattern %q", value, pattern))
+          }
+  }
+
+  // To use it
+  assert.Check(t, regexPattern("12345.34", `\d+.\d\d`))
+#+END_SRC
+
+As you can see, it's pretty easy to implement, and you can do quite a lot in there easily. If a function call returns an
+error inside of your =Comparison= function, you can use =cmp.ResultFromError= for example. Having something like
+=assert.Check(t, isMyServerUp(":8080"))= is way more readable than a 30-line of code to check it.
+
+**** Conclusion…
+
+… and that's a wrap. We only looked at the =assert= package of [[https://gotest.tools][=gotest.tools=]] so far, but it's already quite a bit to process.
+
+We've seen :
+- the main functions provided by this package : =assert.Assert= and =assert.Check=
+- some helper functions like =assert.NilError=, …
+- the =assert/cmp=, and =assert/opt= sub-package that allows you to write more custom =Comparison=
+
+Next time, we'll look at the =skip= package, that is a really simple wrapper on top of =testing.Skip= function.
+
 *** TODO gotest.tools skip
+*** TODO gotest.tools fs
+*** TODO gotest.tools icmd
+*** TODO gotest.tools golden
 *** TODO gotest.tools x/subtest
 *** TODO gotestsum
 https://github.com/gotestyourself/gotestsum
