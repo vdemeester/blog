@@ -1,5 +1,5 @@
 +++
-title = "Golang testing : gotest.tools assertions"
+title = "Golang testing — gotest.tools assertions"
 date = 2018-08-16
 tags = ["testing", "golang"]
 categories = ["developement"]

@@ -51,7 +51,7 @@ $ go list \
 
 In the next post, let's dig into the assertion part of the library, package =assert= 👼.
 
-*** Golang testing : gotest.tools assertions
+*** Golang testing — gotest.tools assertions
 :PROPERTIES:
 :EXPORT_FILE_NAME: 2018-08-16-gotest-tools-assertions
 :EXPORT_DATE: 2018-08-16
