@@ -387,11 +387,11 @@ We've seen :
 
 Next time, we'll look at the =skip= package, that is a really simple wrapper on top of =testing.Skip= function.
 
-*** TODO gotest.tools skip
-*** TODO gotest.tools fs
-*** TODO gotest.tools icmd
-*** TODO gotest.tools golden
-*** TODO gotest.tools x/subtest
+*** TODO Golang testing — gotest.tools skip
+*** TODO Golang testing — gotest.tools fs
+*** TODO Golang testing — gotest.tools icmd
+*** TODO Golang testing — gotest.tools golden
+*** TODO Golang testing — gotest.tools x/subtest
 *** TODO gotestsum
 https://github.com/gotestyourself/gotestsum
 *** TODO gauge for readme-test-driven
