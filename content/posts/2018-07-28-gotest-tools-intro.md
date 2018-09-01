@@ -24,7 +24,7 @@ There is a bunch of packages that will all have their own post (linked here when
 -   `golden` that provides tools for comparing large multi-line strings.
 -   `icmd` that executes binaries and provides convenient assertions for testing the results.
 -   `poll` that provides tools for testing asynchronous code.
--   `skip` that provides functions for skipping a test and printing the source code of the condition used to skip the test.
+-   [`skip`](/posts/2018-09-01-gotest-tools-skip/) that provides functions for skipping a test and printing the source code of the condition used to skip the test.
 
 There is also experimental package, using the `x` notation (as the golang team uses, for example with `golang.org/x/sync`) :
 
