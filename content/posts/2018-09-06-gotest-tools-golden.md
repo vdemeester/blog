@@ -3,7 +3,7 @@ title = "Golang testing — gotest.tools golden"
 date = 2018-09-06
 tags = ["testing", "golang"]
 categories = ["developement"]
-draft = true
+draft = false
 creator = "Emacs 25.3.1 (Org mode 9.1.7 + ox-hugo)"
 +++
 

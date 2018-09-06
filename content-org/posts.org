@@ -447,7 +447,7 @@ There is few elements to note though :
   it's dead code. /But more on that in later posts 😉/.
 
 That's all for today folks, told you that was going to be quick.
-*** TODO Golang testing — gotest.tools golden
+*** Golang testing — gotest.tools golden
 :PROPERTIES:
 :EXPORT_FILE_NAME: 2018-09-06-gotest-tools-golden
 :EXPORT_DATE: 2018-09-06
