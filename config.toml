@@ -1,5 +1,4 @@
 baseurl = "http://vincent.demeester.fr"
-languageCode = "fr-fr"
 title = "Vincent Demeester"
 theme = "vdf.new"
 #pygmentsstyle = "emacs"
