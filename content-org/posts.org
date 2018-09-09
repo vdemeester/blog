@@ -521,7 +521,70 @@ counter-part =golden.Assert= and =golden.AssertBytes=.
 quick. =golden= package just solve a specific problem (read [[/posts/2017-04-22-golang-testing-golden-file/][Golang testing — golden file]])
 in a simple way.
 
-*** TODO Golang testing — gotest.tools fs
+*** DRAFT Golang testing — gotest.tools fs
+
+Let's continue the [[https://gotest.tools][=gotest.tools=]] serie, this time with the =fs= package.
+
+#+BEGIN_QUOTE
+Package fs provides tools for creating temporary files, and testing the contents and structure of a directory.
+#+END_QUOTE
+
+This package is heavily using functional arguments (as we saw in [[/posts/2017-01-01-go-testing-functionnal-builders/][functional arguments for
+wonderful builders]]). Functional arguments is, in a nutshell, a combinaison of two Go
+features : /variadic/ functions (=...= operation in a method signature) and the fact that
+=func= are /first class citizen/. This looks more or less like that.
+
+#+BEGIN_SRC go
+  type Config struct {}
+
+  func MyFn(ops ...func(*Config)) *Config {
+          c := &Config{} // with default values
+          for _, op := range ops {
+                  op(c)
+          }
+          return c
+  }
+
+  // Calling it
+  conf := MyFn(withFoo, withBar("baz"))
+#+END_SRC
+
+The =fs= package has too *main* purpose :
+
+1. create folders and files required for testing in a simple manner
+2. compare two folders structure (and content)
+
+**** TODO Create folder structures
+
+Sometimes, you need to create folder structures (and files) in tests. Doing =i/o= work
+takes time so try to limit the number of tests that needs to do that, especially in unit
+tests. Doing it in tests adds a bit of boilerplate that could be avoid. As stated [[/posts/2017-01-01-go-testing-functionnal-builders/][before]] :
+
+#+BEGIN_QUOTE
+One of the most important characteristic of a unit test (and any type of test really) is
+*readability*. This means it should be easy to read but most importantly it should *clearly
+show the intent* of the test. The setup (and cleanup) of the tests should be as small as
+possible to avoid the noise.
+#+END_QUOTE
+
+The =fs= package intends to help with that and comes with a bunch function to create
+folder structure :
+
+- two main function =NewFile= and =NewDir=
+- a bunch of /operators/ : =WithFile=, =WithDir=, …
+
+#+BEGIN_SRC go
+  func NewDir(t assert.TestingT, prefix string, ops ...PathOp) *Dir {
+          // …
+  }
+
+  func NewFile(t assert.TestingT, prefix string, ops ...PathOp) *File {
+          // …
+  }
+#+END_SRC
+
+**** TODO Compare folder structures
+
 *** TODO Golang testing — gotest.tools icmd
 *** TODO Golang testing — gotest.tools x/subtest
 *** TODO gotestsum
