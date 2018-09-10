@@ -1,4 +1,4 @@
-baseurl = "http://vincent.demeester.fr"
+baseurl = "https://vincent.demeester.fr"
 title = "Vincent Demeester"
 theme = "vdf.new"
 #pygmentsstyle = "emacs"
