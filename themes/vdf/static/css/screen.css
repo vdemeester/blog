@@ -1,53 +1,53 @@
-@import url(http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css);
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css);
 @font-face {
     font-family: "CabinSketch";
     font-weight: bold;
-    src: url("http://vincent.demeester.fr/css/fonts/CabinSketch-Bold.ttf") format("opentype");
+    src: url("/css/fonts/CabinSketch-Bold.ttf") format("opentype");
 }
 @font-face {
     font-family: "Cabin";
     font-weight: normal;
-    src: url("http://vincent.demeester.fr/css/fonts/Cabin-Regular.ttf") format("opentype");
+    src: url("/css/fonts/Cabin-Regular.ttf") format("opentype");
 }
 @font-face {
     font-family: "GraublauWeb";
-    src: url("http://vincent.demeester.fr/css/fonts/GraublauWeb.otf") format("opentype");
+    src: url("/css/fonts/GraublauWeb.otf") format("opentype");
 }
 @font-face {
     font-family: "GraublauWeb";
     font-weight: bold;
-    src: url("http://vincent.demeester.fr/css/fonts/GraublauWebBold.otf") format("opentype");
+    src: url("/css/fonts/GraublauWebBold.otf") format("opentype");
 }
 @font-face {
     font-family: "Merriweather";
-    src: url("http://vincent.demeester.fr/css/fonts/Merriweather-Regular.otf") format("opentype");
+    src: url("/css/fonts/Merriweather-Regular.otf") format("opentype");
 }
 @font-face {
     font-family: "Merriweather";
     font-weight: bold;
-    src: url("http://vincent.demeester.fr/css/fonts/Merriweather-Bold.otf") format("opentype");
+    src: url("/css/fonts/Merriweather-Bold.otf") format("opentype");
 }
 @font-face {
     font-family: "Merriweather";
     font-weight: bold;
     font-style: italic;
-    src: url("http://vincent.demeester.fr/css/fonts/Merriweather-BoldItalic.otf") format("opentype");
+    src: url("/css/fonts/Merriweather-BoldItalic.otf") format("opentype");
 }
 @font-face {
     font-family: "Merriweather";
     font-style: italic;
-    src: url("http://vincent.demeester.fr/css/fonts/Merriweather-Italic.otf") format("opentype");
+    src: url("/css/fonts/Merriweather-Italic.otf") format("opentype");
 }
 @font-face {
     font-family: "Merriweather";
     font-weight: lighter;
     font-style: italic;
-    src: url("http://vincent.demeester.fr/css/fonts/Merriweather-LightItalic.otf") format("opentype");
+    src: url("/css/fonts/Merriweather-LightItalic.otf") format("opentype");
 }
 @font-face {
     font-family: "Merriweather";
     font-weight: lighter;
-    src: url("http://vincent.demeester.fr/css/fonts/Merriweather-Light.otf") format("opentype");
+    src: url("/css/fonts/Merriweather-Light.otf") format("opentype");
 }
 
 html {
