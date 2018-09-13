@@ -87,6 +87,7 @@ body > header div.home {
     margin: 0 auto;
     padding: 0 1em;
     font-size: 1.1em;
+    word-wrap: break-word;
 }
 
 body > header div.home ul.nav {
@@ -121,7 +122,7 @@ article header {
 }
 
 article header h1 {
-    font-size: 2em;
+    font-size: 3em;
     margin-bottom: 0.2em;
 }
 
@@ -129,7 +130,13 @@ article header address {
     color: #666;
 }
 
-#page header ul.tag_box {
+hr {
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+}
+
+#page ul.tag_box {
     padding: 0;
 }
 
@@ -194,9 +201,18 @@ body > footer, div#footer {
     background-color: #fafafa;
 }
 
-body > footer address, div#footer address {
+body > footer nav, body > footer address {
+    text-align: center;
     max-width: 70em;
     margin: 0 auto;
+}
+
+body > footer address {
+    color: #666;
+}
+
+.text-muted {
+    color: #999;
 }
 
 .amp {
@@ -211,6 +227,15 @@ body > footer address, div#footer address {
 
 .home h2 {
     font-size: 1.3em;
+}
+
+.home section#featured div {
+    font-size: 1.2em;
+}
+
+.home section h2 {
+    font-size: 1.8em;
+    font-style: italic;
 }
 
 .home p {

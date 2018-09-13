@@ -1,13 +1,48 @@
 baseurl = "https://vincent.demeester.fr"
 title = "Vincent Demeester"
-theme = "vdf.new"
+theme = "vdf"
 #pygmentsstyle = "emacs"
 pygmentsCodeFences = "true"
 pygmentsUseClasses = "true"
 
 [taxonomies]
-  tag = "tags"
-  category = "categories"
+    tag = "tags"
+    category = "categories"
 
 [params]
-  author = "Vincent Demeester"
+    author = "Vincent Demeester"
+
+[[menu.main]]
+    name = "home"
+    url = "/"
+    weight = 1
+
+[[menu.main]]
+    name = "about"
+    url = "/about"
+    weight = 2
+
+[[menu.main]]
+    name = "archive"
+    url = "/archive"
+    weight = 3
+
+[[menu.main]]
+    name = "categories"
+    url = "/categories"
+    weight = 4
+
+[[menu.main]]
+    name = "tags"
+    url = "/tags"
+    weight = 5
+
+[[menu.main]]
+    name = "twitter"
+    url = "https://twitter.com/vdemeest"
+    weight = 6
+
+[[menu.main]]
+    name = "github"
+    url = "https://github.com/vdemeester"
+    weight = 7

@@ -9,7 +9,7 @@
 *** TODO implicit interface
 * Series
 ** Golang testing                             :@developement:testing:golang:
-*** Golang testing — gotest.tools introduction
+*** Golang testing — gotest.tools introduction                   :featured:
 :PROPERTIES:
 :EXPORT_FILE_NAME: 2018-07-28-gotest-tools-intro
 :EXPORT_DATE: 2018-07-28

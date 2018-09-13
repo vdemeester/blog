@@ -7,25 +7,26 @@
       <header>
         <h1 class="emphnext">{{ .Title }}</h1><a href='{{ .Permalink }}'></a>
         <address class="signature">
-          <span class="date">{{ .Date.Format "Mon, 1 Jan, 2006"  }}</span>
+          <span class="date">{{ .Date.Format "Mon, 1 January, 2006"  }}</span>
           <span class="words">({{ .FuzzyWordCount }} Words)</span>
         </address>
-        <ul class="tag_box inline">
-          {{ if isset .Params "categories" }}
-          {{ range .Params.categories }}<li class="category"><a href="/categories/#{{ . | urlize }}">{{ . }}</a></li>{{ end }}
-          {{ end }}
-          {{ if isset .Params "tags" }}
-          {{ $siteTags := .Site.Taxonomies.tags }}
-          {{ range $tagName := .Params.tags }}
-          {{ $siteTag := index $siteTags $tagName }}
-          <li class="tag tag-{{ $tagName | urlize }}"><a href="/tags/#{{ $tagName | urlize }}">{{ $tagName }}<span>{{ len $siteTag }}</span></a></li>
-          {{ end }}
-          <br/>
-          {{ end }}
-        </ul>
+	<ul class="tag_box inline">
+	  {{ if isset .Params "categories" }}
+	  {{ range .Params.categories }}<li class="category"><a href="/categories/#{{ . | urlize }}">{{ . }}</a></li>{{ end }}
+	  {{ end }}
+	  {{ if isset .Params "tags" }}
+	  {{ $siteTags := .Site.Taxonomies.tags }}
+	  {{ range $tagName := .Params.tags }}
+	  {{ $siteTag := index $siteTags $tagName }}
+	  <li class="tag tag-{{ $tagName | urlize }}"><a href="/tags/#{{ $tagName | urlize }}">{{ $tagName }}<span>{{ len $siteTag }}</span></a></li>
+	  {{ end }}
+	  <br/>
+	  {{ end }}
+	</ul>
       </header>
       {{ .Content }}
     </article>
+    <hr />
     <div class="prev-next">
       {{ if .Next }}
       <a class="paging-link prev" href="{{ .Next.RelPermalink }}" title="{{ .Next.Title  }}">← Previous post</a>

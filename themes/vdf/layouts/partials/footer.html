@@ -1,0 +1,20 @@
+<footer>
+  <nav>
+    {{ range .Site.Menus.main }}
+    <a href="{{ .URL }}">{{ .Name }}</a>
+    <span class="text-muted"> | </span>
+    {{end}}
+    <a href="{{ .Site.RSSLink }}">rss</a>
+  </nav>
+  <br/>
+  <address>
+    <span class="copyright">
+      Content and design by {{ .Site.Params.author}}
+      (<a rel="licence" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Some rights reserved</a>)
+    </span><br />
+    <span class="engine">
+      Powered by <a href="https://gohugo.io/">Hugo</a> and <a href="https://github.com/kaushalmodi/ox-hugo/">ox-hugo</a>
+    </span>
+  </address>
+</footer>
+</body>

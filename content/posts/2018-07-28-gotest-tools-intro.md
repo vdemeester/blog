@@ -1,7 +1,7 @@
 +++
 title = "Golang testing — gotest.tools introduction"
 date = 2018-07-28
-tags = ["testing", "golang"]
+tags = ["testing", "golang", "featured"]
 categories = ["developement"]
 draft = false
 creator = "Emacs 25.3.1 (Org mode 9.1.7 + ox-hugo)"
