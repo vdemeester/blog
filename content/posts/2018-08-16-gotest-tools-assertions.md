@@ -133,7 +133,7 @@ When using `DeepEqual`, you may end up with really weird behavior(s). You may wa
 `nil` slice or map the same as empty ones ; or more common, your _struct_ contains some unexported fields that you
 cannot use when comparing (as they are not exported 😓). In those case, you can use `go-cmp` options.
 
-Some existings one are :
+Some existing one are :
 
 -   [`EquateEmpty`](https://godoc.org/github.com/google/go-cmp/cmp/cmpopts#EquateEmpty) returns a Comparer option that determines all maps and slices with a length of zero to be equal,
 	regardless of whether they are nil.

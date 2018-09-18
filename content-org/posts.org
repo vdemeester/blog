@@ -82,9 +82,9 @@ We'll Use =Assert= for the rest of the section but any example here would work w
 [[https://godoc.org/gotest.tools/assert/cmp#Comparison][cmp.Comparison]] type. =Assert= and =Check= code will be /smart/ enough to detect which one it is.
 
 #+BEGIN_SRC go
-assert.Assert(t, ok)
-assert.Assert(t, err != nil)
-assert.Assert(t, foo.IsBar())
+  assert.Assert(t, ok)
+  assert.Assert(t, err != nil)
+  assert.Assert(t, foo.IsBar())
 #+END_SRC
 
 So far not anything extra-ordinary. Let's first look at some more /helper/ functions in the =assert= package and quickly

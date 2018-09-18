@@ -40,90 +40,129 @@
 }
 
 
+html{
+    margin: 2rem;
+    font-size: 106.25%;
+    --body-vertical-margin: 2rem;
+    --body-horizontal-margin: 1rem;
+    --content-box-padding: 0.5rem;
+    --font-main: Georgia, sans-serif;
+    --font-mono: 'Fira Code','Deja Vu Sans Mono','Bitstream Vera Sans Mono','Source Code Pro','Courier New',monospace;
+    --font-quote: "Fresco", Georgia, serif;
+    --font-sans: Avenir Next, Avenir, system-ui, sans-serif;
+    --font-header: 'Merriweather','Linux Libertine','Georgia','Times',serif;
+    --figure-offset: 0;
+    --figcaption-padding: 0;
+}
 body {
-    font-family: sans-serif;
+    max-width: 70rem;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    padding: var(--body-vertical-margin) var(--body-horizontal-margin);
+    font-family: serif;
+    font-family: var(--font-main);
     line-height: 1.5;
-    margin: 0;
+    color: black;
+    background: #FBFBFB;
+}
+
+@media (min-width: 600px) {
+    html {
+	font-size: 112.5%;
+	--body-vertical-margin: 3rem;
+	--body-horizontal-margin: 2rem;
+	--content-box-padding: 1rem;
+    }
+    body { padding: 3rem 2rem; }
+}
+@media (min-width: 900px) and (min-height: 500px) {
+    html { font-size: 120%; }
+}
+@media (min-width: 900px) and (min-height: 500px) and (-webkit-device-pixel-ratio : 3) {
+    html { font-size: 125%; }
+    article, div.home div#page { font-size: 200%; }
 }
 
 h1, h2, h3, h4 {
-    font-family: 'Merriweather','Linux Libertine','Georgia','Times',serif;
+    font-family: var(--font-header);
 }
 
 p {
     word-wrap: break-word;
 }
 
+:focus {
+    outline: solid 2px #ccc;
+    outline-offset: 2px;
+    background-color: #eee;
+}
+
+
 a { text-decoration: none; color: #339; }
 a:hover { color: #33f; }
-a:visited { color: #669; background-color: pink; }
+a:visited { color: #669; }
 
 blockquote {
-    font-family: "Fresco", Georgia, serif;
+    font-family: var(--font-quote);
     text-rendering: optimizeLegibility;
     line-height: 1.4;
-    font-size: 1.2em;
     font-style: italic;
 }
 
 h1, h2 {
-    line-height: 1.5;
+    line-height: 1.3;
 }
 
 body > header {
-    padding: 0.4em 0;
+    padding: 0.4rem 0;
     border-bottom: 1px solid #eee;
     background-color: #fafafa;
 }
 
 div#main-container {
-    max-width: 70em;
     margin: 0 auto;
-    padding: 1em;
+    padding: 1rem;
 }
 
 body > header div.home {
-    max-width: 70em;
     margin: 0 auto;
-    padding: 0 1em;
-    font-size: 1.1em;
+    padding: 0 1rem;
     word-wrap: break-word;
 }
 
-body > header div.home ul.nav {
-    margin: 0;
-    padding: 0;
-    display: inline;
-    float: right;
-}
-
-body > header ul li {
-    display: inline;
-}
-
 pre, code {
-    font-family: 'Fira Code','Deja Vu Sans Mono','Bitstream Vera Sans Mono','Source Code Pro','Courier New',monospace;
-    font-size: 1em;
+    font-family: monospace, monospace;
+    font-family: var(--font-mono);
     line-height: 1.3;
 }
 
 code {
     background: #F4F4F4;
-    padding: 0 0.25em;
+    padding: 0 0.25rem;
 }
+
+pre {
+    overflow-x: auto;
+    margin: 1.25rem calc(-1 * var(--content-box-padding));
+    padding: var(--content-box-padding);
+    box-shadow: 0 0 0 1px #ccc;
+    font-size: 90%;
+}
+
 
 pre code {
     background: transparent;
-    padding: 0;
 }
+pre { white-space: pre-wrap; }
+:not(pre) > code { font-size: 95%; word-spacing: -0.3ch; }
 
 article header {
-    padding-bottom: 0.1em;
+    padding-bottom: 0.1rem;
 }
 
 article header h1 {
-    font-size: 3em;
-    margin-bottom: 0.2em;
+    font-size: 300%;
+    margin-bottom: 0.2rem;
 }
 
 article header address {
@@ -143,7 +182,7 @@ hr {
 ul.inline li {
     display: inline;
     text-align: center;
-    padding: 0.2em;
+    padding: 0.2rem;
     margin: 0;
 }
 
@@ -153,57 +192,63 @@ ul.inline.tag_box li {
 
 ul.tag_box li a {
     color:#fff;
-    padding: 0.2em 0.4em;
-    margin: 0px 0.1em;
+    padding: 0.2rem 0.4rem;
+    margin: 0px 0.1rem;
     text-decoration: none;
 }
 
 li.category a{
-    background:#000;
+    background:#666;
+}
+li.category a:hover {
+    background: #eee;
+    color: #666;
 }
 
 li.tag a {
-    background:#666;
+    background:#999;
 }
 
 ul.tag_box li a span {
     font-weight: bold;
-    font-size: 0.5em;
+    font-size: 0.5rem;
 }
 
 /* Custom :D */
-li.tag-emacs a {
+li.tag-emacs a:hover {
     background: #8156A7;
 }
-li.tag-orgmode a {
+li.tag-orgmode a:hover {
     background: #4D85D1;
 }
-li.tag-docker a {
+li.tag-docker a:hover {
     background: #51B7FF;
 }
-li.tag-java a, li.tag-javascript a {
+li.tag-java a:hover, li.tag-javascript a:hover {
     background: #DF2D4F;
 }
-li.tag-go a, li.tag-golang a {
+li.tag-go:hover a, li.tag-golang:hover a {
     background: #51B7FF;
 }
-li.tag-ruby a {
+li.tag-ruby a:hover {
     background: #7F267B;
 }
-li.tag-hugo a {
+li.tag-hugo a:hover {
     background: #FF4088;
+}
+li.tag-testing a:hover {
+    background: #339900;
 }
 
 body > footer, div#footer {
-    margin-top: 1em;
-    padding: 1em 2em;
+    margin-top: 1rem;
+    padding-top: 1rem;
     border-top: 1px solid #eee;
     background-color: #fafafa;
 }
 
 body > footer nav, body > footer address {
     text-align: center;
-    max-width: 70em;
     margin: 0 auto;
 }
 
@@ -222,24 +267,24 @@ body > footer address {
 
 #page h2 span.count {
     color: #999;
-    font-size: 0.75em;
+    font-size: 75%;
 }
 
 .home h2 {
-    font-size: 1.3em;
+    font-size: 130%;
 }
 
 .home section#featured div {
-    font-size: 1.2em;
+    font-size: 120%;
 }
 
 .home section h2 {
-    font-size: 1.8em;
+    font-size: 170%;
     font-style: italic;
 }
 
 .home p {
-    font-family: 'Merriweather','Linux Libertine','Georgia','Times',serif;
+    font-family: var(--font-header);
 }
 
 #posts span.date {
