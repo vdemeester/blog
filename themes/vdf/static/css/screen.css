@@ -41,9 +41,9 @@
 
 
 html{
-    margin: 2rem;
+    margin: 1rem 2rem;
     font-size: 106.25%;
-    --body-vertical-margin: 2rem;
+    --body-vertical-margin: 1rem;
     --body-horizontal-margin: 1rem;
     --content-box-padding: 0.5rem;
     --font-main: Georgia, sans-serif;
@@ -57,7 +57,7 @@ html{
 body {
     max-width: 70rem;
     margin: 0 auto;
-    padding: 2rem 1rem;
+    padding: 1rem;
     padding: var(--body-vertical-margin) var(--body-horizontal-margin);
     font-family: serif;
     font-family: var(--font-main);
@@ -69,11 +69,11 @@ body {
 @media (min-width: 600px) {
     html {
 	font-size: 112.5%;
-	--body-vertical-margin: 3rem;
-	--body-horizontal-margin: 2rem;
+	--body-vertical-margin: 1rem;
+	--body-horizontal-margin: 1rem;
 	--content-box-padding: 1rem;
     }
-    body { padding: 3rem 2rem; }
+    body { padding: 1rem 2rem; }
 }
 @media (min-width: 900px) and (min-height: 500px) {
     html { font-size: 120%; }
@@ -190,35 +190,46 @@ ul.inline.tag_box li {
 }
 
 ul.tag_box li a {
-    color:#fff;
+    color:#444;
     padding: 0.2rem 0.4rem;
     margin: 0px 0.1rem;
     text-decoration: none;
 }
-
 li.category a{
-    background:#666;
+    background:#ccc;
 }
 li.category a:hover {
-    background: #eee;
-    color: #666;
+    background: #666;
+    color: #ccc;
 }
-
 li.tag a {
-    background:#999;
+    background:#eee;
+}
+li.tag a:hover {
+    background: #444;
+    color: #eee;
 }
 
 ul.tag_box li a span {
     font-weight: bold;
     font-size: 0.5rem;
 }
-
 /* Custom :D */
+li.tag-featured a {
+    background: #444;
+    color: #eee !important;
+}
+li.tag-featured a:hover {
+    color: #444 !important;
+    background: #eee;
+}
 li.tag-emacs a:hover {
     background: #8156A7;
+    color: #eee;
 }
 li.tag-orgmode a:hover {
     background: #4D85D1;
+    color: #eee;
 }
 li.tag-docker a:hover {
     background: #51B7FF;
