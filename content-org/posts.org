@@ -30,7 +30,7 @@ There is a bunch of packages that will all have their own post (linked here when
 - =env= that provides functions to test code that read environment variable or the current working directory.
 - [[/posts/2018-09-14-gotest-tools-fs/][=fs=]] that provides tools for creating temporary files, and testing the contents and structure of a directory.
 - [[/posts/2018-09-06-gotest-tools-golden/][=golden=]] that provides tools for comparing large multi-line strings.
-- [[/posts/2018-09-19-gotest-tools-icmd/][=icmd=]] that executes binaries and provides convenient assertions for testing the results.
+- [[/posts/2018-09-18-gotest-tools-icmd/][=icmd=]] that executes binaries and provides convenient assertions for testing the results.
 - =poll= that provides tools for testing asynchronous code.
 - [[/posts/2018-09-01-gotest-tools-skip/][=skip=]] that provides functions for skipping a test and printing the source code of the condition used to skip the test.
 
@@ -883,6 +883,7 @@ the expectation.
   // Expected command to finish, but it hit the timeout
   // Expected stdout to contain "Something else"
   // Expected stderr to contain "[NOTHING]"
+  …
 #+END_SRC
 
 Finally, we listed =Equal= above, that returns a =Comparison= struct. This means we can

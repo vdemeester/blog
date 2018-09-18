@@ -22,7 +22,7 @@ There is a bunch of packages that will all have their own post (linked here when
 -   `env` that provides functions to test code that read environment variable or the current working directory.
 -   [`fs`](/posts/2018-09-14-gotest-tools-fs/) that provides tools for creating temporary files, and testing the contents and structure of a directory.
 -   [`golden`](/posts/2018-09-06-gotest-tools-golden/) that provides tools for comparing large multi-line strings.
--   [`icmd`](/posts/2018-09-19-gotest-tools-icmd/) that executes binaries and provides convenient assertions for testing the results.
+-   [`icmd`](/posts/2018-09-18-gotest-tools-icmd/) that executes binaries and provides convenient assertions for testing the results.
 -   `poll` that provides tools for testing asynchronous code.
 -   [`skip`](/posts/2018-09-01-gotest-tools-skip/) that provides functions for skipping a test and printing the source code of the condition used to skip the test.
 

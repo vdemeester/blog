@@ -174,6 +174,7 @@ result.Assert(t, icmd.Expected{
 // Expected command to finish, but it hit the timeout
 // Expected stdout to contain "Something else"
 // Expected stderr to contain "[NOTHING]"
+…
 ```
 
 Finally, we listed `Equal` above, that returns a `Comparison` struct. This means we can
