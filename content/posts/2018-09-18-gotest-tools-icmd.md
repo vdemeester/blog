@@ -3,7 +3,7 @@ title = "Golang testing — gotest.tools icmd"
 date = 2018-09-18
 tags = ["testing", "golang", "exec", "command"]
 categories = ["developement"]
-draft = true
+draft = false
 creator = "Emacs 26.1 (Org mode 9.1.14 + ox-hugo)"
 +++
 
