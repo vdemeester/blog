@@ -138,7 +138,6 @@ pre, code {
 
 code {
     background: #F4F4F4;
-    padding: 0 0.25rem;
 }
 
 pre {
@@ -154,7 +153,7 @@ pre code {
     background: transparent;
 }
 pre { white-space: pre-wrap; }
-:not(pre) > code { font-size: 95%; word-spacing: -0.3ch; }
+:not(pre) > code { font-size: 95%; word-spacing: -0.3ch; padding: 0 0.25rem; }
 
 article header {
     padding-bottom: 0.1rem;
