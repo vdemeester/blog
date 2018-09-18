@@ -706,7 +706,7 @@ library, with the [[/posts/2018-09-06-gotest-tools-golden/][=golden= package]] i
 =gotest.tools= after =assert=. It allows to create simple or complex folder structure
 without the noise that usually comes with it.
 
-*** DRAFT Golang testing — gotest.tools icmd                 :exec:command:
+*** Golang testing — gotest.tools icmd                       :exec:command:
 :PROPERTIES:
 :EXPORT_FILE_NAME: 2018-09-18-gotest-tools-icmd
 :EXPORT_DATE: 2018-09-18
@@ -718,9 +718,9 @@ Let's continue the [[https://gotest.tools][=gotest.tools=]] serie, this time wit
 Package icmd executes binaries and provides convenient assertions for testing the results.
 #+END_QUOTE
 
-After filesystem operation (seen in [[/posts/2018-09-14-gotest-tools-fs/][=fs=]]), one pretty common use-case in tests is to
-*execute a command*. The reason can be you're testing the =cli= you're currently writing or
-you need to setup something using some command line. A classic execution in a test might
+After filesystem operations (seen in [[/posts/2018-09-14-gotest-tools-fs/][=fs=]]), antoher common use-case in tests is to
+*execute a command*. The reasons can be you're testing the =cli= you're currently writing
+or you need to setup something using a command line. A classic execution in a test might
 lookup like the following.
 
 #+BEGIN_SRC go
@@ -736,21 +736,21 @@ lookup like the following.
 #+END_SRC
 
 The package =icmd= is there to ease your pain (as usual 😉) — we used /the name =icmd=/
-instead of =cmd= because it's a pretty common identifier used in Go source code, thus
-would be really easy to /shadow/ and have some really weird problems going on.
+instead of =cmd= because it's a pretty common identifier in Go source code, thus would be
+really easy to /shadow/ — and have some really weird problems going on.
 
-The =icmd= workflow is the following:
+The usual =icmd= workflow is the following:
 
-1. you describe the command you want to execute using : type =Cmd=, function =Command= and
-   =CmdOp= operators)
-2. you run it using : function =RunCmd= or =RunCommand= (that does 1. for you). You can
-   also use =StartCmd= and =WaitOnCmd= if you want more control on the execution workflow.
-3. check the result using the =Assert= method attach to the type =Result= that the
-   execution command return.
+1. Describe the command you want to execute using : type =Cmd=, function =Command= and
+   =CmdOp= operators.
+2. Run it using : function =RunCmd= or =RunCommand= (that does 1. for you). You can also
+   use =StartCmd= and =WaitOnCmd= if you want more control on the execution workflow.
+3. Check the result using the =Assert=, =Equal= or =Compare= methods attached to the
+   =Result= struct that the command execution return.
 
 **** Create and run a command
 
-Let's first dig how we create commands. In this part, the assumption here is that the
+Let's first dig how to create commands. In this part, the assumption here is that the
 command is successful, so we'll have =.Assert(t, icmd.Success)= for now — we'll learn more
 about =Assert= in the next section 👼.
 
@@ -786,14 +786,13 @@ propose two version for each example : one with =CmdOpt= present in [[https://gi
 without them.
 
 #+BEGIN_SRC go
-  // With CmdOps
+  // With
   icmd.RunCmd(icmd.Command("sh", "-c", "echo $FOO"),
-          icmd.WithEnv("FOO=bar", "BAR=baz"),
-          icmd.Dir("/tmp"),
+          icmd.WithEnv("FOO=bar", "BAR=baz"), icmd.Dir("/tmp"),
           icmd.WithTimeout(10*time.Second),
   ).Assert(t, icmd.Success)
 
-  // Without CmdOps
+  // Without
   icmd.RunCmd(icmd.Cmd{
           Command: []string{"sh", "-c", "echo $FOO"},
           Env: []string{"FOO=bar", "BAR=baz"},
@@ -802,7 +801,7 @@ without them.
   }).Assert(t, icmd.Success)
 #+END_SRC
 
-As usual, the intent is clear, it's simple to read composable (with =CmdOp='s).
+As usual, the intent is clear, it's simple to read and composable (with =CmdOp='s).
 
 [fn:1] The =icmd= package is one of the oldest =gotest.tools= package, that comes from the
 [[https://github.com/docker/docker][=docker/docker=]] initialy. We introduced these =CmdOp= but implementations were in
@@ -842,8 +841,9 @@ As seen above, /asserting/ the command result is using the =Expected= struct.
   }
 #+END_SRC
 
-The default value of =Expected= is also the =Success= constant — as it's an exit code of
-=0=, didn't timeout, no error.
+=Success= is a constant that defines a success — it's an exit code of =0=, didn't timeout,
+no error. There is also the =None= constant, that should be used for =Out= or =Err=, to
+specify that we don't want any content for those standard outputs.
 
 #+BEGIN_SRC go
   icmd.RunCmd(icmd.Command("cat", "/does/not/exist")).Assert(t, icmd.Expected{
@@ -861,31 +861,38 @@ The default value of =Expected= is also the =Success= constant — as it's an ex
   }
 #+END_SRC
 
-If the =Result= doesn't map the =Expected=, a failure will
-happen with a useful message that will contains the executed command and what differs
-between the result and the expectation.
+If the =Result= doesn't map the =Expected=, a test failure will happen with a useful
+message that will contains the executed command and what differs between the result and
+the expectation.
 
 #+BEGIN_SRC go
-Command:  binary arg1
-ExitCode: 99 (timeout)
-Error:    exit code 99
-Stdout:   the output
-Stderr:   the stderr
-
-Failures:
-ExitCode was 99 expected 101
-Expected command to finish, but it hit the timeout
-Expected stdout to contain "Something else"
-Expected stderr to contain "[NOTHING]"
+  result := icmd.RunCommand(…)
+  result.Assert(t, icmd.Expected{
+                  ExitCode: 101,
+                  Out:      "Something else",
+                  Err:      None,
+  })
+  // Command:  binary arg1
+  // ExitCode: 99 (timeout)
+  // Error:    exit code 99
+  // Stdout:   the output
+  // Stderr:   the stderr
+  //
+  // Failures:
+  // ExitCode was 99 expected 101
+  // Expected command to finish, but it hit the timeout
+  // Expected stdout to contain "Something else"
+  // Expected stderr to contain "[NOTHING]"
 #+END_SRC
 
-Finally, we listed =Equal= above, that returns a =Comparison= struct. This means we can use
-it easily with the =assert= package. As written in a [[/posts/2018-08-16-gotest-tools-assertions/][previous post (about the =assert=
-package)]], I prefer to use =cmp.Comparison=. Let's convert the above examples using =assert=.
+Finally, we listed =Equal= above, that returns a =Comparison= struct. This means we can
+use it easily with the =assert= package. As written in a [[/posts/2018-08-16-gotest-tools-assertions/][previous post (about the =assert=
+package)]], I tend prefer to use =cmp.Comparison=. Let's convert the above examples using
+=assert=.
 
 #+BEGIN_SRC go
   result := icmd.RunCmd(icmd.Command("cat", "/does/not/exist"))
-  assert.Assert(t, result.Equal(icmd.Expected{
+  assert.Check(t, result.Equal(icmd.Expected{
           ExitCode: 1,
           Err:      "cat: /does/not/exist: No such file or directory",
   }))
@@ -902,9 +909,8 @@ package)]], I prefer to use =cmp.Comparison=. Let's convert the above examples u
 
 **** Conclusion…
 
-… that's a wrap. In my opinion, this is one the most useful package provided by
-=gotest.tools= after =assert=. It allows to easily run command and describe what result
-you expect of the execution, with the least noise possible. We *use this package heavily*
+… that's a wrap. The =icmd= package allows to easily run command and describe what result
+are expected of the execution, with the least noise possible. We *use this package heavily*
 on several =docker/*= projects (the engine, the cli)…
 
 *** TODO Golang testing — gotest.tools x/subtest

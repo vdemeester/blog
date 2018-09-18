@@ -1,6 +1,6 @@
 +++
 title = "Golang testing — gotest.tools icmd"
-date = 2018-09-19
+date = 2018-09-18
 tags = ["testing", "golang", "exec", "command"]
 categories = ["developement"]
 draft = true
@@ -11,9 +11,9 @@ Let's continue the [`gotest.tools`](https://gotest.tools) serie, this time with 
 
 > Package icmd executes binaries and provides convenient assertions for testing the results.
 
-After filesystem operation (seen in [`fs`](/posts/2018-09-14-gotest-tools-fs/)), one pretty common use-case in tests is to
-**execute a command**. The reason can be you're testing the `cli` you're currently writing or
-you need to setup something using some command line. A classic execution in a test might
+After filesystem operations (seen in [`fs`](/posts/2018-09-14-gotest-tools-fs/)), antoher common use-case in tests is to
+**execute a command**. The reasons can be you're testing the `cli` you're currently writing
+or you need to setup something using a command line. A classic execution in a test might
 lookup like the following.
 
 ```go
@@ -29,22 +29,22 @@ if string(stdout) != "foo" {
 ```
 
 The package `icmd` is there to ease your pain (as usual 😉) — we used _the name `icmd`_
-instead of `cmd` because it's a pretty common identifier used in Go source code, thus
-would be really easy to _shadow_ and have some really weird problems going on.
+instead of `cmd` because it's a pretty common identifier in Go source code, thus would be
+really easy to _shadow_ — and have some really weird problems going on.
 
-The `icmd` workflow is the following:
+The usual `icmd` workflow is the following:
 
-1.  you describe the command you want to execute using : type `Cmd`, function `Command` and
-	`CmdOp` operators)
-2.  you run it using : function `RunCmd` or `RunCommand` (that does 1. for you). You can
-	also use `StartCmd` and `WaitOnCmd` if you want more control on the execution workflow.
-3.  check the result using the `Assert` method attach to the type `Result` that the
-	execution command return.
+1.  Describe the command you want to execute using : type `Cmd`, function `Command` and
+	`CmdOp` operators.
+2.  Run it using : function `RunCmd` or `RunCommand` (that does 1. for you). You can also
+	use `StartCmd` and `WaitOnCmd` if you want more control on the execution workflow.
+3.  Check the result using the `Assert`, `Equal` or `Compare` methods attached to the
+	`Result` struct that the command execution return.
 
 
 ## Create and run a command {#create-and-run-a-command}
 
-Let's first dig how we create commands. In this part, the assumption here is that the
+Let's first dig how to create commands. In this part, the assumption here is that the
 command is successful, so we'll have `.Assert(t, icmd.Success)` for now — we'll learn more
 about `Assert` in the next section 👼.
 
@@ -80,14 +80,13 @@ propose two version for each example : one with `CmdOpt` present in [this PR](ht
 without them.
 
 ```go
-// With CmdOps
+// With
 icmd.RunCmd(icmd.Command("sh", "-c", "echo $FOO"),
-	icmd.WithEnv("FOO=bar", "BAR=baz"),
-	icmd.Dir("/tmp"),
+	icmd.WithEnv("FOO=bar", "BAR=baz"), icmd.Dir("/tmp"),
 	icmd.WithTimeout(10*time.Second),
 ).Assert(t, icmd.Success)
 
-// Without CmdOps
+// Without
 icmd.RunCmd(icmd.Cmd{
 	Command: []string{"sh", "-c", "echo $FOO"},
 	Env: []string{"FOO=bar", "BAR=baz"},
@@ -96,7 +95,7 @@ icmd.RunCmd(icmd.Cmd{
 }).Assert(t, icmd.Success)
 ```
 
-As usual, the intent is clear, it's simple to read composable (with `CmdOp`'s).
+As usual, the intent is clear, it's simple to read and composable (with `CmdOp`'s).
 
 
 ## Assertions {#assertions}
@@ -133,8 +132,9 @@ type Expected struct {
 }
 ```
 
-The default value of `Expected` is also the `Success` constant — as it's an exit code of
-`0`, didn't timeout, no error.
+`Success` is a constant that defines a success — it's an exit code of `0`, didn't timeout,
+no error. There is also the `None` constant, that should be used for `Out` or `Err`, to
+specify that we don't want any content for those standard outputs.
 
 ```go
 icmd.RunCmd(icmd.Command("cat", "/does/not/exist")).Assert(t, icmd.Expected{
@@ -152,31 +152,38 @@ for scanner.Scan() {
 }
 ```
 
-If the `Result` doesn't map the `Expected`, a failure will
-happen with a useful message that will contains the executed command and what differs
-between the result and the expectation.
+If the `Result` doesn't map the `Expected`, a test failure will happen with a useful
+message that will contains the executed command and what differs between the result and
+the expectation.
 
 ```go
-Command:  binary arg1
-ExitCode: 99 (timeout)
-Error:    exit code 99
-Stdout:   the output
-Stderr:   the stderr
-
-Failures:
-ExitCode was 99 expected 101
-Expected command to finish, but it hit the timeout
-Expected stdout to contain "Something else"
-Expected stderr to contain "[NOTHING]"
+result := icmd.RunCommand(…)
+result.Assert(t, icmd.Expected{
+		ExitCode: 101,
+		Out:      "Something else",
+		Err:      None,
+})
+// Command:  binary arg1
+// ExitCode: 99 (timeout)
+// Error:    exit code 99
+// Stdout:   the output
+// Stderr:   the stderr
+//
+// Failures:
+// ExitCode was 99 expected 101
+// Expected command to finish, but it hit the timeout
+// Expected stdout to contain "Something else"
+// Expected stderr to contain "[NOTHING]"
 ```
 
-Finaly, we listed `Equal` above, that returns a `Comparison` struct. This means we can use
-it easily with the `assert` package. As written in a [previous post (about the `assert`
-package)](/posts/2018-08-16-gotest-tools-assertions/), I prefer to use `cmp.Comparison`. Let's convert the above examples using `assert`.
+Finally, we listed `Equal` above, that returns a `Comparison` struct. This means we can
+use it easily with the `assert` package. As written in a [previous post (about the `assert`
+package)](/posts/2018-08-16-gotest-tools-assertions/), I tend prefer to use `cmp.Comparison`. Let's convert the above examples using
+`assert`.
 
 ```go
 result := icmd.RunCmd(icmd.Command("cat", "/does/not/exist"))
-assert.Assert(t, result.Equal(icmd.Expected{
+assert.Check(t, result.Equal(icmd.Expected{
 	ExitCode: 1,
 	Err:      "cat: /does/not/exist: No such file or directory",
 }))
@@ -194,9 +201,8 @@ for scanner.Scan() {
 
 ## Conclusion… {#conclusion}
 
-… that's a wrap. In my opinion, this is one the most useful package provided by
-`gotest.tools` after `assert`. It allows to easily run command and describe what result
-you expect of the execution, with the least noise possible. We **use this package heavily**
+… that's a wrap. The `icmd` package allows to easily run command and describe what result
+are expected of the execution, with the least noise possible. We **use this package heavily**
 on several `docker/*` projects (the engine, the cli)…
 
 [^fn:1]: The `icmd` package is one of the oldest `gotest.tools` package, that comes from the [`docker/docker`](https://github.com/docker/docker) initialy. We introduced these `CmdOp` but implementations were in `docker/docker` at first and we never really updated them.
