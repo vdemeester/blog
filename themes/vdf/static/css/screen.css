@@ -168,6 +168,16 @@ article header address {
     color: #666;
 }
 
+article .footnotes {
+    color: #666;
+    font-size: 90%;
+    margin: 0 1rem;
+}
+
+article .footnotes hr {
+    border-top: 1px solid #eee;
+}
+
 hr {
     height: 1px;
     border: 0;
