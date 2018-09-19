@@ -1,10 +1,10 @@
 +++
 title = "Golang testing — gotest.tools fs"
 date = 2018-09-14
-tags = ["testing", "golang"]
+tags = ["testing", "golang", "filesystem"]
 categories = ["developement"]
 draft = false
-creator = "Emacs 25.3.1 (Org mode 9.1.7 + ox-hugo)"
+creator = "Emacs 26.1 (Org mode 9.1.14 + ox-hugo)"
 +++
 
 Let's continue the [`gotest.tools`](https://gotest.tools) serie, this time with the `fs` package.
@@ -99,17 +99,17 @@ for example). Let's list the main, useful, `PathOp` provided by `gotest.tools/fs
 -   `WithDir` creates a sub-directory in the directory at path.
 -   `WithFile` creates a file in the directory at path with content.
 -   `WithSymlink` creates a symlink in the directory which links to target. Target must be a
-	path relative to the directory.
+    path relative to the directory.
 -   `WithHardlink` creates a link in the directory which links to target. Target must be a
-	path relative to the directory.
+    path relative to the directory.
 -   `WithContent` and `WWithBytes` write content to a file at Path (from a `string` or a
-	`[]byte` slice).
+    `[]byte` slice).
 -   `WithMode` sets the file mode on the directory or file at path.
 -   `WithTimestamps` sets the access and modification times of the file system object at
-	path.
+    path.
 -   `FromDir` copies the directory tree from the source path into the new Dir. This is
-	pretty useful when you have a huge folder structure already present in you `testdata`
-	folder or elsewhere.
+    pretty useful when you have a huge folder structure already present in you `testdata`
+    folder or elsewhere.
 -   `AsUser` changes ownership of the file system object at Path.
 
 Also, note that `PathOp` being an function type, you can provide your own implementation
@@ -136,7 +136,7 @@ package understand. It works by comparing a `Manifest` type provided by the test
 > Manifest.
 
 A `Manifest` stores the expected structure and properties of files and directories in a
-filesystem. You can create a `Manifest` using either the functions `Expected` or
+file-system. You can create a `Manifest` using either the functions `Expected` or
 `ManifestFromDir`.
 
 We're going to focus on the `Expected` function, as `ManifestFromDir` does pretty much
@@ -162,11 +162,11 @@ There is a few additional functions that are only useful with `Manifest` :
 ```go
 path := operationWhichCreatesFiles()
 expected := fs.Expected(t,
-	fs.WithFile("one", "",
+    fs.WithFile("one", "",
 	fs.WithBytes(golden.Get(t, "one.golden")),
 	fs.WithMode(0600)),
-	fs.WithDir("data",
-		fs.WithFile("config", "", fs.MatchAnyFileContent)),
+    fs.WithDir("data",
+	    fs.WithFile("config", "", fs.MatchAnyFileContent)),
 )
 
 assert.Assert(t, fs.Equal(path, expected))

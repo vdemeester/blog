@@ -4,7 +4,7 @@ date = 2018-09-06
 tags = ["testing", "golang"]
 categories = ["developement"]
 draft = false
-creator = "Emacs 25.3.1 (Org mode 9.1.7 + ox-hugo)"
+creator = "Emacs 26.1 (Org mode 9.1.14 + ox-hugo)"
 +++
 
 Let's continue the [`gotest.tools`](https://gotest.tools) serie, this time with the `golden` package. This is a
@@ -14,7 +14,7 @@ concept for you.
 
 > Package `golden` provides tools for comparing large mutli-line strings.
 >
-> Golden files are files in the `./testdata/` subdirectory of the package under test.
+> Golden files are files in the `./testdata/` sub-directory of the package under test.
 
 In the previous article, we described the problem, and how to fix it by writing a small
 helper. Well, that small helper is in `gotest.tools/golden` now, and it has a tiny bit
@@ -38,7 +38,7 @@ actual content to the expected content in the golden file and returns whether th
 assertion was successful (true) or not (false).
 
 -   `Assert` uses string. Note that this one **removes carriage return** before comparing to
-	depend as less as possible of the system (`\n` vs `\r\n` 😅)
+    depend as less as possible of the system (`\n` vs `\r\n` 😅)
 -   `AssertBytes` uses raw data (in the form of `[]byte`)
 
 ```go
@@ -72,5 +72,5 @@ assert.Assert(t, golden.Bytes([]byte("foo"), "foo-content.golden"))
 ## Conclusion… {#conclusion}
 
 … that's a wrap. As for [`skip`](/posts/2018-09-01-gotest-tools-skip/), this is a small package, so the post was going to be
-quick. `golden` package just solve a specific problem (read [Golang testing — golden file](/posts/2017-04-22-golang-testing-golden-file/))
+quick. `golden` package just solve a specific problem (read [Golang testing — golden file](/posts/2017--04-22-golang-testing-golden-file/))
 in a simple way.

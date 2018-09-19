@@ -470,7 +470,7 @@ concept for you.
 #+BEGIN_QUOTE
 Package =golden= provides tools for comparing large mutli-line strings.
 
-Golden files are files in the =./testdata/= subdirectory of the package under test.
+Golden files are files in the =./testdata/= sub-directory of the package under test.
 #+END_QUOTE
 
 In the previous article, we described the problem, and how to fix it by writing a small
@@ -669,7 +669,7 @@ package understand. It works by comparing a =Manifest= type provided by the test
 #+END_QUOTE
 
 A =Manifest= stores the expected structure and properties of files and directories in a
-filesystem. You can create a =Manifest= using either the functions =Expected= or
+file-system. You can create a =Manifest= using either the functions =Expected= or
 =ManifestFromDir=.
 
 We're going to focus on the =Expected= function, as =ManifestFromDir= does pretty much
@@ -727,7 +727,7 @@ Let's continue the [[https://gotest.tools][=gotest.tools=]] serie, this time wit
 Package icmd executes binaries and provides convenient assertions for testing the results.
 #+END_QUOTE
 
-After filesystem operations (seen in [[/posts/2018-09-14-gotest-tools-fs/][=fs=]]), antoher common use-case in tests is to
+After file-system operations (seen in [[/posts/2018-09-14-gotest-tools-fs/][=fs=]]), another common use-case in tests is to
 *execute a command*. The reasons can be you're testing the =cli= you're currently writing
 or you need to setup something using a command line. A classic execution in a test might
 lookup like the following.
@@ -813,7 +813,7 @@ without them.
 As usual, the intent is clear, it's simple to read and composable (with =CmdOp='s).
 
 [fn:1] The =icmd= package is one of the oldest =gotest.tools= package, that comes from the
-[[https://github.com/docker/docker][=docker/docker=]] initialy. We introduced these =CmdOp= but implementations were in
+[[https://github.com/docker/docker][=docker/docker=]] initially. We introduced these =CmdOp= but implementations were in
 =docker/docker= at first and we never really updated them.
 
 **** Assertions

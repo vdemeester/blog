@@ -11,7 +11,7 @@ Let's continue the [`gotest.tools`](https://gotest.tools) serie, this time with 
 
 > Package icmd executes binaries and provides convenient assertions for testing the results.
 
-After filesystem operations (seen in [`fs`](/posts/2018-09-14-gotest-tools-fs/)), antoher common use-case in tests is to
+After file-system operations (seen in [`fs`](/posts/2018-09-14-gotest-tools-fs/)), another common use-case in tests is to
 **execute a command**. The reasons can be you're testing the `cli` you're currently writing
 or you need to setup something using a command line. A classic execution in a test might
 lookup like the following.
@@ -35,11 +35,11 @@ really easy to _shadow_ — and have some really weird problems going on.
 The usual `icmd` workflow is the following:
 
 1.  Describe the command you want to execute using : type `Cmd`, function `Command` and
-	`CmdOp` operators.
+    `CmdOp` operators.
 2.  Run it using : function `RunCmd` or `RunCommand` (that does 1. for you). You can also
-	use `StartCmd` and `WaitOnCmd` if you want more control on the execution workflow.
+    use `StartCmd` and `WaitOnCmd` if you want more control on the execution workflow.
 3.  Check the result using the `Assert`, `Equal` or `Compare` methods attached to the
-	`Result` struct that the command execution return.
+    `Result` struct that the command execution return.
 
 
 ## Create and run a command {#create-and-run-a-command}
@@ -104,12 +104,12 @@ Let's dig into the assertion part of `icmd`. Running a command returns a struct
 `Result`. It has the following methods :
 
 -   `Assert` compares the Result against the Expected struct, and fails the test if any of
-	the expectations are not met.
+    the expectations are not met.
 -   `Compare` compares the result to Expected and return an error if they do not match.
 -   `Equal` compares the result to Expected. If the result doesn't match expected
-	returns a formatted failure message with the command, stdout, stderr, exit code, and any
-	failed expectations. It returns an `assert.Comparison` struct, that can be used by other
-	`gotest.tools`.
+    returns a formatted failure message with the command, stdout, stderr, exit code, and any
+    failed expectations. It returns an `assert.Comparison` struct, that can be used by other
+    `gotest.tools`.
 -   `Combined` returns the stdout and stderr combined into a single string.
 -   `Stderr` returns the stderr of the process as a string.
 -   `Stdout` returns the stdout of the process as a string.
@@ -117,7 +117,7 @@ Let's dig into the assertion part of `icmd`. Running a command returns a struct
 When you have a result, you, most likely want to do two things :
 
 -   _assert_ that the command succeed or failed with some specific values (exit code,
-	stderr, stdout)
+    stderr, stdout)
 -   use the output — most likely `stdout` but maybe `stderr` — in the rest of the test.
 
 As seen above, _asserting_ the command result is using the `Expected` struct.
@@ -206,4 +206,4 @@ for scanner.Scan() {
 are expected of the execution, with the least noise possible. We **use this package heavily**
 on several `docker/*` projects (the engine, the cli)…
 
-[^fn:1]: The `icmd` package is one of the oldest `gotest.tools` package, that comes from the [`docker/docker`](https://github.com/docker/docker) initialy. We introduced these `CmdOp` but implementations were in `docker/docker` at first and we never really updated them.
+[^fn:1]: The `icmd` package is one of the oldest `gotest.tools` package, that comes from the [`docker/docker`](https://github.com/docker/docker) initially. We introduced these `CmdOp` but implementations were in `docker/docker` at first and we never really updated them.

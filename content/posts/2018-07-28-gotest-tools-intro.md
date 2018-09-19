@@ -9,7 +9,7 @@ date = 2018-07-28
 tags = ["testing", "golang", "featured"]
 categories = ["developement"]
 draft = false
-creator = "Emacs 26.1 (Org mode 9.1.13 + ox-hugo)"
+creator = "Emacs 26.1 (Org mode 9.1.14 + ox-hugo)"
 +++
 
 Let me introduce it to you this library : [`gotest.tools`](https://gotest.tools). As described in the [godoc](https://godoc.org/gotest.tools) package comment, `gotest.tools` is a

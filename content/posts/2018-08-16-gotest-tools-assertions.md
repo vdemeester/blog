@@ -17,7 +17,7 @@ date = 2018-08-16
 tags = ["testing", "golang", "assert"]
 categories = ["developement"]
 draft = false
-creator = "Emacs 26.1 (Org mode 9.1.13 + ox-hugo)"
+creator = "Emacs 26.1 (Org mode 9.1.14 + ox-hugo)"
 +++
 
 <div class="ox-hugo-toc toc">
