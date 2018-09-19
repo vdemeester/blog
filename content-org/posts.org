@@ -15,9 +15,11 @@
 :EXPORT_DATE: 2018-07-28
 :END:
 
+#+begin_description
 I already wrote 2 previous posts about golang and testing. It's something I care deeply about and I wanted to continue
 writing about it. It took me a bit more time than I thought, but getting back to it. Since the [[http://vincent.demeester.fr/posts/2017-04-22-golang-testing-golden-file/][last post]], Daniel Nephin
 and I worked (but mainly Daniel 🤗) on bootstrapping a testing helper library.
+#+end_description
 
 Let me introduce it to you this library : [[https://gotest.tools][=gotest.tools=]]. As described in the [[https://godoc.org/gotest.tools][godoc]] package comment, =gotest.tools= is a
 collection of packages to augment =testing= and support common patterns. It's an enhanced and growing version of the
@@ -57,7 +59,13 @@ In the next post, let's dig into the assertion part of the library, package =ass
 :PROPERTIES:
 :EXPORT_FILE_NAME: 2018-08-16-gotest-tools-assertions
 :EXPORT_DATE: 2018-08-16
+:EXPORT_OPTIONS: toc:t
 :END:
+
+#+begin_description
+Faster way to send the same command to each and every /pane/ in your
+tmux /session/.
+
 
 Let's take a closer look at [[https://gotest.tools][=gotest.tools=]] assertions packages. This is mainly about =assert=, =assert/cmp= and
 =assert/opt=.
@@ -69,6 +77,7 @@ message is printed.
 
 There is two main functions (=Assert= and =Check=) and some helpers (like =NilError=, …). They all take a =*testing.T= as
 a first argument, pretty common across testing Go libraries. Let's dive into those !
+#+end_description
 
 **** =Assert= and =Check=
 

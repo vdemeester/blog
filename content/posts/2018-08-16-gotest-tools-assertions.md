@@ -1,20 +1,43 @@
 +++
 title = "Golang testing — gotest.tools assertions"
+description = """
+  Faster way to send the same command to each and every _pane_ in your
+  tmux _session_.
+
+  Let's take a closer look at [`gotest.tools`](https://gotest.tools) assertions packages. This is mainly about `assert`, `assert/cmp` and
+  `assert/opt`.
+
+  > Package assert provides assertions for comparing expected values to actual values. When assertion fails a helpful error
+  > message is printed.
+
+  There is two main functions (`Assert` and `Check`) and some helpers (like `NilError`, …). They all take a `*testing.T` as
+  a first argument, pretty common across testing Go libraries. Let's dive into those !
+  """
 date = 2018-08-16
-tags = ["testing", "golang"]
+tags = ["testing", "golang", "assert"]
 categories = ["developement"]
 draft = false
-creator = "Emacs 25.3.1 (Org mode 9.1.7 + ox-hugo)"
+creator = "Emacs 26.1 (Org mode 9.1.13 + ox-hugo)"
 +++
 
-Let's take a closer look at [`gotest.tools`](https://gotest.tools) assertions packages. This is mainly about `assert`, `assert/cmp` and
-`assert/opt`.
+<div class="ox-hugo-toc toc">
+<div></div>
 
-> Package assert provides assertions for comparing expected values to actual values. When assertion fails a helpful error
-> message is printed.
+<div class="heading">Table of Contents</div>
 
-There is two main functions (`Assert` and `Check`) and some helpers (like `NilError`, …). They all take a `*testing.T` as
-a first argument, pretty common across testing Go libraries. Let's dive into those !
+- [`Assert` and `Check`](#assert-and-check)
+- [More `assert` helpers](#more-assert-helpers)
+- [`cmp.Comparison`](#cmp-dot-comparison)
+    - [Equality with `Equal` and `DeepEqual`](#equality-with-equal-and-deepequal)
+    - [Errors with `Error`, `ErrorContains` and `ErrorType`](#errors-with-error-errorcontains-and-errortype)
+    - [Bonus with `Panics`](#bonus-with-panics)
+    - [Miscellaneous with `Contains`, `Len` and `Nil`](#miscellaneous-with-contains-len-and-nil)
+    - [Write your own `Comparison`](#write-your-own-comparison)
+- [Conclusion…](#conclusion)
+
+</div>
+<!--endtoc-->
+
 
 
 ## `Assert` and `Check` {#assert-and-check}
@@ -44,7 +67,7 @@ The additional helper functions are the following
 
 -   `Equal` uses the `==` operator to assert two values are equal.
 -   `DeepEqual` uses `google/go-cmp` to assert two values are equal (it's _close_ to `reflect.DeepEqual` but not
-	quite). We'll detail a bit more the _options_ part of this function with `cmp.DeepEqual`.
+    quite). We'll detail a bit more the _options_ part of this function with `cmp.DeepEqual`.
 -   `Error` fails if the error is `nil` **or** the error message is not the expected one.
 -   `ErrorContains` fails if the error is `nil` **or** the error message does not contain the expected substring.
 -   `ErrorType` fails if the error is `nil` **or** the error type is not the expected type.
@@ -82,8 +105,8 @@ quicker to write your own comparison.
 -   `ResultSuccess` is a constant which is returned to indicate success.
 -   `ResultFailure` and `ResultFailureTemplate` return a failed Result with a failure message.
 -   `ResultFromError` returns `ResultSuccess` if `err` is nil. Otherwise `ResultFailure` is returned with the error
-	message as the failure message. It works a bit like the `errors.Wrap` function of the [`github.com/pkgs/errors`](https://github.com/pkg/errors)
-	package.
+    message as the failure message. It works a bit like the `errors.Wrap` function of the [`github.com/pkgs/errors`](https://github.com/pkg/errors)
+    package.
 
 The `cmp` package comes with a few defined comparison that, we think, should cover a high number of use-cases. Let's
 look at them.
@@ -136,11 +159,11 @@ cannot use when comparing (as they are not exported 😓). In those case, you ca
 Some existing one are :
 
 -   [`EquateEmpty`](https://godoc.org/github.com/google/go-cmp/cmp/cmpopts#EquateEmpty) returns a Comparer option that determines all maps and slices with a length of zero to be equal,
-	regardless of whether they are nil.
+    regardless of whether they are nil.
 -   [`IgnoreFields`](https://godoc.org/github.com/google/go-cmp/cmp/cmpopts#IgnoreFields) returns an Option that ignores exported fields of the given names on a single struct type. The struct
-	type is specified by passing in a value of that type.
+    type is specified by passing in a value of that type.
 -   [`IgnoreUnexported`](https://godoc.org/github.com/google/go-cmp/cmp/cmpopts#IgnoreUnexported) returns an Option that only ignores the immediate unexported fields of a struct, including anonymous
-	fields of unexported types.
+    fields of unexported types.
 -   [`SortSlices`](https://godoc.org/github.com/google/go-cmp/cmp/cmpopts#SortSlices) returns a Transformer option that sorts all `[]V`
 -   … and [more](https://godoc.org/github.com/google/go-cmp/cmp/cmpopts) 👼
 
@@ -177,7 +200,7 @@ func cmpServiceOpts() cmp.Option {
 	const threshold = 20 * time.Second
 
 	// Apply withinThreshold only for the following fields
-	metaTimeFields := func(path cmp.Path) bool {
+	metaTimeFields := func(path cmp.Path)bool {
 		switch path.String() {
 		case "Meta.CreatedAt", "Meta.UpdatedAt":
 			return true
@@ -238,7 +261,7 @@ assert.Check(t, cmp.ErrorType(foo, StubError{}))
 
 ### Bonus with `Panics` {#bonus-with-panics}
 
-Sometimes, a code is supposed to _panic_, see [Effective Go (#Panic)](https://golang.org/doc/effective_go.html#panic) for more information. And thus, you may want to make
+Sometimes, a code is supposed to _panic_, see [Effective Go (#Panic)](https://golang.org/doc/effective%5Fgo.html#panic) for more information. And thus, you may want to make
 sure you're code panics in such cases. It's always a bit tricky to test a code that panic as you have to use a deferred
 function to recover the panic — but then if the panic doesn't happen how do you fail the test ?
 
@@ -264,9 +287,9 @@ Those last three _built-in_ `Comparison` are pretty straightforward.
 
 -   `Contains` succeeds if item is in collection. Collection may be a string, map, slice, or array.
 
-	If collection is a string, item must also be a string, and is compared using `strings.Contains()`. If collection is a
-	Map, contains will succeed if item is a key in the map. If collection is a slice or array, item is compared to each
-	item in the sequence using `=reflect.DeepEqual()=`.
+    If collection is a string, item must also be a string, and is compared using `strings.Contains()`. If collection is a
+    Map, contains will succeed if item is a key in the map. If collection is a slice or array, item is compared to each
+    item in the sequence using `=reflect.DeepEqual()=`.
 -   `Len` succeeds if the sequence has the expected length.
 -   `Nil` succeeds if obj is a nil interface, pointer, or function.
 

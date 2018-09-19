@@ -1,15 +1,16 @@
 +++
 title = "Golang testing — gotest.tools introduction"
+description = """
+  I already wrote 2 previous posts about golang and testing. It's something I care deeply about and I wanted to continue
+  writing about it. It took me a bit more time than I thought, but getting back to it. Since the [last post](http://vincent.demeester.fr/posts/2017-04-22-golang-testing-golden-file/), Daniel Nephin
+  and I worked (but mainly Daniel 🤗) on bootstrapping a testing helper library.
+  """
 date = 2018-07-28
 tags = ["testing", "golang", "featured"]
 categories = ["developement"]
 draft = false
-creator = "Emacs 26.1 (Org mode 9.1.14 + ox-hugo)"
+creator = "Emacs 26.1 (Org mode 9.1.13 + ox-hugo)"
 +++
-
-I already wrote 2 previous posts about golang and testing. It's something I care deeply about and I wanted to continue
-writing about it. It took me a bit more time than I thought, but getting back to it. Since the [last post](http://vincent.demeester.fr/posts/2017-04-22-golang-testing-golden-file/), Daniel Nephin
-and I worked (but mainly Daniel 🤗) on bootstrapping a testing helper library.
 
 Let me introduce it to you this library : [`gotest.tools`](https://gotest.tools). As described in the [godoc](https://godoc.org/gotest.tools) package comment, `gotest.tools` is a
 collection of packages to augment `testing` and support common patterns. It's an enhanced and growing version of the
@@ -39,8 +40,8 @@ why create a new one ? There is multiple reason for it, most of them can be seen
 $ go get -u gotest.tools/assert/cmd/gty-migrate-from-testify
 # […]
 $ go list \
-	 -f '{{.ImportPath}} {{if .XTestGoFiles}}{{"\n"}}{{.ImportPath}}_test{{end}}' \
-	 ./... | xargs gty-migrate-from-testify
+     -f '{{.ImportPath}} {{if .XTestGoFiles}}{{"\n"}}{{.ImportPath}}_test{{end}}' \
+     ./... | xargs gty-migrate-from-testify
 ```
 
 In the next post, let's dig into the assertion part of the library, package `assert` 👼.

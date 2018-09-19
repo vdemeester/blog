@@ -24,6 +24,10 @@
 	  {{ end }}
 	</ul>
       </header>
+      {{ .Description | markdownify }}
+      {{ if .Params.toc }}
+      {{ .TableOfContents }}
+      {{ end }}
       {{ .Content }}
     </article>
     <hr />

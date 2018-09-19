@@ -168,6 +168,21 @@ article header address {
     color: #666;
 }
 
+article div.toc {
+    background: #fcfcfc;
+    border-left: 1px solid #ccc;
+    margin: 1.25rem calc(-1 * var(--content-box-padding));
+    padding: var(--content-box-padding);
+    font-size: 90%;
+}
+
+article div.toc .heading {
+    font-family: var(--font-header);
+    font-weight: bold;
+    font-style: italic;
+    font-size: 110%;
+}
+
 article .footnotes {
     color: #666;
     font-size: 90%;
