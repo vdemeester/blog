@@ -929,6 +929,36 @@ https://github.com/gotestyourself/gotestsum
 *** TODO gauge for readme-test-driven
 *** TODO continuous testing with filewatcher, goconvey, …
 ** Containerd                                :development:golang:@container:
+
+** knative                                       :kubernetes:knative:docker:
+
+** minikube tricks                              :minikube:kubernetes:docker:
+
+*** TODO Getting started with minikube        :cri:o:cri:containerd:docker:
+
+**** TODO Start a minikube
+
+***** TODO Alternate runtimes
+
+**** TODO Cache some images
+
+Depending on your workflow with =minikube=, you may re-create a VM from time to time (or
+quite a lot). In this case, you may want to speed the process up a bit.
+
+First, you need a recent =minikube= version, a.k.a. =v0.29.0= at least — adding image to
+cache with =v0.28.1= is bugged and doesn't work.
+
+Then, it's pretty simple and it works even if a minikube VM doesn't work — in that case
+images will be loaded when doing a =minikube start=.
+
+#+BEGIN_SRC sh
+  minikube cache add docker.io/library/ubuntu:18.04
+  # […]
+  minikube cache add docker.io/prom/statsd-export:v0.6.0
+#+END_SRC
+
+There is some shortcomings still, as _for now_, it's not possible to download digest image.
+
 ** Emacs                                                     :editor:@emacs:
 *** TODO Window pop-up                                      :buffer:window:
 
@@ -936,6 +966,8 @@ https://github.com/gotestyourself/gotestsum
 *** TODO Intro - general configuration
 
 *** TODO =home-manager=
+
+*** TODO Cachix
 * Posts
 ** TODO On getting more work done
 *** TODO notes/ideas
@@ -956,6 +988,8 @@ https://github.com/gotestyourself/gotestsum
 
 *** Refs
 - https://thelifelifebalance.com/pros-and-cons-of-pomodoro/
+
+** TODO i3 tips & tricks                                        :desktop:i3:
 ** TODO Why I like fish abbrs                                        :quick:
 ** TODO nixos, binfmt_misc and containers
 *** References
