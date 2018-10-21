@@ -456,7 +456,7 @@ There is few elements to note though :
   it's dead code. /But more on that in later posts 😉/.
 
 That's all for today folks, told you that was going to be quick.
-*** Golang testing — gotest.tools golden
+*** Golang testing — gotest.tools golden                           :golden:
 :PROPERTIES:
 :EXPORT_FILE_NAME: 2018-09-06-gotest-tools-golden
 :EXPORT_DATE: 2018-09-06
@@ -922,6 +922,8 @@ package)]], I tend prefer to use =cmp.Comparison=. Let's convert the above examp
 … that's a wrap. The =icmd= package allows to easily run command and describe what result
 are expected of the execution, with the least noise possible. We *use this package heavily*
 on several =docker/*= projects (the engine, the cli)…
+
+*** TODO Golang testing — gotest.tools poll                          :poll:
 
 *** TODO Golang testing — gotest.tools x/subtest
 *** TODO gotestsum
