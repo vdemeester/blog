@@ -1,3 +1,4 @@
+#!/usr/bin/env nix-build
 {nixpkgs ? import <nixpkgs> {}}:
 
 with nixpkgs;
@@ -11,4 +12,15 @@ rec {
       $CMD
     fi
   '';
+  site = pkgs.stdenv.mkDerivation {
+     name = "blog-site";
+     src = ./.;
+     phases = "unpackPhase buildPhase";
+     buildInputs = with pkgs; [ hugo ];
+     buildPhase = ''
+       LANG=en_US.UTF-8 hugo
+       mkdir $out
+       cp -r public/* $out
+     '';
+  };
 }
