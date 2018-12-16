@@ -1,3 +1,10 @@
+{{ if .Param "link"}}
 <li>
-  <a href="{{ .Permalink }}">{{ .Title }}</a> <span class="date text-muted text-light">{{ .Date.Format "January 2, 2006" }}</span>
+  🔗 <a href="{{ .Params.link }}" class="link">{{.Title}}</a> <span class="date text-muted text-light">{{ .Date.Format "January 2, 2006" }}</span><br/>
+  {{ .Params.summary}}
 </li>
+{{ else }}
+<li>
+  📰 <a href="{{ .Permalink }}">{{ .Title }}</a> <span class="date text-muted text-light">{{ .Date.Format "January 2, 2006" }}</span>
+</li>
+{{ end }}
