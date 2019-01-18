@@ -971,6 +971,68 @@ There is some shortcomings still, as _for now_, it's not possible to download di
 
 *** TODO Cachix
 * Posts
+** DRAFT 2018 year review                                           :review:
+:PROPERTIES:
+:EXPORT_FILE_NAME: 2019-01-20-2018-year-review.md
+:EXPORT_DATE: 2019-01-20
+:END:
+
+Here is my review of 2018, the first of its kind, hopefully not the last 👼. I saw some[fn:1]
+/2018[fn:2] reviews/[fn:3] articles[fn:4] in my feedly feed and I thought it would be a good idea to write my
+own too.
+
+I'll try in the next year — maybe month if I ever want to do monthly reviews — to automate
+some of it ; using the beloved =org-mode=.
+
+[fn:1] [[https://punchagan.muse-amuse.in/blog/2018-in-review/][2018 in Review - Noetic Nought]]
+[fn:2] [[https://medium.com/@buster/42-dig-deeper-e2278d1fe015][42 — Dig deeper – Buster Benson – Medium]]
+[fn:3] [[https://jvns.ca/blog/2018/12/23/2018--year-in-review/][2018: Year in review - Julia Evans]]
+[fn:4] [[https://writing.natwelch.com/post/685][Nat? Nat. Nat! | #685 2018 Year in Review]]
+
+*** TODO Work
+
+- Changing work (Docker Inc. -> Red Hat)
+  Best move ever !
+- Docker Inc. work
+  Still maintaining moby and docker/cli + other OSS project
+  Worked on compose-related project (docker/app, docker/compose-on-kubernetes before OSS)
+  Archived libcompose (ain't nobody working on it)
+- Red Hat work
+  Kubernetes work, upstream work on Knative
+  Openshift Cloud Function (with Knative)
+  Building part of Openshift, integration with Knative
+- Working from home
+
+*** TODO Personal
+
+- Redesigned vincent.demeester.fr
+- Desk enhancements (as working from home)
+  - new screen, …
+- Leaning toward less stuff
+- Better infra overall
+  - Either use or giveaway old laptops
+  - More and More NixOS / nixpkgs (configuration, home-manager, …)
+  - Backups, replication (syncthing) and vpn (wireguard)
+- todoist vs org-mode
+- Reading kindle and *audible*
+- Knee problems, again !
+
+*** TODO Writing
+
+- 2017 was a slow year in terms of writing (only 2 posts), 2018 was a bit better, 6 posts.
+  But it's a bit cheating, as it was mainly between changing jobs, and on a series I still
+  need to finish
+
+*** TODO 2019 Goals
+
+- Get back on my feet after knee surgery (exercices, …)
+- Read at least one book
+- Giving at least a talk (on Knative)
+- At least 1 video per month
+- At least 1 post per month
+- Enhance my emacs skills (aka don't be afraid of the lisp)
+- Enhance my Nix(OS) skills
+
 ** TODO On getting more work done
 *** TODO notes/ideas
 - Remove slack from phone (or personal tablets)
