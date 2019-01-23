@@ -971,7 +971,7 @@ There is some shortcomings still, as _for now_, it's not possible to download di
 
 *** TODO Cachix
 * Posts
-** DRAFT 2018 year review                                           :review:
+** 2018 year review                                                 :review:
 :PROPERTIES:
 :EXPORT_FILE_NAME: 2019-01-20-2018-year-review.md
 :EXPORT_DATE: 2019-01-20
