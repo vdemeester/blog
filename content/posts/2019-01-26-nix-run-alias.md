@@ -59,7 +59,7 @@ The use case is the following :
 
 ## Fish aliases experimentation {#fish-aliases-experimentation}
 
-I had a feeling the built-in `alias` would not work so I ended up trying to define
+I had a feeling the built-in `alias` would not work so I ended up trying to define a
 _dynamic_ function that would be the name of the command. That's the beauty of the shell,
 everything is a command, even function appears as commands. If you define a function
 `foo()`, you will be able to run `foo` in your shell, **and** it will take precedence over
@@ -95,7 +95,7 @@ end
 ```
 
 In a nutshell, `_nix_run` is the function that create the alias function. There is so
-condition in there depending on wether we gave it a channel or not. So, a call like
+condition in there depending on whether we gave it a channel or not. So, a call like
 `_nix_run foo bar unstable channels.nix` would, in the end generate a function `foo` with
 the following call : `nix run -f channels.nix unstable.bar -c foo`.
 
@@ -134,16 +134,16 @@ nicely with `nix` and [`home-manager`](https://github.com/rycee/home-manager).
 
 The gist for this tool is simple :
 
--   define a command that will call `nix run ...` instead of the command
+-   create an executable script that will call `nix run ...` instead of the command
 -   as for the above fish script, support different channels
 -   make sure we don't have conflicts — if the command already exists, then don't create the
     command
 
-The `nr` tool would have to be able to manage multiple _profile_, which really stands
-for multiple file. The main reason for it is about how I manage my configuration, but to
-make it simple, depending on the computer my configuration are setup, I may not have `go`
-on some computer, thus I don't want any `go`-related aliases for a computer that doesn't
-have `go`.
+The `nr` tool would have to be able to manage multiple _profile_, which really stands for
+multiple file. The main reason is really about how I manage my configuration ; To make it
+simple, depending on the computer my configurations are setup, I may not have `go`, thus I
+don't want any `go`-related aliases for a computer that doesn't have `go` (using `go` here
+but you can replace with anything).
 
 ```fish
 $ nr default
@@ -156,7 +156,7 @@ $ nr git
 `nr` generates a bash script that does the `nr run …` and mark it as executable. `nr`
 needs to be able to clean files it has generated (in case we removed it from
 aliases). Thus, I went for a really naive comment in the script. When generating a new set
-of commands, `nr` will first remove previsously generated script for this profile, and for
+of commands, `nr` will first remove previously generated script for this profile, and for
 that, it uses the comment. Let's look at what a generated script looks like, for the
 default profile.
 
@@ -182,11 +182,12 @@ best format to use for this tool. The reason to use `json` are simple :
 -   Nix also has built-in support for `json` : `builtins.toJSON` will marshall a _struct_
     into a json file.
 
-Finally, avoiding conflicts at _build time_ (`home-manager switch`) is a bit tricky. One way to
-achieve it is to use `file.?.onChange` script, which is executed after [`home-manager`](https://github.com/rycee/home-manager) has
-updated the environment. That means it's possible to check for executable files in
-`~/.nix-profile/bin/` for defined aliases and create those that are not there, with
-`nr`. My configuration then looks like the following.
+Finally, to avoid conflicts at _build time_ (`home-manager switch`) I couldn't use/define
+a nix package, but to execute command(s) at the end of the build. One way to achieve it is
+to use `file.?.onChange` script, which is executed after [`home-manager`](https://github.com/rycee/home-manager) has updated the
+environment, **if** the file has changed. That means it's possible to check for executable
+files in `~/.nix-profile/bin/` for defined aliases and create those that are not there,
+with `nr`. My configuration then looks like the following.
 
 ```nix
 xdg.configFile."nr/default" = {
