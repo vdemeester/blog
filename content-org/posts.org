@@ -928,7 +928,7 @@ https://github.com/gotestyourself/gotestsum
 *** TODO gauge for readme-test-driven
 *** TODO continuous testing with filewatcher, goconvey, …
 ** Nix                                                               :nixos:
-*** =nix run= aliases
+*** =nix run= aliases              :fish:alias:nix:shell:nix:home:manager:
 :PROPERTIES:
 :EXPORT_FILE_NAME: 2019-01-26-nix-run-alias
 :EXPORT_DATE: 2019-01-26

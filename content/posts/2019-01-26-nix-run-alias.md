@@ -1,7 +1,7 @@
 +++
 title = "nix run aliases"
 date = 2019-01-26
-tags = ["nixos"]
+tags = ["nixos", "fish", "alias", "nix", "shell", "home", "manager"]
 draft = false
 creator = "Emacs 26.1 (Org mode 9.2 + ox-hugo)"
 +++
