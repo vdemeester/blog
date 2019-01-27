@@ -928,9 +928,9 @@ https://github.com/gotestyourself/gotestsum
 *** TODO gauge for readme-test-driven
 *** TODO continuous testing with filewatcher, goconvey, …
 ** Nix                                                               :nixos:
-*** DRAFT =nix run= aliases
+*** =nix run= aliases
 :PROPERTIES:
-:EXPORT_FILE_NAME: 2019-01-26-nix-run-alias.md
+:EXPORT_FILE_NAME: 2019-01-26-nix-run-alias
 :EXPORT_DATE: 2019-01-26
 :END:
 
