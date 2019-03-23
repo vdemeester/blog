@@ -920,7 +920,7 @@ package)]], I tend prefer to use =cmp.Comparison=. Let's convert the above examp
 are expected of the execution, with the least noise possible. We *use this package heavily*
 on several =docker/*= projects (the engine, the cli)…
 
-*** TODO Golang testing — gotest.tools poll                          :poll:
+*** Golang testing — gotest.tools poll                              :poll:
 :PROPERTIES:
 :EXPORT_FILE_NAME: 2019-03-24-gotest-tools-poll
 :EXPORT_DATE: 2019-03-24
@@ -1050,7 +1050,11 @@ Let's look at an example taken from the ~moby/moby~ source code.
 #+end_src
 
 
-**** TODO Conclusion
+**** Conclusion
+
+… that's a wrap. The =poll= package allows to easily wait for a condition to happen in a
+given time-frame — with sane defaults. As for most of the ~gotest.tools~ package, we use
+this package heavily in =docker/*= projects too…
 
 *** TODO Golang testing — gotest.tools x/subtest
 *** TODO gotestsum
