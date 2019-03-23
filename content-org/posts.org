@@ -922,8 +922,8 @@ on several =docker/*= projects (the engine, the cli)…
 
 *** Golang testing — gotest.tools poll                              :poll:
 :PROPERTIES:
-:EXPORT_FILE_NAME: 2019-03-24-gotest-tools-poll
-:EXPORT_DATE: 2019-03-24
+:EXPORT_FILE_NAME: 2019-03-23-gotest-tools-poll
+:EXPORT_DATE: 2019-03-23
 :END:
 
 Let's continue the [[https://gotest.tools][=gotest.tools=]] serie, this time with the =poll= package.
