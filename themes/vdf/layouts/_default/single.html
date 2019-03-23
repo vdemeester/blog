@@ -24,11 +24,16 @@
 	  {{ end }}
 	</ul>
       </header>
+      {{ if .Param "link"}}
+      {{ .Params.summary }}
+      🔗 <a href="{{ .Params.link }}" class="link">{{.Params.link}}</a>
+      {{ else }}
       {{ .Description | markdownify }}
       {{ if .Params.toc }}
       {{ .TableOfContents }}
       {{ end }}
       {{ .Content }}
+      {{ end }}
     </article>
     <hr />
     <div class="prev-next">
