@@ -1,6 +1,6 @@
 with import <nixpkgs> {};
 stdenv.mkDerivation {
-  name = "ape";
+  name = "blog";
   buildInputs = with pkgs; [
     hugo
   ];
