@@ -72,5 +72,5 @@ assert.Assert(t, golden.Bytes([]byte("foo"), "foo-content.golden"))
 ## Conclusion… {#conclusion}
 
 … that's a wrap. As for [`skip`](/posts/2018-09-01-gotest-tools-skip/), this is a small package, so the post was going to be
-quick. `golden` package just solve a specific problem (read [Golang testing — golden file](/posts/2017--04-22-golang-testing-golden-file/))
+quick. `golden` package just solve a specific problem (read [Golang testing — golden file](/posts/2017-04-22-golang-testing-golden-file/))
 in a simple way.
