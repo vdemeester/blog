@@ -1,2 +1,0 @@
-* Link
-** [[https://matt-rickard.com/building-a-new-dockerfile-frontend/][$ docker build -f Mockerfile.yaml .]]
